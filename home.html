@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#111111"
+  >
+
+  <title>شكون فيكم؟</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="home-page">
+
+    <!-- HEADER -->
+    <header class="home-header">
+
+      <div class="brand">
+        <div class="brand-circle">؟</div>
+
+        <div>
+          <h1>شكون فيكم؟</h1>
+          <span>اللعبة اللي تكشف شكون فيكم 😂</span>
+        </div>
+      </div>
+
+      <button id="logoutButton" class="logout-btn">
+        خروج
+      </button>
+
+    </header>
+
+
+    <!-- PLAYER -->
+    <section class="player-card">
+
+      <img
+        id="playerPhoto"
+        class="player-photo"
+        src="https://ui-avatars.com/api/?name=Player&background=ff9800&color=fff"
+        alt="صورة اللاعب"
+      >
+
+      <div class="player-info">
+
+        <span>مرحبا بيك 👋</span>
+
+        <h2 id="playerName">
+          جاري التحميل...
+        </h2>
+
+        <p>
+          مستعد تكشف شكون فيكم؟ 👀
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- GAME OPTIONS -->
+    <section class="game-section">
+
+      <h2>شنوة باش نعملو؟ 🎮</h2>
+
+      <div class="game-buttons">
+
+        <button
+          id="createRoomButton"
+          class="main-game-btn create-btn"
+        >
+          <span class="game-icon">🎮</span>
+
+          <div>
+            <strong>إنشاء غرفة</strong>
+            <small>إنت المضيف وتتحكم في اللعبة</small>
+          </div>
+
+          <span class="arrow">←</span>
+        </button>
+
+
+        <button
+          id="joinRoomButton"
+          class="main-game-btn join-btn"
+        >
+          <span class="game-icon">🔑</span>
+
+          <div>
+            <strong>الانضمام لغرفة</strong>
+            <small>عندك كود الغرفة؟ ادخل والعب مع صحابك</small>
+          </div>
+
+          <span class="arrow">←</span>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- INFO -->
+    <section class="info-card">
+
+      <div class="info-icon">
+        👥
+      </div>
+
+      <div>
+        <h3>العبوا مع بعضكم</h3>
+
+        <p>
+          كل واحد يدخل من تلفونو، تدخلوا نفس الغرفة
+          وتبدأ المنافسة 🔥
+        </p>
+      </div>
+
+    </section>
+
+
+    <footer>
+      شكون فيكم؟ 🎮
+    </footer>
+
+  </main>
+
+
+  <script type="module" src="home.js"></script>
+
+</body>
+
+</html>
