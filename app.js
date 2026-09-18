@@ -1,42 +1,102 @@
 import {
   loginWithFacebook,
+  handleFacebookRedirect,
   onAuthStateChanged
 } from "./firebase.js";
 
-const loginButton = document.getElementById("facebookLogin");
-const message = document.getElementById("message");
 
-loginButton.addEventListener("click", async () => {
-  message.textContent = "جاري تسجيل الدخول...";
+const loginButton =
+  document.getElementById("facebookLogin");
 
-  loginButton.disabled = true;
-  loginButton.style.opacity = "0.6";
+const message =
+  document.getElementById("message");
 
-  try {
-    await loginWithFacebook();
 
-    message.textContent = "تم تسجيل الدخول بنجاح ✅";
+// =====================================
+// CHECK FACEBOOK REDIRECT
+// =====================================
 
-    setTimeout(() => {
-      window.location.href = "home.html";
-    }, 700);
+handleFacebookRedirect()
+  .then((user) => {
 
-  } catch (error) {
-    console.error("FULL FIREBASE ERROR:", error);
+    if (user) {
+
+      message.textContent =
+        "تم تسجيل الدخول بنجاح ✅";
+
+      setTimeout(() => {
+
+        window.location.href =
+          "home.html";
+
+      }, 500);
+
+    }
+
+  })
+  .catch((error) => {
+
+    console.error(error);
+
+  });
+
+
+// =====================================
+// LOGIN BUTTON
+// =====================================
+
+loginButton.addEventListener(
+  "click",
+  async () => {
 
     message.textContent =
-      "خطأ: " +
-      (error.code || "غير معروف") +
-      " — " +
-      (error.message || "لا توجد تفاصيل");
+      "جاري فتح Facebook...";
 
-    loginButton.disabled = false;
-    loginButton.style.opacity = "1";
-  }
-});
+    loginButton.disabled = true;
 
-onAuthStateChanged((user) => {
-  if (user) {
-    console.log("Logged in:", user.displayName);
+    loginButton.style.opacity =
+      "0.6";
+
+    try {
+
+      await loginWithFacebook();
+
+      // لا نعمل redirect هنا
+      // Facebook سيعيدنا للموقع تلقائيًا
+
+    } catch (error) {
+
+      console.error(error);
+
+      message.textContent =
+        "حدث خطأ: " +
+        (error.code || "غير معروف");
+
+      loginButton.disabled = false;
+
+      loginButton.style.opacity =
+        "1";
+    }
+
   }
-});
+);
+
+
+// =====================================
+// AUTH STATE
+// =====================================
+
+onAuthStateChanged(
+  (user) => {
+
+    if (user) {
+
+      console.log(
+        "Logged in:",
+        user.displayName
+      );
+
+    }
+
+  }
+);
