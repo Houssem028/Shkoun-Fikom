@@ -3,7 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
 import {
   getAuth,
   FacebookAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
@@ -16,12 +17,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 
-// ===============================
-// Firebase Configuration
-// ===============================
-
 const firebaseConfig = {
-  apiKey: "AIzaSyD7mgqUztZqtQDvw3dDmASkbokqcH9Oi84",
+  apiKey: "AIzaD7zmgqUztZqtQDvw3dDmASkbokqcH9Oi84",
   authDomain: "shkoun-fikom.firebaseapp.com",
   projectId: "shkoun-fikom",
   storageBucket: "shkoun-fikom.firebasestorage.app",
@@ -31,40 +28,56 @@ const firebaseConfig = {
 };
 
 
-// ===============================
-// Initialize Firebase
-// ===============================
-
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+
 const db = getFirestore(app);
-
-
-// ===============================
-// Facebook Provider
-// ===============================
 
 const facebookProvider = new FacebookAuthProvider();
 
 
-// ===============================
-// Login with Facebook
-// ===============================
+// =====================================
+// FACEBOOK LOGIN
+// =====================================
 
 async function loginWithFacebook() {
 
   try {
 
-    const result = await signInWithPopup(
+    await signInWithRedirect(
       auth,
       facebookProvider
     );
 
+  } catch (error) {
+
+    console.error(
+      "FACEBOOK LOGIN ERROR:",
+      error
+    );
+
+    throw error;
+  }
+}
+
+
+// =====================================
+// HANDLE FACEBOOK RETURN
+// =====================================
+
+async function handleFacebookRedirect() {
+
+  try {
+
+    const result =
+      await getRedirectResult(auth);
+
+    if (!result) {
+      return null;
+    }
+
     const user = result.user;
-
-
-    // حفظ بيانات اللاعب في Firestore
 
     await setDoc(
       doc(db, "users", user.uid),
@@ -86,43 +99,36 @@ async function loginWithFacebook() {
         updatedAt:
           serverTimestamp()
       },
-
       {
         merge: true
       }
     );
-
 
     return user;
 
   } catch (error) {
 
     console.error(
-      "FACEBOOK LOGIN ERROR:",
+      "FACEBOOK REDIRECT ERROR:",
       error
     );
-
-
-    // إظهار الخطأ الحقيقي
 
     alert(
       "❌ خطأ تسجيل الدخول\n\n" +
       "الكود: " +
       (error.code || "غير معروف") +
       "\n\n" +
-      "التفاصيل:\n" +
-      (error.message || "لا توجد تفاصيل")
+      (error.message || "")
     );
-
 
     throw error;
   }
 }
 
 
-// ===============================
-// Logout
-// ===============================
+// =====================================
+// LOGOUT
+// =====================================
 
 async function logout() {
 
@@ -131,20 +137,15 @@ async function logout() {
 }
 
 
-// ===============================
-// Export
-// ===============================
+// =====================================
+// EXPORT
+// =====================================
 
 export {
-
   auth,
-
   db,
-
   loginWithFacebook,
-
+  handleFacebookRedirect,
   logout,
-
   onAuthStateChanged
-
 };
