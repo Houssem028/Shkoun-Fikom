@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+
 import {
   getAuth,
   FacebookAuthProvider,
@@ -6,6 +7,7 @@ import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
 import {
   getFirestore,
   doc,
@@ -32,7 +34,11 @@ const facebookProvider = new FacebookAuthProvider();
 
 async function loginWithFacebook() {
   try {
-    const result = await signInWithPopup(auth, facebookProvider);
+
+    const result = await signInWithPopup(
+      auth,
+      facebookProvider
+    );
 
     const user = result.user;
 
@@ -49,8 +55,20 @@ async function loginWithFacebook() {
     );
 
     return user;
+
   } catch (error) {
-    console.error("Facebook Login Error:", error);
+
+    console.error("FACEBOOK LOGIN ERROR:", error);
+
+    // إظهار الخطأ الحقيقي
+    alert(
+      "❌ خطأ تسجيل الدخول\n\n" +
+      "الكود: " + (error.code || "غير معروف") +
+      "\n\n" +
+      "التفاصيل:\n" +
+      (error.message || "لا توجد تفاصيل")
+    );
+
     throw error;
   }
 }
