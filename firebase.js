@@ -7,17 +7,20 @@ import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
+
 import {
   getFirestore,
   collection,
   addDoc,
-  getDocs,
+  getDoc,
+  updateDoc,
+  doc,
   query,
   where,
-  doc,
-  updateDoc,
+  getDocs,
   arrayUnion,
-  serverTimestamp
+  serverTimestamp,
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 
@@ -53,7 +56,9 @@ const firebaseConfig = {
 // =====================================
 
 const app =
-  initializeApp(firebaseConfig);
+  initializeApp(
+    firebaseConfig
+  );
 
 
 const db =
@@ -69,13 +74,25 @@ export {
   db,
 
   collection,
+
   addDoc,
-  getDocs,
-  query,
-  where,
-  doc,
+
+  getDoc,
+
   updateDoc,
+
+  doc,
+
+  query,
+
+  where,
+
+  getDocs,
+
   arrayUnion,
-  serverTimestamp
+
+  serverTimestamp,
+
+  onSnapshot
 
 };
