@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0b0b12"
+  >
+
+  <title>إنشاء غرفة — شكون فيكم؟</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="app">
+
+    <div class="logo-section">
+
+      <img
+        src="file_0000000082d081f5a7b777584ad64610.png"
+        alt="شكون فيكم؟"
+        class="app-logo"
+      >
+
+      <h1>شكون فيكم؟</h1>
+
+      <p>حضّر القعدة وابعث الكود لأصحابك 🎮</p>
+
+    </div>
+
+
+    <section class="screen">
+
+      <div class="card">
+
+        <h2>إنشاء غرفة 🎮</h2>
+
+        <p>
+          مرحبا بيك
+          <strong id="hostName">...</strong>
+          👋
+        </p>
+
+        <p>
+          اضغط على الزر باش نعملولك غرفة جديدة.
+        </p>
+
+        <button
+          id="createBtn"
+          class="main-btn"
+        >
+          إنشاء الغرفة 🚀
+        </button>
+
+        <p
+          id="message"
+          class="message"
+        ></p>
+
+      </div>
+
+    </section>
+
+
+    <footer>
+      شكون فيكم؟ 🎮 2026
+    </footer>
+
+  </main>
+
+
+  <script type="module">
+
+    import {
+      db,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from "./firebase.js";
+
+
+    const hostNameElement =
+      document.getElementById("hostName");
+
+    const createBtn =
+      document.getElementById("createBtn");
+
+    const message =
+      document.getElementById("message");
+
+
+    // =====================================
+    // PLAYER ID
+    // =====================================
+
+    let playerId =
+      localStorage.getItem("shkounPlayerId");
+
+    if (!playerId) {
+
+      if (crypto.randomUUID) {
+        playerId = crypto.randomUUID();
+      } else {
+        playerId =
+          Date.now().toString() +
+          Math.random().toString(36).substring(2);
+      }
+
+      localStorage.setItem(
+        "shkounPlayerId",
+        playerId
+      );
+    }
+
+
+    // =====================================
+    // PLAYER NAME
+    // =====================================
+
+    const playerName =
+      localStorage.getItem("shkounPlayerName");
+
+
+    if (!playerName) {
+
+      window.location.href = "index.html";
+
+    } else {
+
+      hostNameElement.textContent =
+        playerName;
+
+    }
+
+
+    // =====================================
+    // GENERATE ROOM CODE
+    // =====================================
+
+    function generateRoomCode() {
+
+      return Math.floor(
+        100000 +
+        Math.random() * 900000
+      ).toString();
+
+    }
+
+
+    // =====================================
+    // CREATE ROOM
+    // =====================================
+
+    createBtn.addEventListener(
+      "click",
+      async () => {
+
+        if (!playerName) {
+          window.location.href =
+            "index.html";
+          return;
+        }
+
+
+        createBtn.disabled = true;
+
+        createBtn.textContent =
+          "جاري إنشاء الغرفة...";
+
+
+        message.textContent = "";
+
+
+        try {
+
+          const roomCode =
+            generateRoomCode();
+
+
+          const roomData = {
+
+            code: Number(roomCode),
+
+            ownerId: playerId,
+
+            ownerName: playerName,
+
+            players: [
+              {
+                id: playerId,
+                name: playerName
+              }
+            ],
+
+            status: "waiting",
+
+            createdAt:
+              serverTimestamp()
+
+          };
+
+
+          const roomRef =
+            await addDoc(
+              collection(db, "rooms"),
+              roomData
+            );
+
+
+          // حفظ معلومات الغرفة
+          localStorage.setItem(
+            "shkounRoomCode",
+            roomCode
+          );
+
+          localStorage.setItem(
+            "shkounRoomId",
+            roomRef.id
+          );
+
+          localStorage.setItem(
+            "shkounIsOwner",
+            "true"
+          );
+
+
+          // الذهاب لصفحة الغرفة
+          window.location.href =
+            "room.html";
+
+
+        } catch (error) {
+
+          console.error(
+            "Create room error:",
+            error
+          );
+
+
+          createBtn.disabled = false;
+
+          createBtn.textContent =
+            "إنشاء الغرفة 🚀";
+
+
+          message.textContent =
+            "صار مشكل في إنشاء الغرفة 😕";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
