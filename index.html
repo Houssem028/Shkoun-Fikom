@@ -12,24 +12,27 @@
 
   <meta
     name="theme-color"
-    content="#111111"
+    content="#0b0b12"
   >
 
   <title>شكون فيكم؟</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 
 </head>
 
 
 <body>
 
-  <main class="login-page">
+  <main class="app">
 
 
     <!-- LOGO -->
 
-    <div class="logo-area">
+    <div class="logo-section">
 
       <img
         src="file_0000000082d081f5a7b777584ad64610.png"
@@ -46,43 +49,193 @@
     </div>
 
 
-    <!-- LOGIN CARD -->
+    <!-- NAME SCREEN -->
 
-    <div class="card">
+    <section
+      id="nameScreen"
+      class="screen"
+    >
 
-      <h2>
-        مرحبا بيكم 👋
-      </h2>
+      <div class="card">
+
+        <h2>
+          قبل ما نبدأو 👋
+        </h2>
+
+        <p>
+          شنوة اسمك؟
+        </p>
 
 
-      <p class="description">
-        ادخل بحسابك وابدأ اللعب مع صحابك من تلفوناتكم.
-      </p>
+        <input
+          id="playerName"
+          type="text"
+          maxlength="20"
+          placeholder="اكتب اسمك هنا"
+          autocomplete="off"
+        >
+
+
+        <button
+          id="continueBtn"
+          class="main-btn"
+        >
+          نكمل 🚀
+        </button>
+
+
+        <p
+          id="nameMessage"
+          class="message"
+        ></p>
+
+      </div>
+
+    </section>
+
+
+    <!-- HOME SCREEN -->
+
+    <section
+      id="homeScreen"
+      class="screen hidden"
+    >
+
+      <div class="welcome">
+
+        <p>
+          مرحبا بيك 👋
+        </p>
+
+        <h2 id="welcomeName">
+          لاعب
+        </h2>
+
+      </div>
+
+
+      <div class="actions">
+
+
+        <!-- CREATE ROOM -->
+
+        <button
+          id="createRoomBtn"
+          class="action-btn create"
+        >
+
+          <span class="action-icon">
+            🎮
+          </span>
+
+          <span>
+
+            <strong>
+              إنشاء غرفة
+            </strong>
+
+            <small>
+              إنت اللي باش تدير اللعبة
+            </small>
+
+          </span>
+
+        </button>
+
+
+        <!-- JOIN ROOM -->
+
+        <button
+          id="joinRoomBtn"
+          class="action-btn join"
+        >
+
+          <span class="action-icon">
+            🚪
+          </span>
+
+          <span>
+
+            <strong>
+              دخول لغرفة
+            </strong>
+
+            <small>
+              عندك كود الغرفة؟
+            </small>
+
+          </span>
+
+        </button>
+
+
+      </div>
 
 
       <button
-        id="facebookLogin"
-        class="facebook-btn"
+        id="changeNameBtn"
+        class="change-name"
       >
-
-        <span class="facebook-icon">
-          f
-        </span>
-
-        تسجيل الدخول باستخدام Facebook
-
+        ✏️ تبديل الاسم
       </button>
 
 
-      <p
-        id="message"
-        class="message"
-      ></p>
-
-    </div>
+    </section>
 
 
-    <!-- FOOTER -->
+    <!-- JOIN ROOM -->
+
+    <section
+      id="joinScreen"
+      class="screen hidden"
+    >
+
+      <div class="card">
+
+        <button
+          id="backBtn"
+          class="back-btn"
+        >
+          ← رجوع
+        </button>
+
+
+        <h2>
+          دخول لغرفة 🚪
+        </h2>
+
+        <p>
+          اكتب كود الغرفة اللي عطاهولك صاحبك
+        </p>
+
+
+        <input
+          id="roomCode"
+          type="tel"
+          inputmode="numeric"
+          maxlength="6"
+          placeholder="000000"
+          autocomplete="off"
+        >
+
+
+        <button
+          id="joinBtn"
+          class="main-btn"
+        >
+          دخول للغرفة 🎮
+        </button>
+
+
+        <p
+          id="joinMessage"
+          class="message"
+        ></p>
+
+      </div>
+
+    </section>
+
 
     <footer>
       شكون فيكم؟ 🎮 2026
@@ -96,7 +249,6 @@
     type="module"
     src="app.js"
   ></script>
-
 
 </body>
 
