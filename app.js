@@ -1,187 +1,301 @@
-import {
-  loginWithFacebook,
-  handleFacebookRedirect,
-  onAuthStateChanged
-} from "./firebase.js";
+// =====================================
+// شكون فيكم؟
+// APP.JS
+// =====================================
 
 
 // =====================================
 // ELEMENTS
 // =====================================
 
-const loginButton =
-  document.getElementById("facebookLogin");
+const nameScreen =
+  document.getElementById("nameScreen");
 
-const message =
-  document.getElementById("message");
+const homeScreen =
+  document.getElementById("homeScreen");
+
+const joinScreen =
+  document.getElementById("joinScreen");
+
+
+const playerName =
+  document.getElementById("playerName");
+
+const welcomeName =
+  document.getElementById("welcomeName");
+
+
+const continueBtn =
+  document.getElementById("continueBtn");
+
+const createRoomBtn =
+  document.getElementById("createRoomBtn");
+
+const joinRoomBtn =
+  document.getElementById("joinRoomBtn");
+
+const changeNameBtn =
+  document.getElementById("changeNameBtn");
+
+const backBtn =
+  document.getElementById("backBtn");
+
+const nameMessage =
+  document.getElementById("nameMessage");
 
 
 // =====================================
-// CHECK ELEMENTS
+// LOAD SAVED NAME
 // =====================================
 
-if (!loginButton) {
+const savedName =
+  localStorage.getItem("shkounPlayerName");
 
-  console.error(
-    "❌ facebookLogin button not found"
+
+if (savedName) {
+
+  playerName.value =
+    savedName;
+
+  showHome();
+
+}
+
+
+// =====================================
+// CONTINUE
+// =====================================
+
+continueBtn.addEventListener(
+  "click",
+  saveName
+);
+
+
+playerName.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (event.key === "Enter") {
+
+      saveName();
+
+    }
+
+  }
+);
+
+
+// =====================================
+// SAVE NAME
+// =====================================
+
+function saveName() {
+
+  const name =
+    playerName.value.trim();
+
+
+  if (!name) {
+
+    nameMessage.textContent =
+      "اكتب اسمك أولاً 👀";
+
+    return;
+
+  }
+
+
+  if (name.length < 2) {
+
+    nameMessage.textContent =
+      "الاسم لازم يكون حرفين على الأقل 😅";
+
+    return;
+
+  }
+
+
+  if (name.length > 20) {
+
+    nameMessage.textContent =
+      "الاسم طويل برشا 😅";
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    "shkounPlayerName",
+    name
+  );
+
+
+  nameMessage.textContent =
+    "";
+
+
+  showHome();
+
+}
+
+
+// =====================================
+// SHOW HOME
+// =====================================
+
+function showHome() {
+
+  const name =
+    localStorage.getItem(
+      "shkounPlayerName"
+    );
+
+
+  if (!name) {
+
+    showName();
+
+    return;
+
+  }
+
+
+  welcomeName.textContent =
+    name;
+
+
+  nameScreen.classList.add(
+    "hidden"
+  );
+
+  joinScreen.classList.add(
+    "hidden"
+  );
+
+  homeScreen.classList.remove(
+    "hidden"
   );
 
 }
 
-if (!message) {
 
-  console.error(
-    "❌ message element not found"
+// =====================================
+// SHOW NAME
+// =====================================
+
+function showName() {
+
+  homeScreen.classList.add(
+    "hidden"
+  );
+
+  joinScreen.classList.add(
+    "hidden"
+  );
+
+  nameScreen.classList.remove(
+    "hidden"
   );
 
 }
 
 
 // =====================================
-// FACEBOOK RETURN
+// CREATE ROOM
 // =====================================
 
-handleFacebookRedirect()
+createRoomBtn.addEventListener(
+  "click",
+  () => {
 
-  .then((user) => {
+    const name =
+      localStorage.getItem(
+        "shkounPlayerName"
+      );
 
-    if (!user) {
+
+    if (!name) {
+
+      showName();
+
       return;
+
     }
 
 
-    console.log(
-      "✅ FACEBOOK USER:",
-      user
+    /*
+      في الخطوة القادمة
+      سنربط هذا الزر بـ Firebase
+      وننشئ غرفة حقيقية بكود 6 أرقام.
+    */
+
+    alert(
+      "🎮 إنشاء الغرفة\n\n" +
+      "الخطوة القادمة: إنشاء غرفة حقيقية وإعطاؤك كود 6 أرقام."
+    );
+
+  }
+);
+
+
+// =====================================
+// JOIN ROOM
+// =====================================
+
+joinRoomBtn.addEventListener(
+  "click",
+  () => {
+
+    homeScreen.classList.add(
+      "hidden"
+    );
+
+    joinScreen.classList.remove(
+      "hidden"
+    );
+
+  }
+);
+
+
+// =====================================
+// BACK
+// =====================================
+
+backBtn.addEventListener(
+  "click",
+  () => {
+
+    showHome();
+
+  }
+);
+
+
+// =====================================
+// CHANGE NAME
+// =====================================
+
+changeNameBtn.addEventListener(
+  "click",
+  () => {
+
+    localStorage.removeItem(
+      "shkounPlayerName"
     );
 
 
-    if (message) {
-
-      message.textContent =
-        "تم تسجيل الدخول بنجاح ✅";
-
-    }
+    playerName.value =
+      "";
 
 
-    setTimeout(() => {
-
-      window.location.href =
-        "home.html";
-
-    }, 700);
-
-  })
-
-  .catch((error) => {
-
-    console.error(
-      "❌ FACEBOOK REDIRECT ERROR:",
-      error
-    );
+    nameMessage.textContent =
+      "";
 
 
-    if (message) {
-
-      message.textContent =
-        "خطأ: " +
-        (error.code || "غير معروف");
-
-    }
-
-  });
-
-
-// =====================================
-// FACEBOOK LOGIN BUTTON
-// =====================================
-
-if (loginButton) {
-
-  loginButton.addEventListener(
-    "click",
-    async () => {
-
-      console.log(
-        "🔥 FACEBOOK BUTTON CLICKED"
-      );
-
-
-      if (message) {
-
-        message.textContent =
-          "جاري فتح Facebook...";
-
-      }
-
-
-      loginButton.disabled = true;
-
-      loginButton.style.opacity =
-        "0.6";
-
-
-      try {
-
-        await loginWithFacebook();
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "❌ FACEBOOK LOGIN ERROR:",
-          error
-        );
-
-
-        if (message) {
-
-          message.textContent =
-            "خطأ: " +
-            (error.code || "غير معروف");
-
-        }
-
-
-        loginButton.disabled =
-          false;
-
-        loginButton.style.opacity =
-          "1";
-
-      }
-
-    }
-  );
-
-}
-
-
-// =====================================
-// AUTH STATE
-// =====================================
-
-onAuthStateChanged(
-  auth,
-  (user) => {
-
-    if (user) {
-
-      console.log(
-        "✅ LOGGED IN:",
-        user.displayName
-      );
-
-    }
-
-    else {
-
-      console.log(
-        "ℹ️ NO USER"
-      );
-
-    }
+    showName();
 
   }
 );
