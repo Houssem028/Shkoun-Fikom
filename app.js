@@ -4,7 +4,9 @@
 // =====================================
 
 
+// =====================================
 // ELEMENTS
+// =====================================
 
 const nameScreen =
   document.getElementById("nameScreen");
@@ -45,15 +47,11 @@ const nameMessage =
 // =====================================
 
 const savedName =
-  localStorage.getItem(
-    "shkounPlayerName"
-  );
-
+  localStorage.getItem("shkounPlayerName");
 
 if (savedName) {
 
-  playerName.value =
-    savedName;
+  playerName.value = savedName;
 
   showHome();
 
@@ -156,21 +154,14 @@ function showHome() {
   }
 
 
-  welcomeName.textContent =
-    name;
+  welcomeName.textContent = name;
 
 
-  nameScreen.classList.add(
-    "hidden"
-  );
+  nameScreen.classList.add("hidden");
 
-  joinScreen.classList.add(
-    "hidden"
-  );
+  joinScreen.classList.add("hidden");
 
-  homeScreen.classList.remove(
-    "hidden"
-  );
+  homeScreen.classList.remove("hidden");
 
 }
 
@@ -181,17 +172,11 @@ function showHome() {
 
 function showName() {
 
-  homeScreen.classList.add(
-    "hidden"
-  );
+  homeScreen.classList.add("hidden");
 
-  joinScreen.classList.add(
-    "hidden"
-  );
+  joinScreen.classList.add("hidden");
 
-  nameScreen.classList.remove(
-    "hidden"
-  );
+  nameScreen.classList.remove("hidden");
 
 }
 
@@ -219,6 +204,7 @@ createRoomBtn.addEventListener(
     }
 
 
+    // نفتح صفحة إنشاء الغرفة
     window.location.href =
       "create-room.html";
 
@@ -227,20 +213,16 @@ createRoomBtn.addEventListener(
 
 
 // =====================================
-// JOIN ROOM SCREEN
+// JOIN ROOM
 // =====================================
 
 joinRoomBtn.addEventListener(
   "click",
   () => {
 
-    homeScreen.classList.add(
-      "hidden"
-    );
+    homeScreen.classList.add("hidden");
 
-    joinScreen.classList.remove(
-      "hidden"
-    );
+    joinScreen.classList.remove("hidden");
 
   }
 );
@@ -271,6 +253,7 @@ changeNameBtn.addEventListener(
     localStorage.removeItem(
       "shkounPlayerName"
     );
+
 
     playerName.value = "";
 
