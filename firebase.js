@@ -1,7 +1,3 @@
-// =====================================
-// FIREBASE APP
-// =====================================
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
 import {
@@ -9,16 +5,8 @@ import {
   FacebookAuthProvider,
   signInWithRedirect,
   getRedirectResult,
-  onAuthStateChanged,
-  signOut
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 
 // =====================================
@@ -31,8 +19,7 @@ const firebaseConfig = {
   projectId: "shkoun-fikom",
   storageBucket: "shkoun-fikom.firebasestorage.app",
   messagingSenderId: "884631331051",
-  appId: "1:884631331051:web:7a23dba6b6a1cfed7e5eae",
-  measurementId: "G-ZQ29DQXTWP"
+  appId: "1:884631331051:web:7a23dba6b6a1cfed7e5eae"
 };
 
 
@@ -44,184 +31,51 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-const db = getFirestore(app);
+
+// =====================================
+// FACEBOOK
+// =====================================
+
+const facebookProvider =
+  new FacebookAuthProvider();
 
 
 // =====================================
-// FACEBOOK PROVIDER
-// =====================================
-
-const facebookProvider = new FacebookAuthProvider();
-
-
-// نطلب البريد الإلكتروني من Facebook
-facebookProvider.addScope("email");
-
-
-// =====================================
-// FACEBOOK LOGIN
+// LOGIN
 // =====================================
 
 async function loginWithFacebook() {
 
-  try {
+  console.log("🔥 Starting Facebook login...");
 
-    await signInWithRedirect(
-      auth,
-      facebookProvider
-    );
-
-  } catch (error) {
-
-    console.error(
-      "FACEBOOK LOGIN ERROR:",
-      error
-    );
-
-    alert(
-      "❌ صار خطأ في تسجيل الدخول\n\n" +
-      "الكود: " +
-      (error.code || "غير معروف") +
-      "\n\n" +
-      (error.message || "")
-    );
-  }
-}
-
-
-// =====================================
-// HANDLE FACEBOOK REDIRECT
-// =====================================
-
-async function handleFacebookRedirect() {
-
-  try {
-
-    const result =
-      await getRedirectResult(auth);
-
-
-    // لا توجد نتيجة تسجيل دخول
-    if (!result) {
-      return null;
-    }
-
-
-    const user = result.user;
-
-
-    // =================================
-    // SAVE USER IN FIRESTORE
-    // =================================
-
-    await setDoc(
-
-      doc(
-        db,
-        "users",
-        user.uid
-      ),
-
-      {
-
-        uid: user.uid,
-
-        name:
-          user.displayName ||
-          "لاعب",
-
-        email:
-          user.email ||
-          "",
-
-        photo:
-          user.photoURL ||
-          "",
-
-        updatedAt:
-          serverTimestamp()
-
-      },
-
-      {
-        merge: true
-      }
-
-    );
-
-
-    console.log(
-      "✅ Facebook login successful:",
-      user
-    );
-
-
-    return user;
-
-
-  } catch (error) {
-
-    console.error(
-      "FACEBOOK REDIRECT ERROR:",
-      error
-    );
-
-
-    alert(
-
-      "❌ خطأ تسجيل الدخول\n\n" +
-
-      "الكود: " +
-      (error.code || "غير معروف") +
-
-      "\n\n" +
-
-      (error.message || "")
-
-    );
-
-
-    return null;
-  }
-}
-
-
-// =====================================
-// AUTH STATE
-// =====================================
-
-function watchAuthState(callback) {
-
-  return onAuthStateChanged(
+  await signInWithRedirect(
     auth,
-    callback
+    facebookProvider
   );
 
 }
 
 
 // =====================================
-// LOGOUT
+// RETURN FROM FACEBOOK
 // =====================================
 
-async function logout() {
+async function handleFacebookRedirect() {
 
-  try {
+  console.log("🔥 Checking Facebook redirect...");
 
-    await signOut(auth);
+  const result =
+    await getRedirectResult(auth);
 
-    console.log(
-      "✅ تم تسجيل الخروج"
-    );
-
-  } catch (error) {
-
-    console.error(
-      "LOGOUT ERROR:",
-      error
-    );
-
+  if (!result) {
+    return null;
   }
+
+  console.log(
+    "✅ Facebook login successful!"
+  );
+
+  return result.user;
 
 }
 
@@ -231,17 +85,127 @@ async function logout() {
 // =====================================
 
 export {
-
   auth,
-
-  db,
-
   loginWithFacebook,
-
   handleFacebookRedirect,
-
-  watchAuthState,
-
-  logout
-
+  onAuthStateChanged
 };
+
+وبعده استبدل "app.js" بالكامل بهذا:
+
+:::writing{variant="document" id="73185" title="app.js — اختبار تسجيل Facebook"}
+
+import {
+  loginWithFacebook,
+  handleFacebookRedirect,
+  onAuthStateChanged
+} from "./firebase.js";
+
+
+const loginButton =
+  document.getElementById("facebookLogin");
+
+const message =
+  document.getElementById("message");
+
+
+// =====================================
+// CHECK FACEBOOK RETURN
+// =====================================
+
+handleFacebookRedirect()
+  .then((user) => {
+
+    if (user) {
+
+      console.log(
+        "✅ USER:",
+        user
+      );
+
+      message.textContent =
+        "تم تسجيل الدخول بنجاح ✅";
+
+    }
+
+  })
+  .catch((error) => {
+
+    console.error(
+      "❌ FIREBASE ERROR:",
+      error
+    );
+
+    message.textContent =
+      "خطأ: " +
+      error.code;
+
+  });
+
+
+// =====================================
+// FACEBOOK BUTTON
+// =====================================
+
+loginButton.addEventListener(
+  "click",
+  async () => {
+
+    message.textContent =
+      "جاري فتح Facebook...";
+
+    loginButton.disabled = true;
+
+    try {
+
+      await loginWithFacebook();
+
+    } catch (error) {
+
+      console.error(
+        "❌ LOGIN ERROR:",
+        error
+      );
+
+      message.textContent =
+        "خطأ: " +
+        error.code;
+
+      loginButton.disabled = false;
+
+    }
+
+  }
+);
+
+
+// =====================================
+// AUTH STATE
+// =====================================
+
+onAuthStateChanged(
+  (user) => {
+
+    if (user) {
+
+      console.log(
+        "✅ Logged in:",
+        user.displayName
+      );
+
+    }
+
+  }
+);
+
+الآن مهم جدًا ⚠️
+
+لا نضيف Firestore ولا "email" ولا أي شيء آخر.
+
+ارفع الملفين فقط إلى GitHub Pages وجرب الزر.
+
+إذا ظهر لك:
+
+"auth/api-key-not-valid"
+
+فهذا الاختبار سيأكد لنا أن المشكلة تحصل قبل Facebook أصلًا، وننتقل مباشرة لإصلاح الـ API Key بدل ما نضيع وقتك في كود Facebook.
