@@ -1,14 +1,24 @@
 import {
   loginWithFacebook,
   handleFacebookRedirect,
-  onAuthStateChanged
+  watchAuthState
 } from "./firebase.js";
 
-const loginButton = document.getElementById("facebookLogin");
-const message = document.getElementById("message");
 
-console.log("🔥 APP.JS NEW VERSION LOADED");
-console.log("🔥 LOGIN METHOD: REDIRECT");
+const loginButton =
+  document.getElementById("facebookLogin");
+
+const message =
+  document.getElementById("message");
+
+
+console.log(
+  "🔥 APP.JS LOADED"
+);
+
+console.log(
+  "🔥 LOGIN METHOD: REDIRECT"
+);
 
 
 // =====================================
@@ -22,16 +32,28 @@ handleFacebookRedirect()
       return;
     }
 
-    console.log("✅ FACEBOOK USER:", user);
+    console.log(
+      "✅ FACEBOOK USER:",
+      user
+    );
 
-    message.textContent =
-      "تم تسجيل الدخول بنجاح ✅";
+    if (message) {
+
+      message.textContent =
+        "تم تسجيل الدخول بنجاح ✅";
+
+    }
+
 
     setTimeout(() => {
-      window.location.href = "home.html";
+
+      window.location.href =
+        "home.html";
+
     }, 700);
 
   })
+
   .catch((error) => {
 
     console.error(
@@ -39,55 +61,87 @@ handleFacebookRedirect()
       error
     );
 
-    message.textContent =
-      "خطأ: " +
-      (error.code || "غير معروف");
+    if (message) {
+
+      message.textContent =
+        "خطأ: " +
+        (error.code || "غير معروف");
+
+    }
+
   });
 
 
 // =====================================
-// LOGIN
+// LOGIN BUTTON
 // =====================================
 
-loginButton.addEventListener("click", async () => {
+if (loginButton) {
 
-  console.log("🔥 FACEBOOK BUTTON CLICKED");
+  loginButton.addEventListener(
+    "click",
+    async () => {
 
-  message.textContent =
-    "جاري فتح Facebook...";
+      console.log(
+        "🔥 FACEBOOK BUTTON CLICKED"
+      );
 
-  loginButton.disabled = true;
 
-  loginButton.style.opacity = "0.6";
+      if (message) {
 
-  try {
+        message.textContent =
+          "جاري فتح Facebook...";
 
-    await loginWithFacebook();
+      }
 
-  } catch (error) {
 
-    console.error(
-      "❌ LOGIN ERROR:",
-      error
-    );
+      loginButton.disabled = true;
 
-    message.textContent =
-      "خطأ: " +
-      (error.code || "غير معروف");
+      loginButton.style.opacity =
+        "0.6";
 
-    loginButton.disabled = false;
 
-    loginButton.style.opacity = "1";
-  }
+      try {
 
-});
+        await loginWithFacebook();
+
+      } catch (error) {
+
+        console.error(
+          "❌ LOGIN ERROR:",
+          error
+        );
+
+
+        if (message) {
+
+          message.textContent =
+            "خطأ: " +
+            (error.code ||
+              "غير معروف");
+
+        }
+
+
+        loginButton.disabled =
+          false;
+
+        loginButton.style.opacity =
+          "1";
+
+      }
+
+    }
+  );
+
+}
 
 
 // =====================================
 // AUTH STATE
 // =====================================
 
-onAuthStateChanged((user) => {
+watchAuthState((user) => {
 
   if (user) {
 
