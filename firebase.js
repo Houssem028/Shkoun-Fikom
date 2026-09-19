@@ -1,3 +1,7 @@
+// =====================================
+// FIREBASE APP
+// =====================================
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
 import {
@@ -17,8 +21,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 
+// =====================================
+// FIREBASE CONFIG
+// =====================================
+
 const firebaseConfig = {
-  apiKey: "AIzaD7zmgqUztZqtQDvw3dDmASkbokqcH9Oi84",
+  apiKey: "AIzaSyD7mgqUztZqtQDvw3dDmASkbokqcH9Oi84",
   authDomain: "shkoun-fikom.firebaseapp.com",
   projectId: "shkoun-fikom",
   storageBucket: "shkoun-fikom.firebasestorage.app",
@@ -28,13 +36,26 @@ const firebaseConfig = {
 };
 
 
+// =====================================
+// INITIALIZE FIREBASE
+// =====================================
+
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
 const db = getFirestore(app);
 
+
+// =====================================
+// FACEBOOK PROVIDER
+// =====================================
+
 const facebookProvider = new FacebookAuthProvider();
+
+
+// نطلب البريد الإلكتروني من Facebook
+facebookProvider.addScope("email");
 
 
 // =====================================
@@ -57,13 +78,19 @@ async function loginWithFacebook() {
       error
     );
 
-    throw error;
+    alert(
+      "❌ صار خطأ في تسجيل الدخول\n\n" +
+      "الكود: " +
+      (error.code || "غير معروف") +
+      "\n\n" +
+      (error.message || "")
+    );
   }
 }
 
 
 // =====================================
-// HANDLE FACEBOOK RETURN
+// HANDLE FACEBOOK REDIRECT
 // =====================================
 
 async function handleFacebookRedirect() {
@@ -73,15 +100,30 @@ async function handleFacebookRedirect() {
     const result =
       await getRedirectResult(auth);
 
+
+    // لا توجد نتيجة تسجيل دخول
     if (!result) {
       return null;
     }
 
+
     const user = result.user;
 
+
+    // =================================
+    // SAVE USER IN FIRESTORE
+    // =================================
+
     await setDoc(
-      doc(db, "users", user.uid),
+
+      doc(
+        db,
+        "users",
+        user.uid
+      ),
+
       {
+
         uid: user.uid,
 
         name:
@@ -98,13 +140,24 @@ async function handleFacebookRedirect() {
 
         updatedAt:
           serverTimestamp()
+
       },
+
       {
         merge: true
       }
+
     );
 
+
+    console.log(
+      "✅ Facebook login successful:",
+      user
+    );
+
+
     return user;
+
 
   } catch (error) {
 
@@ -113,16 +166,37 @@ async function handleFacebookRedirect() {
       error
     );
 
+
     alert(
+
       "❌ خطأ تسجيل الدخول\n\n" +
+
       "الكود: " +
       (error.code || "غير معروف") +
+
       "\n\n" +
+
       (error.message || "")
+
     );
 
-    throw error;
+
+    return null;
   }
+}
+
+
+// =====================================
+// AUTH STATE
+// =====================================
+
+function watchAuthState(callback) {
+
+  return onAuthStateChanged(
+    auth,
+    callback
+  );
+
 }
 
 
@@ -132,7 +206,22 @@ async function handleFacebookRedirect() {
 
 async function logout() {
 
-  await signOut(auth);
+  try {
+
+    await signOut(auth);
+
+    console.log(
+      "✅ تم تسجيل الخروج"
+    );
+
+  } catch (error) {
+
+    console.error(
+      "LOGOUT ERROR:",
+      error
+    );
+
+  }
 
 }
 
@@ -142,10 +231,17 @@ async function logout() {
 // =====================================
 
 export {
+
   auth,
+
   db,
+
   loginWithFacebook,
+
   handleFacebookRedirect,
-  logout,
-  onAuthStateChanged
+
+  watchAuthState,
+
+  logout
+
 };
