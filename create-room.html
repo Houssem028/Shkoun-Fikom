@@ -17,6 +17,36 @@
   <title>إنشاء غرفة — شكون فيكم؟</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .room-create-card {
+      text-align: center;
+    }
+
+    .room-create-icon {
+      font-size: 55px;
+      margin-bottom: 12px;
+    }
+
+    .room-create-card h2 {
+      margin-bottom: 10px;
+    }
+
+    .room-create-card p {
+      margin-bottom: 22px;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 15px;
+      color: #aaa6b8;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #ff6b6b !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -33,25 +63,26 @@
 
       <h1>شكون فيكم؟</h1>
 
-      <p>حضّر القعدة وابعث الكود لأصحابك 🎮</p>
+      <p>حضّر القعدة وابدأ اللعب 🎮</p>
 
     </div>
 
 
     <section class="screen">
 
-      <div class="card">
+      <div class="card room-create-card">
 
-        <h2>إنشاء غرفة 🎮</h2>
+        <div class="room-create-icon">
+          🎮
+        </div>
+
+        <h2>
+          إنشاء غرفة
+        </h2>
 
         <p>
-          مرحبا بيك
-          <strong id="hostName">...</strong>
-          👋
-        </p>
-
-        <p>
-          اضغط على الزر باش نعملولك غرفة جديدة.
+          باش نعملولك غرفة جديدة
+          وتاخذ كود تعطيه لأصحابك.
         </p>
 
         <button
@@ -60,6 +91,13 @@
         >
           إنشاء الغرفة 🚀
         </button>
+
+        <p
+          id="loading"
+          class="loading"
+        >
+          جاري إنشاء الغرفة...
+        </p>
 
         <p
           id="message"
@@ -88,14 +126,32 @@
     } from "./firebase.js";
 
 
-    const hostNameElement =
-      document.getElementById("hostName");
-
     const createBtn =
       document.getElementById("createBtn");
 
+    const loading =
+      document.getElementById("loading");
+
     const message =
       document.getElementById("message");
+
+
+    // =====================================
+    // GET PLAYER NAME
+    // =====================================
+
+    const playerName =
+      localStorage.getItem(
+        "shkounPlayerName"
+      );
+
+
+    if (!playerName) {
+
+      window.location.href =
+        "index.html";
+
+    }
 
 
     // =====================================
@@ -103,47 +159,43 @@
     // =====================================
 
     let playerId =
-      localStorage.getItem("shkounPlayerId");
+      localStorage.getItem(
+        "shkounPlayerId"
+      );
+
 
     if (!playerId) {
 
-      if (crypto.randomUUID) {
-        playerId = crypto.randomUUID();
-      } else {
+      if (
+        window.crypto &&
+        crypto.randomUUID
+      ) {
+
         playerId =
-          Date.now().toString() +
-          Math.random().toString(36).substring(2);
+          crypto.randomUUID();
+
+      } else {
+
+        playerId =
+          Date.now() +
+          "-" +
+          Math.random()
+            .toString(36)
+            .substring(2);
+
       }
+
 
       localStorage.setItem(
         "shkounPlayerId",
         playerId
       );
-    }
-
-
-    // =====================================
-    // PLAYER NAME
-    // =====================================
-
-    const playerName =
-      localStorage.getItem("shkounPlayerName");
-
-
-    if (!playerName) {
-
-      window.location.href = "index.html";
-
-    } else {
-
-      hostNameElement.textContent =
-        playerName;
 
     }
 
 
     // =====================================
-    // GENERATE ROOM CODE
+    // RANDOM 6 DIGIT CODE
     // =====================================
 
     function generateRoomCode() {
@@ -164,18 +216,10 @@
       "click",
       async () => {
 
-        if (!playerName) {
-          window.location.href =
-            "index.html";
-          return;
-        }
-
-
         createBtn.disabled = true;
 
-        createBtn.textContent =
-          "جاري إنشاء الغرفة...";
-
+        loading.style.display =
+          "block";
 
         message.textContent = "";
 
@@ -186,7 +230,7 @@
             generateRoomCode();
 
 
-          const roomData = {
+          const room = {
 
             code: Number(roomCode),
 
@@ -203,6 +247,8 @@
 
             status: "waiting",
 
+            game: null,
+
             createdAt:
               serverTimestamp()
 
@@ -212,19 +258,20 @@
           const roomRef =
             await addDoc(
               collection(db, "rooms"),
-              roomData
+              room
             );
 
 
           // حفظ معلومات الغرفة
-          localStorage.setItem(
-            "shkounRoomCode",
-            roomCode
-          );
 
           localStorage.setItem(
             "shkounRoomId",
             roomRef.id
+          );
+
+          localStorage.setItem(
+            "shkounRoomCode",
+            roomCode
           );
 
           localStorage.setItem(
@@ -233,7 +280,8 @@
           );
 
 
-          // الذهاب لصفحة الغرفة
+          // الذهاب للغرفة
+
           window.location.href =
             "room.html";
 
@@ -241,19 +289,23 @@
         } catch (error) {
 
           console.error(
-            "Create room error:",
+            "CREATE ROOM ERROR:",
             error
           );
 
 
           createBtn.disabled = false;
 
-          createBtn.textContent =
-            "إنشاء الغرفة 🚀";
+          loading.style.display =
+            "none";
 
 
           message.textContent =
-            "صار مشكل في إنشاء الغرفة 😕";
+            "ما نجّمش نعملو الغرفة 😕";
+
+          message.classList.add(
+            "error"
+          );
 
         }
 
