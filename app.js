@@ -1,9 +1,13 @@
 import {
   loginWithFacebook,
   handleFacebookRedirect,
-  watchAuthState
+  onAuthStateChanged
 } from "./firebase.js";
 
+
+// =====================================
+// ELEMENTS
+// =====================================
 
 const loginButton =
   document.getElementById("facebookLogin");
@@ -12,13 +16,25 @@ const message =
   document.getElementById("message");
 
 
-console.log(
-  "🔥 APP.JS LOADED"
-);
+// =====================================
+// CHECK ELEMENTS
+// =====================================
 
-console.log(
-  "🔥 LOGIN METHOD: REDIRECT"
-);
+if (!loginButton) {
+
+  console.error(
+    "❌ facebookLogin button not found"
+  );
+
+}
+
+if (!message) {
+
+  console.error(
+    "❌ message element not found"
+  );
+
+}
 
 
 // =====================================
@@ -26,16 +42,19 @@ console.log(
 // =====================================
 
 handleFacebookRedirect()
+
   .then((user) => {
 
     if (!user) {
       return;
     }
 
+
     console.log(
       "✅ FACEBOOK USER:",
       user
     );
+
 
     if (message) {
 
@@ -57,9 +76,10 @@ handleFacebookRedirect()
   .catch((error) => {
 
     console.error(
-      "❌ REDIRECT RESULT ERROR:",
+      "❌ FACEBOOK REDIRECT ERROR:",
       error
     );
+
 
     if (message) {
 
@@ -73,7 +93,7 @@ handleFacebookRedirect()
 
 
 // =====================================
-// LOGIN BUTTON
+// FACEBOOK LOGIN BUTTON
 // =====================================
 
 if (loginButton) {
@@ -105,10 +125,12 @@ if (loginButton) {
 
         await loginWithFacebook();
 
-      } catch (error) {
+      }
+
+      catch (error) {
 
         console.error(
-          "❌ LOGIN ERROR:",
+          "❌ FACEBOOK LOGIN ERROR:",
           error
         );
 
@@ -117,8 +139,7 @@ if (loginButton) {
 
           message.textContent =
             "خطأ: " +
-            (error.code ||
-              "غير معروف");
+            (error.code || "غير معروف");
 
         }
 
@@ -141,21 +162,26 @@ if (loginButton) {
 // AUTH STATE
 // =====================================
 
-watchAuthState((user) => {
+onAuthStateChanged(
+  auth,
+  (user) => {
 
-  if (user) {
+    if (user) {
 
-    console.log(
-      "✅ LOGGED IN:",
-      user.displayName
-    );
+      console.log(
+        "✅ LOGGED IN:",
+        user.displayName
+      );
 
-  } else {
+    }
 
-    console.log(
-      "ℹ️ NO USER"
-    );
+    else {
+
+      console.log(
+        "ℹ️ NO USER"
+      );
+
+    }
 
   }
-
-});
+);
