@@ -4,9 +4,7 @@
 // =====================================
 
 
-// =====================================
 // ELEMENTS
-// =====================================
 
 const nameScreen =
   document.getElementById("nameScreen");
@@ -17,13 +15,11 @@ const homeScreen =
 const joinScreen =
   document.getElementById("joinScreen");
 
-
 const playerName =
   document.getElementById("playerName");
 
 const welcomeName =
   document.getElementById("welcomeName");
-
 
 const continueBtn =
   document.getElementById("continueBtn");
@@ -49,7 +45,9 @@ const nameMessage =
 // =====================================
 
 const savedName =
-  localStorage.getItem("shkounPlayerName");
+  localStorage.getItem(
+    "shkounPlayerName"
+  );
 
 
 if (savedName) {
@@ -77,9 +75,7 @@ playerName.addEventListener(
   (event) => {
 
     if (event.key === "Enter") {
-
       saveName();
-
     }
 
   }
@@ -132,9 +128,7 @@ function saveName() {
   );
 
 
-  nameMessage.textContent =
-    "";
-
+  nameMessage.textContent = "";
 
   showHome();
 
@@ -225,23 +219,15 @@ createRoomBtn.addEventListener(
     }
 
 
-    /*
-      في الخطوة القادمة
-      سنربط هذا الزر بـ Firebase
-      وننشئ غرفة حقيقية بكود 6 أرقام.
-    */
-
-    alert(
-      "🎮 إنشاء الغرفة\n\n" +
-      "الخطوة القادمة: إنشاء غرفة حقيقية وإعطاؤك كود 6 أرقام."
-    );
+    window.location.href =
+      "create-room.html";
 
   }
 );
 
 
 // =====================================
-// JOIN ROOM
+// JOIN ROOM SCREEN
 // =====================================
 
 joinRoomBtn.addEventListener(
@@ -286,14 +272,9 @@ changeNameBtn.addEventListener(
       "shkounPlayerName"
     );
 
+    playerName.value = "";
 
-    playerName.value =
-      "";
-
-
-    nameMessage.textContent =
-      "";
-
+    nameMessage.textContent = "";
 
     showName();
 
