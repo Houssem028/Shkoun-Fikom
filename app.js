@@ -17,11 +17,13 @@ const homeScreen =
 const joinScreen =
   document.getElementById("joinScreen");
 
+
 const playerName =
   document.getElementById("playerName");
 
 const welcomeName =
   document.getElementById("welcomeName");
+
 
 const continueBtn =
   document.getElementById("continueBtn");
@@ -47,11 +49,15 @@ const nameMessage =
 // =====================================
 
 const savedName =
-  localStorage.getItem("shkounPlayerName");
+  localStorage.getItem(
+    "shkounPlayerName"
+  );
+
 
 if (savedName) {
 
-  playerName.value = savedName;
+  playerName.value =
+    savedName;
 
   showHome();
 
@@ -73,7 +79,9 @@ playerName.addEventListener(
   (event) => {
 
     if (event.key === "Enter") {
+
       saveName();
+
     }
 
   }
@@ -154,14 +162,21 @@ function showHome() {
   }
 
 
-  welcomeName.textContent = name;
+  welcomeName.textContent =
+    name;
 
 
-  nameScreen.classList.add("hidden");
+  nameScreen.classList.add(
+    "hidden"
+  );
 
-  joinScreen.classList.add("hidden");
+  joinScreen.classList.add(
+    "hidden"
+  );
 
-  homeScreen.classList.remove("hidden");
+  homeScreen.classList.remove(
+    "hidden"
+  );
 
 }
 
@@ -172,11 +187,17 @@ function showHome() {
 
 function showName() {
 
-  homeScreen.classList.add("hidden");
+  homeScreen.classList.add(
+    "hidden"
+  );
 
-  joinScreen.classList.add("hidden");
+  joinScreen.classList.add(
+    "hidden"
+  );
 
-  nameScreen.classList.remove("hidden");
+  nameScreen.classList.remove(
+    "hidden"
+  );
 
 }
 
@@ -204,7 +225,7 @@ createRoomBtn.addEventListener(
     }
 
 
-    // نفتح صفحة إنشاء الغرفة
+    // فتح صفحة إنشاء الغرفة
     window.location.href =
       "create-room.html";
 
@@ -220,9 +241,13 @@ joinRoomBtn.addEventListener(
   "click",
   () => {
 
-    homeScreen.classList.add("hidden");
+    homeScreen.classList.add(
+      "hidden"
+    );
 
-    joinScreen.classList.remove("hidden");
+    joinScreen.classList.remove(
+      "hidden"
+    );
 
   }
 );
@@ -255,9 +280,13 @@ changeNameBtn.addEventListener(
     );
 
 
-    playerName.value = "";
+    playerName.value =
+      "";
 
-    nameMessage.textContent = "";
+
+    nameMessage.textContent =
+      "";
+
 
     showName();
 
