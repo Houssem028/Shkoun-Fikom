@@ -4,476 +4,280 @@
   padding: 0;
 }
 
+
 body {
   min-height: 100vh;
   font-family: Arial, sans-serif;
   background:
-    radial-gradient(circle at top, #292929 0%, #111 45%, #080808 100%);
+    radial-gradient(
+      circle at top,
+      #292040 0%,
+      #0b0b12 55%,
+      #050507 100%
+    );
   color: white;
 }
 
-.login-page {
+
+.app {
+  width: 100%;
+  max-width: 480px;
   min-height: 100vh;
+  margin: auto;
+  padding: 28px 20px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 25px;
 }
 
-.logo {
+
+.logo-section {
   text-align: center;
-  margin-bottom: 30px;
-}
-
-.logo-circle {
-  width: 85px;
-  height: 85px;
-  margin: auto;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: linear-gradient(135deg, #ff9800, #ff5e00);
-
-  font-size: 48px;
-  font-weight: bold;
-
-  box-shadow: 0 10px 35px rgba(255, 120, 0, 0.3);
-}
-
-.logo h1 {
-  margin-top: 15px;
-  font-size: 34px;
-  font-weight: 900;
-}
-
-.logo p {
-  margin-top: 8px;
-  color: #aaa;
-  font-size: 15px;
-}
-
-.card {
-  width: 100%;
-  max-width: 420px;
-
-  padding: 30px 24px;
-
-  background: rgba(30, 30, 30, 0.9);
-
-  border: 1px solid #333;
-  border-radius: 24px;
-
-  text-align: center;
-
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-}
-
-.card h2 {
-  font-size: 24px;
-  margin-bottom: 12px;
-}
-
-.description {
-  color: #aaa;
-  line-height: 1.7;
   margin-bottom: 25px;
 }
 
-.facebook-btn {
-  width: 100%;
-  border: none;
-  border-radius: 14px;
 
-  padding: 16px;
-
-  background: #1877f2;
-  color: white;
-
-  font-size: 16px;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-
-  transition: 0.2s;
+.app-logo {
+  width: 105px;
+  height: 105px;
+  object-fit: cover;
+  border-radius: 28px;
+  display: block;
+  margin: 0 auto 14px;
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.5);
 }
 
-.facebook-btn:active {
-  transform: scale(0.97);
+
+.logo-section h1 {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -1px;
 }
 
-.facebook-icon {
-  width: 25px;
-  height: 25px;
 
-  border-radius: 50%;
-
-  background: white;
-  color: #1877f2;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.message {
-  margin-top: 18px;
-  min-height: 22px;
-  color: #ff9800;
+.logo-section p {
+  margin-top: 7px;
+  color: #aaa6b8;
   font-size: 14px;
 }
 
-footer {
-  margin-top: 30px;
-  color: #666;
-  font-size: 13px;
-}
 
-@media (max-width: 380px) {
-
-  .logo h1 {
-    font-size: 29px;
-  }
-
-  .card {
-    padding: 25px 18px;
-  }
-
-}
-/* =================================
-   HOME PAGE
-================================= */
-
-.home-page {
-  min-height: 100vh;
-  max-width: 650px;
-  margin: auto;
-  padding: 20px;
+.screen {
+  width: 100%;
 }
 
 
-/* HEADER */
-
-.home-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 28px;
+.hidden {
+  display: none !important;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+
+.card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 25px 20px;
+  backdrop-filter: blur(15px);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
-.brand-circle {
-  width: 48px;
-  height: 48px;
+
+.card h2 {
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+
+.card p {
+  color: #aaa6b8;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+
+input {
+  width: 100%;
+  height: 55px;
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 15px;
+  background: rgba(0,0,0,0.25);
+  color: white;
+  padding: 0 16px;
+  font-size: 17px;
+  outline: none;
+  text-align: center;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
+input:focus {
+  border-color: #8b5cf6;
+}
+
+
+.main-btn {
+  width: 100%;
+  height: 55px;
+  margin-top: 14px;
+  border: none;
+  border-radius: 15px;
   background: linear-gradient(
     135deg,
-    #ff9800,
-    #ff5e00
+    #8b5cf6,
+    #6d28d9
   );
-
-  font-size: 28px;
-  font-weight: 900;
-
-  box-shadow:
-    0 8px 25px rgba(255, 120, 0, 0.25);
-}
-
-.brand h1 {
-  font-size: 21px;
-  font-weight: 900;
-}
-
-.brand span {
-  display: block;
-  color: #888;
-  font-size: 11px;
-  margin-top: 3px;
-}
-
-
-/* LOGOUT */
-
-.logout-btn {
-  border: 1px solid #333;
-  background: #1c1c1c;
-  color: #aaa;
-
-  padding: 9px 14px;
-  border-radius: 10px;
-
-  font-size: 13px;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
   cursor: pointer;
-}
-
-.logout-btn:active {
-  transform: scale(0.95);
-}
-
-
-/* PLAYER CARD */
-
-.player-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  padding: 20px;
-
-  background: linear-gradient(
-    135deg,
-    #242424,
-    #171717
-  );
-
-  border: 1px solid #333;
-  border-radius: 22px;
-
-  margin-bottom: 30px;
-
   box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.3);
-}
-
-.player-photo {
-  width: 72px;
-  height: 72px;
-
-  border-radius: 50%;
-
-  object-fit: cover;
-
-  border: 3px solid #ff9800;
-
-  background: #222;
-}
-
-.player-info span {
-  color: #ff9800;
-  font-size: 13px;
-}
-
-.player-info h2 {
-  font-size: 22px;
-  margin-top: 4px;
-}
-
-.player-info p {
-  color: #888;
-  font-size: 13px;
-  margin-top: 5px;
+    0 10px 25px rgba(109, 40, 217, 0.3);
 }
 
 
-/* GAME SECTION */
-
-.game-section h2 {
-  font-size: 20px;
-  margin-bottom: 15px;
+.main-btn:active {
+  transform: scale(0.98);
 }
 
 
-/* BUTTONS */
+.message {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+}
 
-.game-buttons {
+
+.welcome {
+  text-align: center;
+  margin: 10px 0 25px;
+}
+
+
+.welcome p {
+  color: #aaa6b8;
+  margin-bottom: 5px;
+}
+
+
+.welcome h2 {
+  font-size: 28px;
+}
+
+
+.actions {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.main-game-btn {
+
+.action-btn {
   width: 100%;
-
-  display: flex;
-  align-items: center;
-
-  gap: 14px;
-
-  border: 1px solid #333;
-  border-radius: 18px;
-
-  padding: 18px;
-
+  min-height: 85px;
+  border: none;
+  border-radius: 20px;
   color: white;
-
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 18px;
   text-align: right;
-
   cursor: pointer;
-
-  transition: 0.2s;
 }
 
-.main-game-btn:active {
-  transform: scale(0.97);
+
+.action-btn.create {
+  background: linear-gradient(
+    135deg,
+    #8b5cf6,
+    #6d28d9
+  );
 }
 
-.create-btn {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 152, 0, 0.18),
-      rgba(255, 94, 0, 0.05)
-    );
+
+.action-btn.join {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
-.join-btn {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(40, 120, 255, 0.15),
-      rgba(20, 20, 20, 0.2)
-    );
-}
 
-.game-icon {
-  width: 48px;
-  height: 48px;
-
-  flex-shrink: 0;
-
+.action-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border-radius: 14px;
-
-  background: #292929;
-
   font-size: 25px;
-}
-
-.main-game-btn div {
-  flex: 1;
-}
-
-.main-game-btn strong {
-  display: block;
-
-  font-size: 17px;
-
-  margin-bottom: 4px;
-}
-
-.main-game-btn small {
-  display: block;
-
-  color: #888;
-
-  font-size: 11px;
-
-  line-height: 1.5;
-}
-
-.arrow {
-  color: #ff9800;
-  font-size: 22px;
-}
-
-
-/* INFO CARD */
-
-.info-card {
-  display: flex;
-  align-items: center;
-
-  gap: 14px;
-
-  margin-top: 25px;
-
-  padding: 18px;
-
-  background: #181818;
-
-  border: 1px solid #292929;
-
-  border-radius: 18px;
-}
-
-.info-icon {
-  width: 45px;
-  height: 45px;
-
   flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 13px;
-
-  background: #242424;
-
-  font-size: 22px;
 }
 
-.info-card h3 {
-  font-size: 15px;
+
+.action-btn strong {
+  display: block;
+  font-size: 18px;
   margin-bottom: 5px;
 }
 
-.info-card p {
-  color: #888;
+
+.action-btn small {
+  display: block;
+  color: rgba(255,255,255,0.65);
   font-size: 12px;
-  line-height: 1.6;
 }
 
 
-/* FOOTER */
+.change-name {
+  display: block;
+  margin: 22px auto 0;
+  background: none;
+  border: none;
+  color: #aaa6b8;
+  font-size: 14px;
+  cursor: pointer;
+}
 
-.home-page footer {
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #aaa6b8;
+  font-size: 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+
+#roomCode {
+  font-size: 27px;
+  letter-spacing: 8px;
+  font-weight: bold;
+}
+
+
+footer {
+  margin-top: auto;
+  padding-top: 30px;
   text-align: center;
-
-  margin-top: 30px;
-
-  color: #555;
-
+  color: #555261;
   font-size: 12px;
 }
 
 
-/* MOBILE */
+@media (max-height: 700px) {
 
-@media (max-width: 380px) {
-
-  .home-page {
-    padding: 15px;
+  .app {
+    padding-top: 15px;
   }
 
-  .player-card {
-    padding: 16px;
+  .app-logo {
+    width: 80px;
+    height: 80px;
   }
 
-  .player-photo {
-    width: 62px;
-    height: 62px;
-  }
-
-  .player-info h2 {
-    font-size: 19px;
-  }
-
-  .main-game-btn {
-    padding: 15px;
+  .logo-section {
+    margin-bottom: 15px;
   }
 
 }
