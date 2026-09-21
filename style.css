@@ -1,1321 +1,615 @@
-/* =====================================
-   شكون فيكم؟
-   STYLE.CSS
-   BLACK & GOLD
-   MOBILE FIRST
-===================================== */
-
-
-/* =====================================
-   RESET
-===================================== */
-
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-
-html {
+html,
+body {
+  width: 100%;
   min-height: 100%;
 }
 
-
 body {
-  min-height: 100vh;
-
-  font-family:
-    "Arial",
-    "Tahoma",
-    sans-serif;
-
+  font-family: Arial, Tahoma, sans-serif;
   background:
     radial-gradient(
       circle at top,
-      #1d1a0d 0%,
-      #0c0c0c 35%,
-      #050505 100%
+      #292000 0%,
+      #090909 45%,
+      #000000 100%
     );
-
-  color: #ffffff;
-
-  direction: rtl;
-
-  overflow-x: hidden;
-}
-
-
-/* =====================================
-   APP
-===================================== */
-
-.app {
-
-  width: 100%;
-  max-width: 480px;
-
+  color: #fff;
   min-height: 100vh;
-
-  margin: 0 auto;
-
-  padding:
-    24px
-    18px
-    35px;
-
-  position: relative;
 }
 
-
-/* =====================================
-   GOLD GLOW
-===================================== */
-
-.app::before {
-
-  content: "";
-
-  position: fixed;
-
-  width: 260px;
-  height: 260px;
-
-  top: -130px;
-  right: -100px;
-
-  background: #d4af37;
-
-  opacity: 0.08;
-
-  filter: blur(70px);
-
-  border-radius: 50%;
-
-  pointer-events: none;
+button,
+input {
+  font-family: inherit;
 }
 
-
-.app::after {
-
-  content: "";
-
-  position: fixed;
-
-  width: 220px;
-  height: 220px;
-
-  bottom: -100px;
-  left: -100px;
-
-  background: #d4af37;
-
-  opacity: 0.06;
-
-  filter: blur(70px);
-
-  border-radius: 50%;
-
-  pointer-events: none;
+button {
+  border: none;
+  cursor: pointer;
 }
-
-
-/* =====================================
-   LOGO SECTION
-===================================== */
-
-.logo-section {
-
-  text-align: center;
-
-  margin-bottom: 28px;
-
-  position: relative;
-
-  z-index: 2;
-}
-
-
-.app-logo {
-
-  width: 105px;
-  height: 105px;
-
-  object-fit: cover;
-
-  border-radius: 50%;
-
-  border: 3px solid #d4af37;
-
-  box-shadow:
-    0 0 15px rgba(212, 175, 55, 0.35),
-    0 0 40px rgba(212, 175, 55, 0.12);
-
-  margin-bottom: 12px;
-}
-
-
-.logo-section h1 {
-
-  font-size: 30px;
-
-  font-weight: 900;
-
-  color: #d4af37;
-
-  letter-spacing: 0.5px;
-
-  text-shadow:
-    0 0 15px rgba(212, 175, 55, 0.25);
-}
-
-
-.logo-section p {
-
-  margin-top: 7px;
-
-  color: #9f9f9f;
-
-  font-size: 13px;
-}
-
-
-/* =====================================
-   SCREEN
-===================================== */
-
-.screen {
-
-  width: 100%;
-
-  animation:
-    screenIn
-    0.3s
-    ease;
-}
-
 
 .hidden {
-
   display: none !important;
 }
 
 
-@keyframes screenIn {
+/* =========================
+   SCREENS
+========================= */
 
-  from {
+.screen {
+  width: 100%;
+  min-height: 100vh;
+  padding: 25px 16px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    opacity: 0;
-
-    transform:
-      translateY(10px);
-
-  }
-
-  to {
-
-    opacity: 1;
-
-    transform:
-      translateY(0);
-
-  }
-
+#homeScreen,
+#messagesScreen,
+#gamesScreen,
+#settingsScreen {
+  align-items: flex-start;
 }
 
 
-/* =====================================
+/* =========================
    CARD
-===================================== */
+========================= */
 
-.card {
-
+.card,
+.page-card {
   width: 100%;
+  max-width: 430px;
+  background: rgba(15, 15, 15, 0.96);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 26px;
+  padding: 28px 20px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(212, 175, 55, 0.08);
+}
 
+.page-card {
+  margin-top: 15px;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  display: block;
+  width: 105px;
+  height: 105px;
+  object-fit: contain;
+  margin: 0 auto 18px;
+}
+
+.small-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+h1 {
+  text-align: center;
+  color: #d4af37;
+  font-size: 31px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #d4af37;
+  font-size: 25px;
+}
+
+h3 {
+  color: #d4af37;
+  margin: 20px 0 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
+.message {
+  color: #e0b93d;
+  text-align: center;
+  margin-top: 12px;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+input {
+  width: 100%;
+  height: 55px;
+  background: #111;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 15px;
+  padding: 0 16px;
+  font-size: 17px;
+  outline: none;
+  margin-bottom: 14px;
+}
+
+input:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.main-btn {
+  width: 100%;
+  min-height: 55px;
+  border-radius: 15px;
+  background: linear-gradient(
+    135deg,
+    #d4af37,
+    #a77d18
+  );
+  color: #080808;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  box-shadow:
+    0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+.main-btn:active {
+  transform: scale(0.98);
+}
+
+.secondary-btn {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 15px;
+  background: #151515;
+  color: #d4af37;
+  border: 1px solid #51451e;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+
+/* =========================
+   HOME HEADER
+========================= */
+
+.app-content {
+  width: 100%;
+  max-width: 430px;
+}
+
+.home-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 5px 4px 25px;
+}
+
+.welcome-small {
+  color: #888;
+  font-size: 13px;
+}
+
+#welcomeName {
+  font-size: 22px;
+  color: #d4af37;
+  margin-top: 3px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero-card {
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 25px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
   background:
     linear-gradient(
       145deg,
-      rgba(30, 30, 30, 0.98),
-      rgba(13, 13, 13, 0.98)
+      rgba(212, 175, 55, 0.12),
+      rgba(255, 255, 255, 0.02)
     );
+  margin-bottom: 18px;
+}
 
-  border: 1px solid
-    rgba(212, 175, 55, 0.25);
+.hero-icon {
+  font-size: 45px;
+  display: block;
+  margin-bottom: 10px;
+}
 
-  border-radius: 24px;
+.hero-card h1 {
+  margin-bottom: 5px;
+}
 
-  padding: 28px 20px;
-
-  box-shadow:
-    0 15px 45px
-    rgba(0, 0, 0, 0.5),
-
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.03);
-
-  position: relative;
+.hero-card p {
+  color: #999;
 }
 
 
-/* =====================================
-   CARD GOLD LINE
-===================================== */
+/* =========================
+   MODE BUTTONS
+========================= */
 
-.card::before {
-
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: 18%;
-  right: 18%;
-
-  height: 2px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #d4af37,
-      transparent
-    );
-
-  border-radius: 10px;
-}
-
-
-/* =====================================
-   CARD ICON
-===================================== */
-
-.card-icon {
-
-  width: 68px;
-  height: 68px;
-
-  margin: 5px auto 17px;
-
+.home-buttons {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
+.mode-btn {
+  width: 100%;
+  min-height: 82px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-align: right;
+  color: #fff;
+  background: #111;
+  border: 1px solid #292929;
+  border-radius: 19px;
+  transition: 0.2s;
+}
+
+.mode-btn:active {
+  transform: scale(0.98);
+}
+
+.mode-btn:hover {
+  border-color: #a98927;
+}
+
+.mode-icon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #1c1a13;
+  display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 25px;
+}
 
-  border-radius: 20px;
+.mode-btn div {
+  flex: 1;
+}
 
-  background:
-    linear-gradient(
-      145deg,
-      #29240f,
-      #111111
-    );
+.mode-btn strong {
+  display: block;
+  color: #d4af37;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
 
-  border: 1px solid
-    rgba(212, 175, 55, 0.45);
+.mode-btn small {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  line-height: 1.5;
+}
 
-  font-size: 31px;
-
-  box-shadow:
-    0 8px 25px
-    rgba(0, 0, 0, 0.4);
+.arrow {
+  color: #d4af37;
+  font-size: 28px;
 }
 
 
-/* =====================================
-   CARD TITLES
-===================================== */
+/* =========================
+   PAGE TITLE
+========================= */
 
-.card h2 {
-
-  text-align: center;
-
-  font-size: 24px;
-
-  font-weight: 800;
-
-  color: #ffffff;
-
-  margin-bottom: 9px;
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 
-.card > p {
+/* =========================
+   GAME BUTTON
+========================= */
 
+.game-btn,
+.game-list-btn,
+.setting-btn {
+  width: 100%;
+  min-height: 75px;
+  background: #111;
+  border: 1px solid #2d2d2d;
+  border-radius: 17px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+  text-align: right;
+}
+
+.game-btn div,
+.game-list-btn div,
+.setting-btn div {
+  flex: 1;
+}
+
+.game-icon,
+.game-list-btn > span,
+.setting-btn > span {
+  font-size: 27px;
+}
+
+.game-btn strong,
+.game-list-btn strong,
+.setting-btn strong {
+  display: block;
+  color: #d4af37;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.game-btn small,
+.game-list-btn small,
+.setting-btn small {
+  color: #888;
+  font-size: 12px;
+}
+
+
+/* =========================
+   PLAYERS
+========================= */
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.player-count {
+  height: 60px;
+  border-radius: 15px;
+  background: #111;
+  border: 1px solid #51451e;
+  color: #d4af37;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.player-count:active {
+  background: #d4af37;
+  color: #000;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.info-box,
+.coming-box {
+  background: #111;
+  border: 1px solid #292929;
+  border-radius: 16px;
+  padding: 17px;
   text-align: center;
+  color: #aaa;
+  margin: 15px 0;
+  line-height: 1.8;
+}
 
-  color: #a8a8a8;
+.game-description {
+  text-align: center;
+  color: #aaa;
+  line-height: 1.8;
+}
 
-  font-size: 14px;
 
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  background: rgba(8, 8, 8, 0.97);
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+}
+
+.nav-item {
+  flex: 1;
+  height: 100%;
+  background: transparent;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.nav-item span {
+  font-size: 21px;
+  filter: grayscale(1);
+}
+
+.nav-item small {
+  font-size: 11px;
+}
+
+.nav-item.active {
+  color: #d4af37;
+}
+
+.nav-item.active span {
+  filter: grayscale(0);
+}
+
+
+/* =========================
+   PAGE ICON
+========================= */
+
+.big-page-icon {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.page-card h2 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.page-card > p {
+  text-align: center;
+  color: #888;
   margin-bottom: 22px;
 }
 
 
-/* =====================================
-   INPUT
-===================================== */
+/* =========================
+   SETTINGS
+========================= */
 
-input {
-
-  width: 100%;
-
-  height: 56px;
-
-  padding: 0 18px;
-
-  border-radius: 15px;
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.28);
-
-  background: #090909;
-
-  color: #ffffff;
-
-  outline: none;
-
-  font-size: 16px;
-
-  text-align: center;
-
-  transition:
-    0.25s ease;
-
-  margin-bottom: 13px;
+.setting-btn {
+  min-height: 78px;
 }
 
-
-input::placeholder {
-
-  color: #666666;
-}
-
-
-input:focus {
-
-  border-color: #d4af37;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(212, 175, 55, 0.10),
-
-    0 0 18px
-    rgba(212, 175, 55, 0.12);
-}
-
-
-/* =====================================
-   MAIN BUTTON
-===================================== */
-
-.main-btn {
-
-  width: 100%;
-
-  min-height: 56px;
-
-  border: none;
-
-  border-radius: 15px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f0d36a,
-      #d4af37,
-      #a98218
-    );
-
-  color: #080808;
-
-  font-size: 16px;
-
-  font-weight: 900;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 8px 25px
-    rgba(212, 175, 55, 0.20);
-
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    filter 0.18s ease;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 3px;
-}
-
-
-.main-btn:hover {
-
-  filter: brightness(1.08);
-
-  box-shadow:
-    0 10px 30px
-    rgba(212, 175, 55, 0.30);
-}
-
-
-.main-btn:active {
-
-  transform: scale(0.97);
-}
-
-
-/* =====================================
-   BUTTON SMALL TEXT
-===================================== */
-
-.main-btn small {
-
-  font-size: 11px;
-
-  font-weight: 600;
-
-  opacity: 0.65;
-}
-
-
-/* =====================================
-   SECONDARY BUTTON
-===================================== */
-
-.secondary-btn {
-
-  width: 100%;
-
-  min-height: 56px;
-
-  margin-top: 12px;
-
-  border-radius: 15px;
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.30);
-
-  background:
-    rgba(255, 255, 255, 0.035);
-
-  color: #ffffff;
-
-  font-size: 16px;
-
-  font-weight: 800;
-
-  cursor: pointer;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 3px;
-
-  transition:
-    0.2s ease;
-}
-
-
-.secondary-btn small {
-
-  font-size: 11px;
-
-  color: #858585;
-
-  font-weight: 500;
-}
-
-
-.secondary-btn:hover {
-
-  background:
-    rgba(212, 175, 55, 0.08);
-
-  border-color:
-    rgba(212, 175, 55, 0.55);
-}
-
-
-.secondary-btn:active {
-
-  transform: scale(0.97);
-}
-
-
-/* =====================================
-   BACK BUTTON
-===================================== */
-
-.back-btn {
-
-  border: none;
-
-  background: transparent;
-
-  color: #aaa;
-
-  font-size: 14px;
-
-  font-weight: 700;
-
-  cursor: pointer;
-
-  padding: 5px 0;
-
-  margin-bottom: 18px;
-
-  transition: 0.2s ease;
-}
-
-
-.back-btn:hover {
-
+.setting-btn b {
   color: #d4af37;
-}
-
-
-/* =====================================
-   WELCOME
-===================================== */
-
-.welcome {
-
-  text-align: center;
-
-  margin:
-    8px
-    0
-    28px;
-}
-
-
-.welcome p {
-
-  color: #858585;
-
-  font-size: 14px;
-
-  margin-bottom: 4px;
-}
-
-
-.welcome h2 {
-
-  color: #d4af37;
-
   font-size: 27px;
-
-  font-weight: 900;
-
-  overflow-wrap: anywhere;
-
-  text-shadow:
-    0 0 15px
-    rgba(212, 175, 55, 0.18);
+  font-weight: normal;
 }
 
 
-/* =====================================
-   MENU TITLE
-===================================== */
+/* =========================
+   MODAL
+========================= */
 
-.menu-title {
-
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
   display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 9px;
-
-  margin-bottom: 18px;
-}
-
-
-.menu-title span {
-
-  font-size: 21px;
-}
-
-
-.menu-title h2 {
-
-  font-size: 18px;
-
-  color: #dddddd;
-
-  font-weight: 800;
-}
-
-
-/* =====================================
-   MODE ACTIONS
-===================================== */
-
-.mode-actions {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 13px;
-}
-
-
-/* =====================================
-   MODE BUTTON
-===================================== */
-
-.mode-btn {
-
-  width: 100%;
-
-  min-height: 92px;
-
-  border-radius: 20px;
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.22);
-
-  background:
-    linear-gradient(
-      145deg,
-      #1b1b1b,
-      #0c0c0c
-    );
-
-  color: #ffffff;
-
-  cursor: pointer;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 14px;
-
-  padding: 15px;
-
-  text-align: right;
-
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-
-.mode-btn:hover {
-
-  transform:
-    translateY(-2px);
-
-  border-color:
-    rgba(212, 175, 55, 0.55);
-
-  box-shadow:
-    0 10px 25px
-    rgba(0, 0, 0, 0.35);
-}
-
-
-.mode-btn:active {
-
-  transform:
-    scale(0.98);
-}
-
-
-/* =====================================
-   MODE ICON
-===================================== */
-
-.mode-icon {
-
-  min-width: 57px;
-  height: 57px;
-
-  border-radius: 17px;
-
-  display: flex;
-
   align-items: center;
   justify-content: center;
-
-  font-size: 26px;
-
-  background:
-    #151515;
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.25);
+  padding: 20px;
+  z-index: 100;
 }
 
-
-/* =====================================
-   MODE TEXT
-===================================== */
-
-.mode-text {
-
-  flex: 1;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 5px;
-}
-
-
-.mode-text strong {
-
-  font-size: 16px;
-
-  font-weight: 900;
-}
-
-
-.mode-text small {
-
-  color: #858585;
-
-  font-size: 11px;
-
-  line-height: 1.5;
-}
-
-
-/* =====================================
-   MODE ARROW
-===================================== */
-
-.mode-arrow {
-
-  color: #d4af37;
-
-  font-size: 21px;
-
-  font-weight: bold;
-}
-
-
-/* =====================================
-   CHANGE NAME
-===================================== */
-
-.change-name {
-
-  display: block;
-
-  margin:
-    23px
-    auto
-    0;
-
-  border: none;
-
-  background: transparent;
-
-  color: #777;
-
-  font-size: 13px;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-
-.change-name:hover {
-
-  color: #d4af37;
-}
-
-
-/* =====================================
-   ONLINE MAIN
-===================================== */
-
-.online-main {
-
-  margin-top: 5px;
-}
-
-
-/* =====================================
-   GAME SELECTION
-===================================== */
-
-.game-selection {
-
-  padding-bottom: 23px;
-}
-
-
-/* =====================================
-   GAME BUTTON
-===================================== */
-
-.game-btn {
-
+.modal-card {
   width: 100%;
+  max-width: 400px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #101010;
+  border: 1px solid #66521c;
+  border-radius: 24px;
+  padding: 25px 20px;
+  position: relative;
+}
 
-  min-height: 83px;
+.modal-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+.modal-card p {
+  color: #aaa;
+  line-height: 1.9;
   margin-bottom: 12px;
-
-  padding: 12px 14px;
-
-  border-radius: 18px;
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.22);
-
-  background:
-    linear-gradient(
-      145deg,
-      #1a1a1a,
-      #0d0d0d
-    );
-
-  color: #ffffff;
-
-  cursor: pointer;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  text-align: right;
-
-  transition:
-    0.2s ease;
 }
 
-
-.game-btn:hover {
-
-  border-color:
-    rgba(212, 175, 55, 0.55);
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 8px 25px
-    rgba(0, 0, 0, 0.35);
-}
-
-
-.game-btn:active {
-
-  transform:
-    scale(0.98);
-}
-
-
-/* =====================================
-   GAME ICON
-===================================== */
-
-.game-icon {
-
-  width: 52px;
-  height: 52px;
-
-  min-width: 52px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 15px;
-
-  background:
-    #171717;
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.22);
-
-  font-size: 24px;
-}
-
-
-/* =====================================
-   GAME INFO
-===================================== */
-
-.game-info {
-
-  flex: 1;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 5px;
-}
-
-
-.game-info strong {
-
-  font-size: 16px;
-
-  font-weight: 900;
-
-  color: #ffffff;
-}
-
-
-.game-info small {
-
-  color: #808080;
-
-  font-size: 11px;
-}
-
-
-/* =====================================
-   GAME ARROW
-===================================== */
-
-.game-arrow {
-
+.close-modal {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #222;
   color: #d4af37;
-
-  font-size: 20px;
+  font-size: 25px;
 }
 
-
-/* =====================================
-   PLAYERS GRID
-===================================== */
-
-.players-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 10px;
-
-  margin-top: 5px;
-}
-
-
-.player-count {
-
-  height: 58px;
-
-  border-radius: 15px;
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.25);
-
-  background:
-    #111111;
-
-  color: #ffffff;
-
-  font-size: 20px;
-
-  font-weight: 900;
-
-  cursor: pointer;
-
-  transition:
-    0.2s ease;
-}
-
-
-.player-count:hover {
-
-  background:
-    #27200c;
-
-  border-color:
-    #d4af37;
-
-  color: #d4af37;
-
-  transform:
-    translateY(-2px);
-}
-
-
-.player-count:active {
-
-  transform:
-    scale(0.95);
-}
-
-
-/* =====================================
-   INFO BOX
-===================================== */
-
-.info-box {
-
+.language-option {
   width: 100%;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-
-  margin:
-    20px
-    0;
-}
-
-
-.info-player {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  background:
-    rgba(255, 255, 255, 0.035);
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.16);
-
+  height: 55px;
+  background: #171717;
+  border: 1px solid #333;
+  color: #fff;
   border-radius: 14px;
-
-  padding: 12px 14px;
-
-  color: #dddddd;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
-
-.info-number {
-
-  width: 36px;
-  height: 36px;
-
-  min-width: 36px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 11px;
-
-  background:
-    #25200d;
-
-  border: 1px solid
-    rgba(212, 175, 55, 0.35);
-
+.version {
+  text-align: center;
   color: #d4af37;
-
-  font-weight: 900;
+  margin-top: 20px;
 }
 
 
-/* =====================================
-   GAME DESCRIPTION
-===================================== */
+/* =========================
+   MOBILE
+========================= */
 
-.game-description {
+@media (max-width: 380px) {
 
-  background:
-    rgba(255, 255, 255, 0.025);
-
-  border-radius: 16px;
-
-  padding: 15px;
-
-  margin-bottom: 18px;
-
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.05);
-}
-
-
-.game-description p {
-
-  color: #a5a5a5;
-
-  font-size: 12px;
-
-  line-height: 1.8;
-
-  margin-bottom: 5px;
-
-  text-align: right;
-}
-
-
-.game-description p:last-child {
-
-  margin-bottom: 0;
-}
-
-
-/* =====================================
-   JOIN FORM
-===================================== */
-
-.join-form {
-
-  margin-top: 5px;
-}
-
-
-#roomCode {
-
-  direction: ltr;
-
-  letter-spacing: 5px;
-
-  font-size: 22px;
-
-  font-weight: 900;
-}
-
-
-#joinBtn {
-
-  margin-top: 2px;
-}
-
-
-/* =====================================
-   MESSAGE
-===================================== */
-
-.message {
-
-  min-height: 20px;
-
-  margin-top: 10px;
-
-  color: #d4af37 !important;
-
-  font-size: 12px !important;
-
-  text-align: center !important;
-
-  line-height: 1.6;
-}
-
-
-/* =====================================
-   MOBILE SMALL
-===================================== */
-
-@media (max-width: 360px) {
-
-  .app {
-
-    padding:
-      18px
-      13px
-      30px;
+  .screen {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
-
-  .app-logo {
-
-    width: 88px;
-    height: 88px;
+  .card,
+  .page-card {
+    padding: 22px 15px;
   }
 
-
-  .logo-section h1 {
-
-    font-size: 26px;
+  .hero-card {
+    padding: 25px 15px;
   }
 
-
-  .card {
-
-    padding:
-      24px
-      15px;
-  }
-
-
-  .mode-btn {
-
-    min-height: 84px;
-
-    padding: 12px;
-  }
-
-
-  .mode-icon {
-
-    min-width: 50px;
-    height: 50px;
-
-    font-size: 23px;
-  }
-
-
-  .mode-text strong {
-
-    font-size: 14px;
-  }
-
-
-  .game-btn {
-
-    padding: 10px;
-  }
-
-
-  .game-icon {
-
-    width: 47px;
-    height: 47px;
-
-    min-width: 47px;
-  }
-
-}
-
-
-/* =====================================
-   TABLET / LARGE
-===================================== */
-
-@media (min-width: 600px) {
-
-  .app {
-
-    padding-top: 45px;
-  }
-
-
-  .logo-section {
-
-    margin-bottom: 35px;
-  }
-
-}
+     }
