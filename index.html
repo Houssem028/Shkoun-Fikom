@@ -47,7 +47,9 @@
         class="app-logo"
       >
 
-      <h1>شكون فيكم؟</h1>
+      <h1>
+        شكون فيكم؟
+      </h1>
 
       <p>
         الضحك • المنافسة • المتعة 🎮
@@ -105,7 +107,7 @@
 
 
     <!-- ========================= -->
-    <!-- MAIN MENU -->
+    <!-- HOME SCREEN -->
     <!-- ========================= -->
 
     <section
@@ -234,13 +236,16 @@
           ← رجوع
         </button>
 
+
         <div class="card-icon">
           🌐
         </div>
 
+
         <h2>
           اللعب أونلاين
         </h2>
+
 
         <p>
           اختار كيفاش تحب تلعب
@@ -254,7 +259,9 @@
           class="main-btn online-main"
         >
 
-          🎮 إنشاء غرفة
+          <span>
+            🎮 إنشاء غرفة
+          </span>
 
           <small>
             إنت اللي باش تدير اللعبة
@@ -270,7 +277,9 @@
           class="secondary-btn"
         >
 
-          🚪 دخول لغرفة
+          <span>
+            🚪 دخول لغرفة
+          </span>
 
           <small>
             عندك كود الغرفة؟
@@ -311,6 +320,7 @@
         <h2>
           اختار اللعبة
         </h2>
+
 
         <p>
           شنوة باش تلعبو اليوم؟
@@ -410,6 +420,7 @@
           عدد اللاعبين
         </h2>
 
+
         <p>
           قداش باش تلعبوا؟
         </p>
@@ -417,31 +428,52 @@
 
         <div class="players-grid">
 
-          <button class="player-count" data-players="2">
+          <button
+            class="player-count"
+            data-players="2"
+          >
             2
           </button>
 
-          <button class="player-count" data-players="3">
+          <button
+            class="player-count"
+            data-players="3"
+          >
             3
           </button>
 
-          <button class="player-count" data-players="4">
+          <button
+            class="player-count"
+            data-players="4"
+          >
             4
           </button>
 
-          <button class="player-count" data-players="5">
+          <button
+            class="player-count"
+            data-players="5"
+          >
             5
           </button>
 
-          <button class="player-count" data-players="6">
+          <button
+            class="player-count"
+            data-players="6"
+          >
             6
           </button>
 
-          <button class="player-count" data-players="7">
+          <button
+            class="player-count"
+            data-players="7"
+          >
             7
           </button>
 
-          <button class="player-count" data-players="8">
+          <button
+            class="player-count"
+            data-players="8"
+          >
             8
           </button>
 
@@ -469,6 +501,9 @@
 
       <div class="card">
 
+
+        <!-- BACK -->
+
         <button
           id="shkounAnaBackBtn"
           class="back-btn"
@@ -486,15 +521,162 @@
           شكون أنا؟
         </h2>
 
+
         <p>
           لعبة لشخصين فقط
         </p>
 
 
+        <!-- GAME INFO -->
+
         <div class="info-box">
 
-          <strong>
-            👤 اللاعب 1
-          </strong>
 
-         
+          <div class="info-player">
+
+            <span class="info-number">
+              1
+            </span>
+
+            <strong>
+              اللاعب 1
+            </strong>
+
+          </div>
+
+
+          <div class="info-player">
+
+            <span class="info-number">
+              2
+            </span>
+
+            <strong>
+              اللاعب 2
+            </strong>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="game-description">
+
+          <p>
+            🕵️ كل لاعب باش تكون عندو شخصية سرية
+          </p>
+
+          <p>
+            🤔 اسأل صاحبك أسئلة باش تعرف شكون إنت
+          </p>
+
+          <p>
+            🏆 أول واحد يخمّن شخصيتو يربح
+          </p>
+
+        </div>
+
+
+        <!-- START -->
+
+        <button
+          id="startShkounAnaBtn"
+          class="main-btn"
+        >
+          نبدأو اللعبة 🎮
+        </button>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- JOIN ROOM -->
+    <!-- ========================= -->
+
+    <section
+      id="joinScreen"
+      class="screen hidden"
+    >
+
+      <div class="card">
+
+
+        <!-- BACK -->
+
+        <button
+          id="backBtn"
+          class="back-btn"
+        >
+          ← رجوع
+        </button>
+
+
+        <div class="card-icon">
+          🚪
+        </div>
+
+
+        <h2>
+          دخول لغرفة
+        </h2>
+
+
+        <p>
+          أدخل كود الغرفة اللي عطاك صاحبك
+        </p>
+
+
+        <!-- ROOM CODE -->
+
+        <div class="join-form">
+
+          <input
+            id="roomCode"
+            type="number"
+            inputmode="numeric"
+            maxlength="6"
+            placeholder="مثال: 123456"
+            autocomplete="off"
+          >
+
+
+          <button
+            id="joinBtn"
+            class="main-btn"
+          >
+            دخول للغرفة 🚀
+          </button>
+
+
+          <p
+            id="joinMessage"
+            class="message"
+          ></p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- ========================= -->
+  <!-- APP JS -->
+  <!-- ========================= -->
+
+  <script
+    src="app.js"
+  ></script>
+
+
+</body>
+
+</html>
