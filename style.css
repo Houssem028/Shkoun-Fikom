@@ -1,3 +1,9 @@
+/* =====================================================
+   شكون فيكم؟
+   STYLE.CSS
+   Mobile Luxury UI
+===================================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,17 +17,16 @@ body {
 }
 
 body {
-  font-family: Arial, Tahoma, sans-serif;
   background:
-    radial-gradient(
-      circle at top,
-      #292000 0%,
-      #090909 45%,
-      #000000 100%
-    );
-  color: #fff;
-  min-height: 100vh;
+    radial-gradient(circle at top, #241b08 0%, #090909 38%, #050505 100%);
+  color: #f5f1e8;
+  font-family: Arial, Tahoma, sans-serif;
+  overflow-x: hidden;
 }
+
+/* =====================================================
+   GENERAL
+===================================================== */
 
 button,
 input {
@@ -29,276 +34,225 @@ input {
 }
 
 button {
-  border: none;
+  border: 0;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hidden {
   display: none !important;
 }
 
-
-/* =========================
-   SCREENS
-========================= */
-
 .screen {
   width: 100%;
   min-height: 100vh;
-  padding: 25px 16px 100px;
+  min-height: 100dvh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 20px 16px 95px;
 }
 
-#homeScreen,
-#messagesScreen,
-#gamesScreen,
-#settingsScreen {
-  align-items: flex-start;
+/* =====================================================
+   NAME SCREEN
+===================================================== */
+
+#nameScreen {
+  padding-bottom: 20px;
 }
 
-
-/* =========================
-   CARD
-========================= */
-
-.card,
-.page-card {
+#nameScreen .card {
   width: 100%;
-  max-width: 430px;
-  background: rgba(15, 15, 15, 0.96);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  border-radius: 26px;
-  padding: 28px 20px;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.7),
-    0 0 30px rgba(212, 175, 55, 0.08);
+  max-width: 360px;
+  text-align: center;
+  padding: 28px 22px;
 }
-
-.page-card {
-  margin-top: 15px;
-}
-
-
-/* =========================
-   LOGO
-========================= */
 
 .logo {
   display: block;
-  width: 105px;
-  height: 105px;
+  width: 92px;
+  height: 92px;
   object-fit: contain;
   margin: 0 auto 18px;
+  filter: drop-shadow(0 8px 22px rgba(212, 175, 55, 0.22));
 }
 
-.small-logo {
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
-}
-
-
-/* =========================
-   TEXT
-========================= */
-
-h1 {
-  text-align: center;
-  color: #d4af37;
-  font-size: 31px;
-  margin-bottom: 10px;
-}
-
-h2 {
-  color: #d4af37;
-  font-size: 25px;
-}
-
-h3 {
-  color: #d4af37;
-  margin: 20px 0 8px;
+.card h1 {
+  font-size: 29px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
 }
 
 .subtitle {
-  text-align: center;
-  color: #aaa;
-  margin-bottom: 25px;
+  color: #a9a39a;
+  font-size: 14px;
   line-height: 1.7;
+  margin-bottom: 20px;
 }
 
-.message {
-  color: #e0b93d;
-  text-align: center;
-  margin-top: 12px;
-}
-
-
-/* =========================
-   INPUT
-========================= */
+/* =====================================================
+   INPUTS
+===================================================== */
 
 input {
   width: 100%;
-  height: 55px;
-  background: #111;
+  height: 48px;
+  border: 1px solid #2c2a25;
+  border-radius: 14px;
+  background: #11110f;
   color: #fff;
-  border: 1px solid #444;
-  border-radius: 15px;
-  padding: 0 16px;
-  font-size: 17px;
+  padding: 0 15px;
+  font-size: 15px;
   outline: none;
-  margin-bottom: 14px;
+  text-align: right;
+  transition: 0.2s;
+}
+
+input::placeholder {
+  color: #77736c;
 }
 
 input:focus {
-  border-color: #d4af37;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+  border-color: #c7a646;
+  box-shadow: 0 0 0 3px rgba(199, 166, 70, 0.08);
 }
 
-
-/* =========================
+/* =====================================================
    BUTTONS
-========================= */
+===================================================== */
 
 .main-btn {
   width: 100%;
-  min-height: 55px;
-  border-radius: 15px;
-  background: linear-gradient(
-    135deg,
-    #d4af37,
-    #a77d18
-  );
-  color: #080808;
-  font-size: 17px;
-  font-weight: bold;
-  margin-bottom: 12px;
-  box-shadow:
-    0 8px 25px rgba(212, 175, 55, 0.15);
+  min-height: 48px;
+  margin-top: 12px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #d9bb5b, #a98727);
+  color: #111;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(180, 145, 35, 0.14);
+  transition: transform 0.15s, filter 0.15s;
 }
 
 .main-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .secondary-btn {
   width: 100%;
-  min-height: 50px;
-  border-radius: 15px;
-  background: #151515;
-  color: #d4af37;
-  border: 1px solid #51451e;
-  font-size: 16px;
-  margin-top: 8px;
+  min-height: 44px;
+  margin-top: 12px;
+  border-radius: 13px;
+  background: #11110f;
+  border: 1px solid #2d2b26;
+  color: #c9b873;
+  font-size: 14px;
+  font-weight: 700;
 }
 
+.message {
+  min-height: 20px;
+  margin-top: 10px;
+  color: #d8a94e;
+  font-size: 13px;
+}
 
-/* =========================
-   HOME HEADER
-========================= */
+/* =====================================================
+   HOME
+===================================================== */
 
-.app-content {
+#homeScreen {
+  display: block;
+  padding: 18px 16px 88px;
+}
+
+.home-container {
   width: 100%;
   max-width: 430px;
+  margin: 0 auto;
 }
 
 .home-header {
   display: flex;
   align-items: center;
-  gap: 13px;
-  margin: 5px 4px 25px;
+  gap: 12px;
+  padding: 5px 2px 25px;
 }
 
-.welcome-small {
-  color: #888;
-  font-size: 13px;
+.home-logo {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 5px 14px rgba(212, 175, 55, 0.18));
 }
 
-#welcomeName {
-  font-size: 22px;
-  color: #d4af37;
-  margin-top: 3px;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero-card {
-  text-align: center;
-  padding: 30px 20px;
-  border-radius: 25px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(212, 175, 55, 0.12),
-      rgba(255, 255, 255, 0.02)
-    );
-  margin-bottom: 18px;
-}
-
-.hero-icon {
-  font-size: 45px;
+.home-header small {
   display: block;
-  margin-bottom: 10px;
+  color: #858078;
+  font-size: 12px;
+  margin-bottom: 3px;
 }
 
-.hero-card h1 {
+.home-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #f2eee5;
+}
+
+.home-title {
+  margin: 6px 0 20px;
+}
+
+.home-title h1 {
+  font-size: 30px;
+  font-weight: 900;
   margin-bottom: 5px;
 }
 
-.hero-card p {
-  color: #999;
+.home-title p {
+  color: #8d8981;
+  font-size: 14px;
 }
 
-
-/* =========================
+/* =====================================================
    MODE BUTTONS
-========================= */
-
-.home-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+===================================================== */
 
 .mode-btn {
   width: 100%;
-  min-height: 82px;
-  padding: 15px;
+  min-height: 78px;
   display: flex;
   align-items: center;
   gap: 13px;
   text-align: right;
+  margin-bottom: 12px;
+  padding: 13px 15px;
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, #171612, #0d0d0c);
+  border: 1px solid #292720;
   color: #fff;
-  background: #111;
-  border: 1px solid #292929;
-  border-radius: 19px;
-  transition: 0.2s;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+  transition: 0.15s;
 }
 
 .mode-btn:active {
   transform: scale(0.98);
-}
-
-.mode-btn:hover {
-  border-color: #a98927;
+  border-color: #806a2e;
 }
 
 .mode-icon {
-  width: 50px;
-  height: 50px;
+  width: 43px;
+  height: 43px;
   flex-shrink: 0;
-  border-radius: 15px;
-  background: #1c1a13;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
+  border-radius: 13px;
+  background: #201b0e;
+  font-size: 22px;
 }
 
 .mode-btn div {
@@ -307,309 +261,449 @@ input:focus {
 
 .mode-btn strong {
   display: block;
-  color: #d4af37;
-  font-size: 18px;
-  margin-bottom: 5px;
+  color: #e0c35c;
+  font-size: 17px;
+  margin-bottom: 4px;
 }
 
 .mode-btn small {
   display: block;
-  color: #888;
-  font-size: 12px;
+  color: #858078;
+  font-size: 11px;
   line-height: 1.5;
 }
 
-.arrow {
-  color: #d4af37;
-  font-size: 28px;
+.mode-arrow {
+  color: #a58a39;
+  font-size: 26px;
+  line-height: 1;
 }
 
-
-/* =========================
-   PAGE TITLE
-========================= */
-
-.page-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-
-/* =========================
-   GAME BUTTON
-========================= */
-
-.game-btn,
-.game-list-btn,
-.setting-btn {
-  width: 100%;
-  min-height: 75px;
-  background: #111;
-  border: 1px solid #2d2d2d;
-  border-radius: 17px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px;
-  margin-bottom: 12px;
-  text-align: right;
-}
-
-.game-btn div,
-.game-list-btn div,
-.setting-btn div {
-  flex: 1;
-}
-
-.game-icon,
-.game-list-btn > span,
-.setting-btn > span {
-  font-size: 27px;
-}
-
-.game-btn strong,
-.game-list-btn strong,
-.setting-btn strong {
-  display: block;
-  color: #d4af37;
-  font-size: 17px;
-  margin-bottom: 5px;
-}
-
-.game-btn small,
-.game-list-btn small,
-.setting-btn small {
-  color: #888;
-  font-size: 12px;
-}
-
-
-/* =========================
-   PLAYERS
-========================= */
-
-.players-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.player-count {
-  height: 60px;
-  border-radius: 15px;
-  background: #111;
-  border: 1px solid #51451e;
-  color: #d4af37;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.player-count:active {
-  background: #d4af37;
-  color: #000;
-}
-
-
-/* =========================
-   INFO
-========================= */
-
-.info-box,
-.coming-box {
-  background: #111;
-  border: 1px solid #292929;
-  border-radius: 16px;
-  padding: 17px;
-  text-align: center;
-  color: #aaa;
-  margin: 15px 0;
-  line-height: 1.8;
-}
-
-.game-description {
-  text-align: center;
-  color: #aaa;
-  line-height: 1.8;
-}
-
-
-/* =========================
-   BOTTOM NAV
-========================= */
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
 
 .bottom-nav {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 76px;
-  background: rgba(8, 8, 8, 0.97);
-  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  z-index: 100;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 22px);
+  max-width: 430px;
+  height: 66px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  z-index: 50;
-  backdrop-filter: blur(12px);
+  justify-content: space-around;
+  padding: 5px;
+  border-radius: 20px;
+  background: rgba(13, 13, 12, 0.96);
+  border: 1px solid #29261e;
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255,255,255,0.025);
+  backdrop-filter: blur(15px);
 }
 
-.nav-item {
+.nav-btn {
   flex: 1;
-  height: 100%;
-  background: transparent;
-  color: #666;
+  height: 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
+  border-radius: 15px;
+  background: transparent;
+  color: #68645d;
+  transition: 0.2s;
 }
 
-.nav-item span {
-  font-size: 21px;
-  filter: grayscale(1);
+.nav-btn span {
+  font-size: 19px;
+  line-height: 20px;
+  filter: grayscale(0.7);
 }
 
-.nav-item small {
+.nav-btn small {
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.nav-btn.active {
+  color: #d6b84f;
+  background: #1b180f;
+}
+
+.nav-btn.active span {
+  filter: none;
+}
+
+.nav-btn:active {
+  transform: scale(0.93);
+}
+
+/* =====================================================
+   NORMAL CARDS
+===================================================== */
+
+#onlineScreen .card,
+#offlineScreen .card,
+#playersScreen .card,
+#shkounAnaScreen .card,
+#joinScreen .card {
+  width: 100%;
+  max-width: 370px;
+  padding: 25px 20px;
+  border-radius: 22px;
+  background: rgba(14, 14, 13, 0.96);
+  border: 1px solid #29261e;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+}
+
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.game-description {
+  color: #969087;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* =====================================================
+   GAME BUTTONS
+===================================================== */
+
+.game-btn {
+  width: 100%;
+  min-height: 70px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 10px;
+  align-items: center;
+  text-align: right;
+  margin-bottom: 10px;
+  padding: 10px 13px;
+  border-radius: 16px;
+  background: #11110f;
+  border: 1px solid #292720;
+  color: #fff;
+}
+
+.game-btn:first-letter {
+  font-size: 22px;
+}
+
+.game-btn strong {
+  align-self: end;
+  color: #e0c35c;
+  font-size: 16px;
+}
+
+.game-btn small {
+  align-self: start;
+  color: #77736b;
   font-size: 11px;
 }
 
-.nav-item.active {
-  color: #d4af37;
+/* =====================================================
+   PLAYERS
+===================================================== */
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  margin: 18px 0;
 }
 
-.nav-item.active span {
-  filter: grayscale(0);
+.player-count {
+  height: 55px;
+  border-radius: 14px;
+  background: #11110f;
+  border: 1px solid #302b20;
+  color: #d8b94e;
+  font-size: 19px;
+  font-weight: 800;
 }
 
+.player-count:active {
+  transform: scale(0.94);
+  background: #211c0d;
+}
 
-/* =========================
-   PAGE ICON
-========================= */
+/* =====================================================
+   INFO BOX
+===================================================== */
 
-.big-page-icon {
+.info-box {
+  padding: 14px;
+  margin: 15px 0;
+  border-radius: 13px;
+  background: #11110f;
+  border: 1px solid #28251e;
+  color: #99948a;
+  font-size: 13px;
+}
+
+.info-box strong {
+  color: #d9bb5b;
+}
+
+/* =====================================================
+   OTHER PAGES
+===================================================== */
+
+.page-container {
+  width: 100%;
+  max-width: 430px;
+  padding: 10px 0 20px;
   text-align: center;
-  font-size: 48px;
-  margin-bottom: 8px;
 }
 
-.page-card h2 {
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.page-card > p {
-  text-align: center;
-  color: #888;
-  margin-bottom: 22px;
-}
-
-
-/* =========================
-   SETTINGS
-========================= */
-
-.setting-btn {
-  min-height: 78px;
-}
-
-.setting-btn b {
-  color: #d4af37;
+.page-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 17px;
+  background: #1d190e;
+  border: 1px solid #3a311b;
   font-size: 27px;
-  font-weight: normal;
 }
 
+.page-container h1 {
+  font-size: 27px;
+  margin-bottom: 7px;
+}
 
-/* =========================
+.page-container > p {
+  color: #858078;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* =====================================================
+   LIST BUTTON
+===================================================== */
+
+.list-btn {
+  width: 100%;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 13px;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  background: #10100f;
+  border: 1px solid #292720;
+  color: #fff;
+  text-align: right;
+}
+
+.list-btn > span {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #1e1a0e;
+  font-size: 20px;
+}
+
+.list-btn > div {
+  flex: 1;
+}
+
+.list-btn strong {
+  display: block;
+  color: #dfc15b;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.list-btn small {
+  display: block;
+  color: #77736c;
+  font-size: 11px;
+}
+
+.list-btn b {
+  color: #8e7833;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+/* =====================================================
+   COMING SOON
+===================================================== */
+
+.coming-soon {
+  width: 100%;
+  padding: 17px 14px;
+  margin-top: 14px;
+  border-radius: 16px;
+  background: rgba(20, 18, 13, 0.7);
+  border: 1px dashed #40361f;
+  text-align: center;
+}
+
+.coming-soon span {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.coming-soon strong {
+  display: block;
+  color: #c7a94b;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.coming-soon small {
+  color: #706c64;
+  font-size: 11px;
+}
+
+/* =====================================================
    MODAL
-========================= */
+===================================================== */
 
 .modal {
   position: fixed;
+  z-index: 500;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  z-index: 100;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(7px);
 }
 
-.modal-card {
-  width: 100%;
-  max-width: 400px;
-  max-height: 85vh;
-  overflow-y: auto;
-  background: #101010;
-  border: 1px solid #66521c;
-  border-radius: 24px;
-  padding: 25px 20px;
+.modal-box {
   position: relative;
+  width: 100%;
+  max-width: 360px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 25px 20px 20px;
+  border-radius: 21px;
+  background: #11110f;
+  border: 1px solid #3a311c;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
 }
 
-.modal-card h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.modal-box h2 {
+  color: #dfc15b;
+  font-size: 21px;
+  margin-bottom: 14px;
 }
 
-.modal-card p {
-  color: #aaa;
-  line-height: 1.9;
-  margin-bottom: 12px;
+.modal-box h3 {
+  color: #d5b64e;
+  font-size: 15px;
+  margin: 17px 0 7px;
+}
+
+.modal-box p {
+  color: #99938a;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 8px;
 }
 
 .close-modal {
   position: absolute;
-  top: 10px;
-  left: 12px;
-  width: 35px;
-  height: 35px;
+  top: 9px;
+  left: 11px;
+  width: 31px;
+  height: 31px;
   border-radius: 50%;
-  background: #222;
-  color: #d4af37;
-  font-size: 25px;
+  background: #211e17;
+  color: #aaa398;
+  font-size: 22px;
+  line-height: 1;
 }
 
-.language-option {
+.modal-box input {
+  margin: 8px 0 4px;
+}
+
+.language-btn {
   width: 100%;
-  height: 55px;
-  background: #171717;
-  border: 1px solid #333;
-  color: #fff;
-  border-radius: 14px;
-  margin-bottom: 10px;
-  font-size: 16px;
+  height: 48px;
+  margin-top: 9px;
+  border-radius: 13px;
+  background: #171611;
+  border: 1px solid #2d2a21;
+  color: #ddd;
+  font-size: 14px;
+  text-align: right;
+  padding: 0 15px;
 }
 
-.version {
-  text-align: center;
-  color: #d4af37;
-  margin-top: 20px;
+.language-btn:active {
+  border-color: #a78932;
 }
 
+/* =====================================================
+   DESKTOP
+===================================================== */
 
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 380px) {
+@media (min-width: 600px) {
 
   .screen {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-top: 35px;
   }
 
-  .card,
-  .page-card {
-    padding: 22px 15px;
+  .home-container,
+  .page-container {
+    max-width: 430px;
   }
 
-  .hero-card {
-    padding: 25px 15px;
+  .bottom-nav {
+    bottom: 18px;
   }
 
-     }
+}
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-height: 650px) {
+
+  .logo {
+    width: 75px;
+    height: 75px;
+    margin-bottom: 12px;
+  }
+
+  #nameScreen .card {
+    padding-top: 15px;
+  }
+
+  .home-header {
+    padding-bottom: 15px;
+  }
+
+  .home-title {
+    margin-bottom: 14px;
+  }
+
+  .mode-btn {
+    min-height: 68px;
+  }
+
+}
