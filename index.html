@@ -1,609 +1,1405 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>شكون فيكم؟</title>
 
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-  <!-- =========================
-       شاشة الاسم
-  ========================== -->
-  <section id="nameScreen" class="screen">
-    <div class="card">
+
+<!-- =================================
+     شاشة الاسم
+================================= -->
+
+<section id="nameScreen" class="screen">
+
+  <div class="card">
+
+    <img
+      src="file_0000000082d081f5a7b777584ad64610.png"
+      class="logo"
+      alt="شكون فيكم؟"
+    >
+
+    <h1>شكون فيكم؟</h1>
+
+    <p class="subtitle">
+      اللعبة اللي تكشف شكون فيكم 😏
+    </p>
+
+    <input
+      id="playerName"
+      type="text"
+      maxlength="20"
+      placeholder="اكتب اسمك"
+    >
+
+    <button
+      id="continueBtn"
+      class="main-btn"
+    >
+      مواصلة
+    </button>
+
+    <p
+      id="nameMessage"
+      class="message"
+    ></p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =================================
+     الصفحة الرئيسية
+================================= -->
+
+<section
+  id="homeScreen"
+  class="screen hidden"
+>
+
+  <div class="app-content">
+
+    <div class="home-header">
 
       <img
         src="file_0000000082d081f5a7b777584ad64610.png"
-        class="logo"
-        alt="شكون فيكم؟"
+        class="small-logo"
+        alt=""
       >
+
+      <div>
+
+        <span class="welcome-small">
+          مرحبا 👋
+        </span>
+
+        <h2 id="welcomeName"></h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+      <span class="hero-icon">🎮</span>
 
       <h1>شكون فيكم؟</h1>
 
-      <p class="subtitle">
-        اللعبة اللي تكشف شكون فيكم 😏
-      </p>
-
-      <input
-        id="playerName"
-        type="text"
-        placeholder="اكتب اسمك"
-        maxlength="20"
-      >
-
-      <button id="continueBtn" class="main-btn">
-        مواصلة
-      </button>
-
-      <p id="nameMessage" class="message"></p>
-
-    </div>
-  </section>
-
-
-  <!-- =========================
-       الصفحة الرئيسية
-  ========================== -->
-  <section id="homeScreen" class="screen hidden">
-
-    <div class="card">
-
-      <img
-        src="file_0000000082d081f5a7b777584ad64610.png"
-        class="logo"
-        alt="شكون فيكم؟"
-      >
-
-      <h1>
-        شكون فيكم؟
-      </h1>
-
-      <p class="welcome">
-        مرحبا <span id="welcomeName"></span> 👋
-      </p>
-
-      <button id="onlineBtn" class="mode-btn">
-        🌐
-        <strong>Online</strong>
-        <small>العب مع أصحابك من تلفونات مختلفة</small>
-      </button>
-
-      <button id="offlineBtn" class="mode-btn">
-        📱
-        <strong>Offline</strong>
-        <small>العبوا مع بعضكم في نفس التلفون</small>
-      </button>
-
-      <button id="changeNameBtn" class="secondary-btn">
-        تغيير الاسم
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       ONLINE
-  ========================== -->
-  <section id="onlineScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>🌐 Online</h2>
-
-      <p class="subtitle">
+      <p>
         اختار كيفاش تحب تلعب
       </p>
 
-      <button id="createRoomBtn" class="main-btn">
-        🎮 إنشاء غرفة
-      </button>
-
-      <button id="joinRoomBtn" class="main-btn">
-        🔑 الدخول إلى غرفة
-      </button>
-
-      <button id="onlineBackBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
     </div>
 
-  </section>
 
+    <div class="home-buttons">
 
-  <!-- =========================
-       OFFLINE
-  ========================== -->
-  <section id="offlineScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>📱 Offline</h2>
-
-      <p class="subtitle">
-        اختار اللعبة
-      </p>
-
-      <button id="shkounFikomBtn" class="game-btn">
-        ❓
-        <strong>شكون فيكم؟</strong>
-        <small>من 2 إلى 8 لاعبين</small>
-      </button>
-
-      <button id="shkounAnaBtn" class="game-btn">
-        🕵️
-        <strong>شكون أنا؟</strong>
-        <small>لاعبين فقط</small>
-      </button>
-
-      <button id="offlineBackBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       عدد اللاعبين
-  ========================== -->
-  <section id="playersScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>❓ شكون فيكم؟</h2>
-
-      <p class="subtitle">
-        قداش باش تلعبوا؟
-      </p>
-
-      <div class="players-grid">
-
-        <button class="player-count" data-players="2">2</button>
-        <button class="player-count" data-players="3">3</button>
-        <button class="player-count" data-players="4">4</button>
-        <button class="player-count" data-players="5">5</button>
-        <button class="player-count" data-players="6">6</button>
-        <button class="player-count" data-players="7">7</button>
-        <button class="player-count" data-players="8">8</button>
-
-      </div>
-
-      <p id="playersMessage" class="message"></p>
-
-      <button id="playersBackBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       شكون أنا
-  ========================== -->
-  <section id="shkounAnaScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>🕵️ شكون أنا؟</h2>
-
-      <p class="game-description">
-        لعبة تخمين الشخصيات بين زوز لاعبين.
-      </p>
-
-      <div class="info-box">
-        👥 عدد اللاعبين: <strong>2</strong>
-      </div>
-
-      <button id="startShkounAnaBtn" class="main-btn">
-        🚀 ابدأ اللعبة
-      </button>
-
-      <button id="shkounAnaBackBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       JOIN ROOM
-  ========================== -->
-  <section id="joinScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>🔑 الدخول إلى غرفة</h2>
-
-      <p class="subtitle">
-        اكتب كود الغرفة
-      </p>
-
-      <input
-        id="roomCode"
-        type="number"
-        placeholder="مثال: 123456"
+      <button
+        id="onlineBtn"
+        class="mode-btn"
       >
 
-      <button id="joinBtn" class="main-btn">
-        دخول
+        <span class="mode-icon">🌐</span>
+
+        <div>
+
+          <strong>Online</strong>
+
+          <small>
+            العب مع أصحابك من تلفونات مختلفة
+          </small>
+
+        </div>
+
+        <span class="arrow">‹</span>
+
       </button>
 
-      <p id="joinMessage" class="message"></p>
 
-      <button id="backBtn" class="secondary-btn">
-        ← رجوع
+      <button
+        id="offlineBtn"
+        class="mode-btn"
+      >
+
+        <span class="mode-icon">📱</span>
+
+        <div>
+
+          <strong>Offline</strong>
+
+          <small>
+            العبوا مع بعضكم في نفس التلفون
+          </small>
+
+        </div>
+
+        <span class="arrow">‹</span>
+
       </button>
 
     </div>
 
-  </section>
+  </div>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+  <!-- NAVIGATION -->
 
-  <script>
+  <nav class="bottom-nav">
 
-    document.addEventListener("DOMContentLoaded", function () {
+    <button
+      class="nav-item active"
+      data-page="home"
+    >
 
-      const nameScreen = document.getElementById("nameScreen");
-      const homeScreen = document.getElementById("homeScreen");
-      const onlineScreen = document.getElementById("onlineScreen");
-      const offlineScreen = document.getElementById("offlineScreen");
-      const playersScreen = document.getElementById("playersScreen");
-      const shkounAnaScreen = document.getElementById("shkounAnaScreen");
-      const joinScreen = document.getElementById("joinScreen");
+      <span>🏠</span>
+      <small>الرئيسية</small>
 
-      const playerName = document.getElementById("playerName");
-      const welcomeName = document.getElementById("welcomeName");
-
-      const continueBtn = document.getElementById("continueBtn");
-      const changeNameBtn = document.getElementById("changeNameBtn");
-      const nameMessage = document.getElementById("nameMessage");
-
-      const onlineBtn = document.getElementById("onlineBtn");
-      const offlineBtn = document.getElementById("offlineBtn");
-
-      const createRoomBtn = document.getElementById("createRoomBtn");
-      const joinRoomBtn = document.getElementById("joinRoomBtn");
-      const onlineBackBtn = document.getElementById("onlineBackBtn");
-
-      const offlineBackBtn = document.getElementById("offlineBackBtn");
-
-      const shkounFikomBtn =
-        document.getElementById("shkounFikomBtn");
-
-      const shkounAnaBtn =
-        document.getElementById("shkounAnaBtn");
-
-      const playersBackBtn =
-        document.getElementById("playersBackBtn");
-
-      const playersMessage =
-        document.getElementById("playersMessage");
-
-      const shkounAnaBackBtn =
-        document.getElementById("shkounAnaBackBtn");
-
-      const startShkounAnaBtn =
-        document.getElementById("startShkounAnaBtn");
-
-      const backBtn =
-        document.getElementById("backBtn");
+    </button>
 
 
-      // =========================
-      // إخفاء كل الصفحات
-      // =========================
+    <button
+      class="nav-item"
+      data-page="messages"
+    >
 
-      function hideAll() {
+      <span>💬</span>
+      <small>الرسائل</small>
 
-        nameScreen.classList.add("hidden");
-        homeScreen.classList.add("hidden");
-        onlineScreen.classList.add("hidden");
-        offlineScreen.classList.add("hidden");
-        playersScreen.classList.add("hidden");
-        shkounAnaScreen.classList.add("hidden");
-        joinScreen.classList.add("hidden");
-
-      }
+    </button>
 
 
-      // =========================
-      // فتح صفحة
-      // =========================
+    <button
+      class="nav-item"
+      data-page="games"
+    >
 
-      function show(screen) {
+      <span>🎮</span>
+      <small>الألعاب</small>
 
-        hideAll();
-
-        screen.classList.remove("hidden");
-
-      }
+    </button>
 
 
-      // =========================
-      // الاسم المحفوظ
-      // =========================
+    <button
+      class="nav-item"
+      data-page="settings"
+    >
 
-      const savedName =
-        localStorage.getItem("shkounPlayerName");
+      <span>⚙️</span>
+      <small>الإعدادات</small>
 
+    </button>
 
-      if (savedName) {
+  </nav>
 
-        playerName.value = savedName;
-        welcomeName.textContent = savedName;
-
-        show(homeScreen);
-
-      } else {
-
-        show(nameScreen);
-
-      }
+</section>
 
 
-      // =========================
-      // مواصلة
-      // =========================
 
-      continueBtn.addEventListener("click", function () {
+<!-- =================================
+     ONLINE
+================================= -->
 
-        const name = playerName.value.trim();
+<section
+  id="onlineScreen"
+  class="screen hidden"
+>
 
-        if (!name) {
+  <div class="card">
+
+    <div class="page-title">
+      <span>🌐</span>
+      <h2>Online</h2>
+    </div>
+
+    <p class="subtitle">
+      العب مع أصحابك عن بعد
+    </p>
+
+
+    <button
+      id="createRoomBtn"
+      class="main-btn"
+    >
+      🎮 إنشاء غرفة
+    </button>
+
+
+    <button
+      id="joinRoomBtn"
+      class="main-btn"
+    >
+      🔑 الدخول إلى غرفة
+    </button>
+
+
+    <button
+      id="onlineBackBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =================================
+     OFFLINE
+================================= -->
+
+<section
+  id="offlineScreen"
+  class="screen hidden"
+>
+
+  <div class="card">
+
+    <div class="page-title">
+
+      <span>📱</span>
+
+      <h2>Offline</h2>
+
+    </div>
+
+    <p class="subtitle">
+      اختار اللعبة
+    </p>
+
+
+    <button
+      id="shkounFikomBtn"
+      class="game-btn"
+    >
+
+      <span class="game-icon">❓</span>
+
+      <div>
+
+        <strong>شكون فيكم؟</strong>
+
+        <small>
+          من 2 إلى 8 لاعبين
+        </small>
+
+      </div>
+
+    </button>
+
+
+    <button
+      id="shkounAnaBtn"
+      class="game-btn"
+    >
+
+      <span class="game-icon">🕵️</span>
+
+      <div>
+
+        <strong>شكون أنا؟</strong>
+
+        <small>
+          لاعبين فقط
+        </small>
+
+      </div>
+
+    </button>
+
+
+    <button
+      id="offlineBackBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =================================
+     عدد اللاعبين
+================================= -->
+
+<section
+  id="playersScreen"
+  class="screen hidden"
+>
+
+  <div class="card">
+
+    <div class="page-title">
+
+      <span>❓</span>
+
+      <h2>شكون فيكم؟</h2>
+
+    </div>
+
+    <p class="subtitle">
+      قداش باش تلعبوا؟
+    </p>
+
+
+    <div class="players-grid">
+
+      <button
+        class="player-count"
+        data-players="2"
+      >
+        2
+      </button>
+
+      <button
+        class="player-count"
+        data-players="3"
+      >
+        3
+      </button>
+
+      <button
+        class="player-count"
+        data-players="4"
+      >
+        4
+      </button>
+
+      <button
+        class="player-count"
+        data-players="5"
+      >
+        5
+      </button>
+
+      <button
+        class="player-count"
+        data-players="6"
+      >
+        6
+      </button>
+
+      <button
+        class="player-count"
+        data-players="7"
+      >
+        7
+      </button>
+
+      <button
+        class="player-count"
+        data-players="8"
+      >
+        8
+      </button>
+
+    </div>
+
+
+    <p
+      id="playersMessage"
+      class="message"
+    ></p>
+
+
+    <button
+      id="playersBackBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =================================
+     شكون أنا
+================================= -->
+
+<section
+  id="shkounAnaScreen"
+  class="screen hidden"
+>
+
+  <div class="card">
+
+    <div class="page-title">
+
+      <span>🕵️</span>
+
+      <h2>شكون أنا؟</h2>
+
+    </div>
+
+
+    <p class="game-description">
+
+      لعبة تخمين الشخصيات بين زوز لاعبين.
+
+    </p>
+
+
+    <div class="info-box">
+
+      👥 عدد اللاعبين:
+      <strong>2</strong>
+
+    </div>
+
+
+    <button
+      id="startShkounAnaBtn"
+      class="main-btn"
+    >
+      🚀 ابدأ اللعبة
+    </button>
+
+
+    <button
+      id="shkounAnaBackBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =================================
+     JOIN ROOM
+================================= -->
+
+<section
+  id="joinScreen"
+  class="screen hidden"
+>
+
+  <div class="card">
+
+    <div class="page-title">
+
+      <span>🔑</span>
+
+      <h2>الدخول إلى غرفة</h2>
+
+    </div>
+
+
+    <p class="subtitle">
+      اكتب كود الغرفة
+    </p>
+
+
+    <input
+      id="roomCode"
+      type="number"
+      placeholder="مثال: 123456"
+    >
+
+
+    <button
+      id="joinBtn"
+      class="main-btn"
+    >
+      دخول
+    </button>
+
+
+    <p
+      id="joinMessage"
+      class="message"
+    ></p>
+
+
+    <button
+      id="backBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =================================
+     الرسائل
+================================= -->
+
+<section
+  id="messagesScreen"
+  class="screen hidden"
+>
+
+  <div class="page-card">
+
+    <div class="big-page-icon">
+      💬
+    </div>
+
+    <h2>الرسائل</h2>
+
+    <p>
+      هنا تلقى رسائلك وإشعاراتك.
+    </p>
+
+    <div class="coming-box">
+      🚧
+      <strong>قريبًا</strong>
+      <span>
+        نظام الرسائل باش يتربط باللعب Online.
+      </span>
+    </div>
+
+  </div>
+
+
+  <nav class="bottom-nav">
+
+    <button class="nav-item" data-page="home">
+      <span>🏠</span>
+      <small>الرئيسية</small>
+    </button>
+
+    <button class="nav-item active" data-page="messages">
+      <span>💬</span>
+      <small>الرسائل</small>
+    </button>
+
+    <button class="nav-item" data-page="games">
+      <span>🎮</span>
+      <small>الألعاب</small>
+    </button>
+
+    <button class="nav-item" data-page="settings">
+      <span>⚙️</span>
+      <small>الإعدادات</small>
+    </button>
+
+  </nav>
+
+</section>
+
+
+
+<!-- =================================
+     الألعاب
+================================= -->
+
+<section
+  id="gamesScreen"
+  class="screen hidden"
+>
+
+  <div class="page-card">
+
+    <div class="big-page-icon">
+      🎮
+    </div>
+
+    <h2>الألعاب</h2>
+
+    <p>
+      اختار اللعبة اللي تحب تلعبها.
+    </p>
+
+
+    <button
+      class="game-list-btn"
+      id="gamesShkounFikom"
+    >
+
+      <span>❓</span>
+
+      <div>
+
+        <strong>شكون فيكم؟</strong>
+
+        <small>
+          2 - 8 لاعبين
+        </small>
+
+      </div>
+
+    </button>
+
+
+    <button
+      class="game-list-btn"
+      id="gamesShkounAna"
+    >
+
+      <span>🕵️</span>
+
+      <div>
+
+        <strong>شكون أنا؟</strong>
+
+        <small>
+          لاعبين
+        </small>
+
+      </div>
+
+    </button>
+
+
+    <div class="coming-box">
+
+      🔥
+
+      <strong>
+        ألعاب أخرى قريبًا
+      </strong>
+
+      <span>
+        باش نزيدوا ألعاب جديدة مع الوقت.
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <nav class="bottom-nav">
+
+    <button class="nav-item" data-page="home">
+      <span>🏠</span>
+      <small>الرئيسية</small>
+    </button>
+
+    <button class="nav-item" data-page="messages">
+      <span>💬</span>
+      <small>الرسائل</small>
+    </button>
+
+    <button class="nav-item active" data-page="games">
+      <span>🎮</span>
+      <small>الألعاب</small>
+    </button>
+
+    <button class="nav-item" data-page="settings">
+      <span>⚙️</span>
+      <small>الإعدادات</small>
+    </button>
+
+  </nav>
+
+</section>
+
+
+
+<!-- =================================
+     الإعدادات
+================================= -->
+
+<section
+  id="settingsScreen"
+  class="screen hidden"
+>
+
+  <div class="page-card">
+
+    <div class="big-page-icon">
+      ⚙️
+    </div>
+
+    <h2>الإعدادات</h2>
+
+    <p>
+      تحكم في إعدادات التطبيق.
+    </p>
+
+
+    <!-- تغيير الاسم -->
+
+    <button
+      id="settingsNameBtn"
+      class="setting-btn"
+    >
+
+      <span>👤</span>
+
+      <div>
+
+        <strong>تغيير الاسم</strong>
+
+        <small>
+          بدّل الاسم اللي يظهر في التطبيق
+        </small>
+
+      </div>
+
+      <b>‹</b>
+
+    </button>
+
+
+    <!-- اللغة -->
+
+    <button
+      id="languageBtn"
+      class="setting-btn"
+    >
+
+      <span>🌐</span>
+
+      <div>
+
+        <strong>اللغة</strong>
+
+        <small id="currentLanguage">
+          العربية
+        </small>
+
+      </div>
+
+      <b>‹</b>
+
+    </button>
+
+
+    <!-- عن الألعاب -->
+
+    <button
+      id="aboutGamesBtn"
+      class="setting-btn"
+    >
+
+      <span>🎮</span>
+
+      <div>
+
+        <strong>عن الألعاب</strong>
+
+        <small>
+          كيفاش تتلعب الألعاب؟
+        </small>
+
+      </div>
+
+      <b>‹</b>
+
+    </button>
+
+
+    <!-- عن التطبيق -->
+
+    <button
+      id="aboutAppBtn"
+      class="setting-btn"
+    >
+
+      <span>ℹ️</span>
+
+      <div>
+
+        <strong>عن التطبيق</strong>
+
+        <small>
+          معلومات على شكون فيكم؟
+        </small>
+
+      </div>
+
+      <b>‹</b>
+
+    </button>
+
+
+  </div>
+
+
+  <nav class="bottom-nav">
+
+    <button class="nav-item" data-page="home">
+      <span>🏠</span>
+      <small>الرئيسية</small>
+    </button>
+
+    <button class="nav-item" data-page="messages">
+      <span>💬</span>
+      <small>الرسائل</small>
+    </button>
+
+    <button class="nav-item" data-page="games">
+      <span>🎮</span>
+      <small>الألعاب</small>
+    </button>
+
+    <button class="nav-item active" data-page="settings">
+      <span>⚙️</span>
+      <small>الإعدادات</small>
+    </button>
+
+  </nav>
+
+</section>
+
+
+
+<!-- =================================
+     MODAL
+================================= -->
+
+<div
+  id="modal"
+  class="modal hidden"
+>
+
+  <div class="modal-card">
+
+    <button
+      id="closeModal"
+      class="close-modal"
+    >
+      ×
+    </button>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =================================
+     JAVASCRIPT
+================================= -->
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+
+    /* ==============================
+       العناصر
+    ============================== */
+
+    const screens = {
+
+      name:
+        document.getElementById("nameScreen"),
+
+      home:
+        document.getElementById("homeScreen"),
+
+      online:
+        document.getElementById("onlineScreen"),
+
+      offline:
+        document.getElementById("offlineScreen"),
+
+      players:
+        document.getElementById("playersScreen"),
+
+      shkounAna:
+        document.getElementById("shkounAnaScreen"),
+
+      join:
+        document.getElementById("joinScreen"),
+
+      messages:
+        document.getElementById("messagesScreen"),
+
+      games:
+        document.getElementById("gamesScreen"),
+
+      settings:
+        document.getElementById("settingsScreen")
+
+    };
+
+
+    const playerName =
+      document.getElementById("playerName");
+
+    const welcomeName =
+      document.getElementById("welcomeName");
+
+    const nameMessage =
+      document.getElementById("nameMessage");
+
+
+
+    /* ==============================
+       التنقل
+    ============================== */
+
+    function showScreen(name) {
+
+      Object.values(screens).forEach(
+        function (screen) {
+
+          screen.classList.add("hidden");
+
+        }
+      );
+
+      screens[name].classList.remove("hidden");
+
+    }
+
+
+
+    /* ==============================
+       الاسم
+    ============================== */
+
+    const savedName =
+      localStorage.getItem(
+        "shkounPlayerName"
+      );
+
+
+    if (savedName) {
+
+      playerName.value =
+        savedName;
+
+      welcomeName.textContent =
+        savedName;
+
+      showScreen("home");
+
+    } else {
+
+      showScreen("name");
+
+    }
+
+
+
+    /* ==============================
+       حفظ الاسم
+    ============================== */
+
+    document
+      .getElementById("continueBtn")
+      .addEventListener(
+        "click",
+        function () {
+
+          const name =
+            playerName.value.trim();
+
+
+          if (!name) {
+
+            nameMessage.textContent =
+              "اكتب اسمك أولاً 👀";
+
+            return;
+
+          }
+
+
+          if (name.length < 2) {
+
+            nameMessage.textContent =
+              "الاسم لازم يكون حرفين على الأقل 😅";
+
+            return;
+
+          }
+
+
+          localStorage.setItem(
+            "shkounPlayerName",
+            name
+          );
+
+
+          welcomeName.textContent =
+            name;
+
 
           nameMessage.textContent =
-            "اكتب اسمك أولاً 👀";
+            "";
 
-          return;
+
+          showScreen("home");
+
         }
-
-        if (name.length < 2) {
-
-          nameMessage.textContent =
-            "الاسم لازم يكون حرفين على الأقل 😅";
-
-          return;
-        }
-
-        localStorage.setItem(
-          "shkounPlayerName",
-          name
-        );
-
-        welcomeName.textContent = name;
-
-        nameMessage.textContent = "";
-
-        show(homeScreen);
-
-      });
+      );
 
 
-      // =========================
-      // Enter من الكيبورد
-      // =========================
 
-      playerName.addEventListener("keydown", function (event) {
+    /* ==============================
+       Enter
+    ============================== */
+
+    playerName.addEventListener(
+      "keydown",
+      function (event) {
 
         if (event.key === "Enter") {
 
-          continueBtn.click();
+          document
+            .getElementById("continueBtn")
+            .click();
 
         }
 
-      });
+      }
+    );
 
 
-      // =========================
-      // ONLINE
-      // =========================
 
-      onlineBtn.addEventListener("click", function () {
+    /* ==============================
+       Home
+    ============================== */
 
-        show(onlineScreen);
+    document
+      .getElementById("onlineBtn")
+      .onclick = function () {
 
-      });
+        showScreen("online");
 
+      };
 
-      // =========================
-      // OFFLINE
-      // =========================
 
-      offlineBtn.addEventListener("click", function () {
+    document
+      .getElementById("offlineBtn")
+      .onclick = function () {
 
-        show(offlineScreen);
+        showScreen("offline");
 
-      });
+      };
 
 
-      // =========================
-      // رجوع Online
-      // =========================
 
-      onlineBackBtn.addEventListener("click", function () {
+    /* ==============================
+       Online
+    ============================== */
 
-        show(homeScreen);
+    document
+      .getElementById("onlineBackBtn")
+      .onclick = function () {
 
-      });
+        showScreen("home");
 
+      };
 
-      // =========================
-      // رجوع Offline
-      // =========================
 
-      offlineBackBtn.addEventListener("click", function () {
+    document
+      .getElementById("createRoomBtn")
+      .onclick = function () {
 
-        show(homeScreen);
+        window.location.href =
+          "create-room.html";
 
-      });
+      };
 
 
-      // =========================
-      // إنشاء غرفة
-      // =========================
+    document
+      .getElementById("joinRoomBtn")
+      .onclick = function () {
 
-      createRoomBtn.addEventListener("click", function () {
+        showScreen("join");
 
-        window.location.href = "create-room.html";
+      };
 
-      });
 
+    document
+      .getElementById("backBtn")
+      .onclick = function () {
 
-      // =========================
-      // Join Room
-      // =========================
+        showScreen("online");
 
-      joinRoomBtn.addEventListener("click", function () {
+      };
 
-        show(joinScreen);
 
-      });
 
+    /* ==============================
+       Offline
+    ============================== */
 
-      // =========================
-      // رجوع من Join
-      // =========================
+    document
+      .getElementById("offlineBackBtn")
+      .onclick = function () {
 
-      backBtn.addEventListener("click", function () {
+        showScreen("home");
 
-        show(onlineScreen);
+      };
 
-      });
 
+    document
+      .getElementById("shkounFikomBtn")
+      .onclick = function () {
 
-      // =========================
-      // شكون فيكم
-      // =========================
+        showScreen("players");
 
-      shkounFikomBtn.addEventListener("click", function () {
+      };
 
-        show(playersScreen);
 
-      });
+    document
+      .getElementById("shkounAnaBtn")
+      .onclick = function () {
 
+        showScreen("shkounAna");
 
-      // =========================
-      // رجوع عدد اللاعبين
-      // =========================
+      };
 
-      playersBackBtn.addEventListener("click", function () {
 
-        show(offlineScreen);
+    document
+      .getElementById("playersBackBtn")
+      .onclick = function () {
 
-      });
+        showScreen("offline");
 
+      };
 
-      // =========================
-      // اختيار اللاعبين
-      // =========================
 
-      document
-        .querySelectorAll(".player-count")
-        .forEach(function (button) {
+    document
+      .getElementById("shkounAnaBackBtn")
+      .onclick = function () {
 
-          button.addEventListener("click", function () {
+        showScreen("offline");
 
-            const players =
-              Number(button.dataset.players);
+      };
 
-            localStorage.setItem(
-              "shkounFikomPlayers",
-              players
-            );
 
-            localStorage.setItem(
-              "shkounCurrentGame",
-              "shkoun-fikom"
-            );
 
-            window.location.href =
-              "shkoun-fikom.html";
+    /* ==============================
+       اللاعبين
+    ============================== */
 
-          });
+    document
+      .querySelectorAll(".player-count")
+      .forEach(
+        function (button) {
 
-        });
+          button.onclick =
+            function () {
 
+              const players =
+                Number(
+                  button.dataset.players
+                );
 
-      // =========================
-      // شكون أنا
-      // =========================
 
-      shkounAnaBtn.addEventListener("click", function () {
+              localStorage.setItem(
+                "shkounFikomPlayers",
+                players
+              );
 
-        show(shkounAnaScreen);
 
-      });
+              localStorage.setItem(
+                "shkounCurrentGame",
+                "shkoun-fikom"
+              );
 
 
-      // =========================
-      // رجوع شكون أنا
-      // =========================
+              window.location.href =
+                "shkoun-fikom.html";
 
-      shkounAnaBackBtn.addEventListener("click", function () {
+            };
 
-        show(offlineScreen);
+        }
+      );
 
-      });
 
 
-      // =========================
-      // بداية شكون أنا
-      // =========================
+    /* ==============================
+       شكون أنا
+    ============================== */
 
-      startShkounAnaBtn.addEventListener("click", function () {
+    document
+      .getElementById(
+        "startShkounAnaBtn"
+      )
+      .onclick = function () {
 
         localStorage.setItem(
           "shkounAnaPlayers",
           "2"
         );
 
+
         localStorage.setItem(
           "shkounCurrentGame",
           "shkoun-ana"
         );
 
+
         window.location.href =
           "shkoun-ana.html";
 
-      });
+      };
 
 
-      // =========================
-      // تغيير الاسم
-      // =========================
 
-      changeNameBtn.addEventListener("click", function () {
+    /* ==============================
+       شريط التنقل
+    ============================== */
 
-        localStorage.removeItem(
-          "shkounPlayerName"
-        );
+    document
+      .querySelectorAll(".nav-item")
+      .forEach(
+        function (item) {
 
-        playerName.value = "";
+          item.addEventListener(
+            "click",
+            function () {
 
-        show(nameScreen);
+              const page =
+                item.dataset.page;
 
-      });
+              showScreen(page);
 
-    });
+            }
+          );
 
-  </script>
+        }
+      );
 
-</body>
-</html>
+
+
+    /* ==============================
+       الألعاب من القائمة
+    ============================== */
+
+    document
+      .getElementById(
+        "gamesShkounFikom"
+      )
+      .onclick = function () {
+
+        showScreen("players");
+
+      };
+
+
+    document
+      .getElementById(
+        "gamesShkounAna"
+      )
+      .onclick = function () {
+
+        showScreen("shkounAna");
+
+      };
+
+
+
+    /* ==============================
+       Modal
+    ============================== */
+
+    const modal =
+      document.getElementById("modal");
+
+    const modalContent =
+      document.getElementById(
+        "modalContent"
+      );
+
+
+    function openModal(content) {
+
+      modalContent.innerHTML =
+        content;
+
+      modal.classList.remove("hidden");
+
+    }
+
+
+    document
+      .getElementById("closeModal")
+      .onclick = function () {
+
+        modal.classList.add("hidden");
+
+      };
+
+
+
+    /* ==============================
+       تغيير الاسم
+    ============================== */
+
+    document
+      .getElementById(
+        "settingsNameBtn"
+      )
+      .onclick = function () {
+
+        openModal(`
+
+          <h2>👤 تغيير الاسم</h2>
+
+          <p>
+            الاسم الحالي:
+            <strong>
+              ${welcomeName.textContent}
+            </strong>
+          </p>
+
+          <input
+            id="newName"
+            type="text"
+            maxlength="20"
+            placeholder="الاسم الجديد"
+          >
+
+          <button
+            id="saveNewName"
+            class="main-btn"
+          >
+            حفظ
+          </button>
+
+        `);
+
+
+        document
+          .getElementById("saveNewName")
+          .onclick = function () {
+
+            const newName =
+              document
+                .getElementById("newName")
+                .value
+                .trim();
+
+
+            if (newName.length < 2) {
+
+              alert(
+                "الاسم لازم يكون حرفين على الأقل"
+ 
