@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#080810"
+  >
+
+  <title>شكون فيكم؟</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <style>
+
+    /* =================================
+       GAME PAGE
+    ================================= */
+
+    .game-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    .game-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+
+
+    .game-back {
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(255,255,255,0.03);
+      color: #aaa;
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+
+    .game-title {
+      text-align: center;
+      flex: 1;
+    }
+
+
+    .game-title h1 {
+      color: #d4af37;
+      font-size: 24px;
+      margin: 0;
+    }
+
+
+    .game-title p {
+      color: #777;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+
+    /* =================================
+       PLAYERS BADGE
+    ================================= */
+
+    .players-badge {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+
+    .players-badge span {
+      display: inline-block;
+
+      padding: 8px 16px;
+
+      border-radius: 30px;
+
+      background: rgba(212,175,55,0.08);
+
+      border: 1px solid
+        rgba(212,175,55,0.25);
+
+      color: #d4af37;
+
+      font-size: 13px;
+
+      font-weight: bold;
+    }
+
+
+    /* =================================
+       START CARD
+    ================================= */
+
+    .start-card {
+      text-align: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          #1c1c1c,
+          #0d0d0d
+        );
+
+      border:
+        1px solid
+        rgba(212,175,55,0.25);
+
+      border-radius: 25px;
+
+      padding: 30px 20px;
+
+      box-shadow:
+        0 15px 45px
+        rgba(0,0,0,0.45);
+    }
+
+
+    .start-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+
+    .start-card h2 {
+      color: white;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+
+    .start-card p {
+      color: #999;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+
+    /* =================================
+       GAME AREA
+    ================================= */
+
+    .game-area {
+      display: none;
+    }
+
+
+    .question-card {
+      background:
+        linear-gradient(
+          145deg,
+          #1c1c1c,
+          #0d0d0d
+        );
+
+      border:
+        1px solid
+        rgba(212,175,55,0.28);
+
+      border-radius: 25px;
+
+      padding: 28px 20px;
+
+      text-align: center;
+
+      box-shadow:
+        0 15px 45px
+        rgba(0,0,0,0.45);
+    }
+
+
+    .question-label {
+      color: #d4af37;
+
+      font-size: 13px;
+
+      font-weight: bold;
+
+      margin-bottom: 20px;
+    }
+
+
+    .question-text {
+      color: #fff;
+
+      font-size: 25px;
+
+      font-weight: 900;
+
+      line-height: 1.6;
+
+      margin-bottom: 25px;
+    }
+
+
+    .next-question {
+      width: 100%;
+
+      min-height: 55px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f0d36a,
+          #d4af37,
+          #a98218
+        );
+
+      color: #080808;
+
+      font-size: 16px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+
+    .question-number {
+      color: #777;
+
+      font-size: 11px;
+
+      margin-top: 15px;
+    }
+
+
+    /* =================================
+       RESPONSIVE
+    ================================= */
+
+    @media (max-width: 360px) {
+
+      .game-title h1 {
+        font-size: 20px;
+      }
+
+      .question-text {
+        font-size: 21px;
+      }
+
+      .start-icon {
+        font-size: 50px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <main class="app game-page">
+
+
+    <!-- =================================
+         TOP
+    ================================= -->
+
+    <div class="game-top">
+
+      <button
+        class="game-back"
+        id="backGameBtn"
+      >
+        ← رجوع
+      </button>
+
+
+      <div class="game-title">
+
+        <h1>
+          شكون فيكم؟
+        </h1>
+
+        <p>
+          أسئلة • ضحك • منافسة
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================
+         PLAYERS COUNT
+    ================================= -->
+
+    <div class="players-badge">
+
+      <span id="playersText">
+        👥 2 لاعبين
+      </span>
+
+    </div>
+
+
+    <!-- =================================
+         START
+    ================================= -->
+
+    <section
+      class="start-card"
+      id="startCard"
+    >
+
+      <div class="start-icon">
+        🎲
+      </div>
+
+
+      <h2>
+        مستعدين؟ 🔥
+      </h2>
+
+
+      <p>
+        باش نعطيكم أسئلة عشوائية،
+        وكل سؤال لازم تختارو شكون فيكم
+        ينطبق عليه أكثر.
+      </p>
+
+
+      <button
+        class="main-btn"
+        id="startGameBtn"
+      >
+        نبدأو 🔥
+      </button>
+
+    </section>
+
+
+    <!-- =================================
+         GAME AREA
+    ================================= -->
+
+    <section
+      class="game-area"
+      id="gameArea"
+    >
+
+      <div class="question-card">
+
+
+        <div class="question-label">
+          ❓ السؤال
+        </div>
+
+
+        <div
+          class="question-text"
+          id="questionText"
+        >
+          شكون فيكم أكثر واحد يتأخر؟
+        </div>
+
+
+        <button
+          class="next-question"
+          id="nextQuestionBtn"
+        >
+          سؤال آخر 🔥
+        </button>
+
+
+        <div
+          class="question-number"
+          id="questionNumber"
+        >
+          السؤال 1
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <script>
+
+    /* =================================
+       GET ELEMENTS
+    ================================= */
+
+    const playersText =
+      document.getElementById(
+        "playersText"
+      );
+
+    const startCard =
+      document.getElementById(
+        "startCard"
+      );
+
+    const gameArea =
+      document.getElementById(
+        "gameArea"
+      );
+
+    const startGameBtn =
+      document.getElementById(
+        "startGameBtn"
+      );
+
+    const nextQuestionBtn =
+      document.getElementById(
+        "nextQuestionBtn"
+      );
+
+    const questionText =
+      document.getElementById(
+        "questionText"
+      );
+
+    const questionNumber =
+      document.getElementById(
+        "questionNumber"
+      );
+
+    const backGameBtn =
+      document.getElementById(
+        "backGameBtn"
+      );
+
+
+    /* =================================
+       PLAYERS
+    ================================= */
+
+    let players =
+      Number(
+        localStorage.getItem(
+          "shkounFikomPlayers"
+        )
+      );
+
+
+    if (
+      !players ||
+      players < 2 ||
+      players > 8
+    ) {
+
+      players = 2;
+
+    }
+
+
+    playersText.textContent =
+      "👥 " +
+      players +
+      " لاعبين";
+
+
+    /* =================================
+       QUESTIONS
+    ================================= */
+
+    const questions = [
+
+      "شكون فيكم أكثر واحد يتأخر؟",
+
+      "شكون فيكم أكثر واحد يضحك في وقت غالط؟",
+
+      "شكون فيكم أكثر واحد يعمل روحو فاهم وهو موش فاهم؟",
+
+      "شكون فيكم أكثر واحد ينجم ينسى عيد ميلاد صاحبو؟",
+
+      "شكون فيكم أكثر واحد يصرف فلوسو بسرعة؟",
+
+      "شكون فيكم أكثر واحد يحب النوم؟",
+
+      "شكون فيكم أكثر واحد يعمل مشاكل؟",
+
+      "شكون فيكم أكثر واحد عندو أسرار؟",
+
+      "شكون فيكم أكثر واحد ينجم يعيش بلا تلفون؟",
+
+      "شكون فيكم أكثر واحد يتغشش بسرعة؟",
+
+      "شكون فيكم أكثر واحد يحب الماكلة؟",
+
+      "شكون فيكم أكثر واحد يكذب كي يتزنق؟",
+
+      "شكون فيكم أكثر واحد يبعث مساج وبعد يندم؟",
+
+      "شكون فيكم أكثر واحد ينجم يولي مشهور؟",
+
+      "شكون فيكم أكثر واحد يعمل مغامرات؟"
+
+    ];
+
+
+    let currentQuestion = -1;
+
+    let questionCount = 0;
+
+
+    /* =================================
+       RANDOM QUESTION
+    ================================= */
+
+    function showRandomQuestion() {
+
+      if (
+        questions.length === 0
+      ) {
+
+        return;
+
+      }
+
+
+      let randomIndex;
+
+
+      do {
+
+        randomIndex =
+          Math.floor(
+            Math.random() *
+            questions.length
+          );
+
+      } while (
+        randomIndex ===
+        currentQuestion &&
+        questions.length > 1
+      );
+
+
+      currentQuestion =
+        randomIndex;
+
+
+      questionCount++;
+
+
+      questionText.textContent =
+        questions[
+          currentQuestion
+        ];
+
+
+      questionNumber.textContent =
+        "السؤال " +
+        questionCount;
+
+    }
+
+
+    /* =================================
+       START GAME
+    ================================= */
+
+    startGameBtn.addEventListener(
+      "click",
+      () => {
+
+        startCard.style.display =
+          "none";
+
+        gameArea.style.display =
+          "block";
+
+        showRandomQuestion();
+
+      }
+    );
+
+
+    /* =================================
+       NEXT QUESTION
+    ================================= */
+
+    nextQuestionBtn.addEventListener(
+      "click",
+      () => {
+
+        showRandomQuestion();
+
+      }
+    );
+
+
+    /* =================================
+       BACK
+    ================================= */
+
+    backGameBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "index.html";
+
+      }
+    );
+
+  </script>
+
+
+</body>
+
+</html>
