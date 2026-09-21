@@ -5,7 +5,7 @@
 
 
 // =====================================
-// ELEMENTS - MAIN
+// ELEMENTS
 // =====================================
 
 const nameScreen =
@@ -31,7 +31,7 @@ const joinScreen =
 
 
 // =====================================
-// NAME ELEMENTS
+// NAME
 // =====================================
 
 const playerName =
@@ -51,7 +51,7 @@ const nameMessage =
 
 
 // =====================================
-// MAIN MENU BUTTONS
+// MAIN MENU
 // =====================================
 
 const onlineBtn =
@@ -62,7 +62,7 @@ const offlineBtn =
 
 
 // =====================================
-// ONLINE BUTTONS
+// ONLINE
 // =====================================
 
 const createRoomBtn =
@@ -76,7 +76,7 @@ const onlineBackBtn =
 
 
 // =====================================
-// OFFLINE BUTTONS
+// OFFLINE
 // =====================================
 
 const offlineBackBtn =
@@ -90,21 +90,17 @@ const shkounAnaBtn =
 
 
 // =====================================
-// PLAYERS SCREEN
+// PLAYERS
 // =====================================
 
 const playersBackBtn =
   document.getElementById("playersBackBtn");
 
 const playerCountButtons =
-  document.querySelectorAll(
-    ".player-count"
-  );
+  document.querySelectorAll(".player-count");
 
 const playersMessage =
-  document.getElementById(
-    "playersMessage"
-  );
+  document.getElementById("playersMessage");
 
 
 // =====================================
@@ -112,18 +108,14 @@ const playersMessage =
 // =====================================
 
 const shkounAnaBackBtn =
-  document.getElementById(
-    "shkounAnaBackBtn"
-  );
+  document.getElementById("shkounAnaBackBtn");
 
 const startShkounAnaBtn =
-  document.getElementById(
-    "startShkounAnaBtn"
-  );
+  document.getElementById("startShkounAnaBtn");
 
 
 // =====================================
-// JOIN ROOM
+// JOIN
 // =====================================
 
 const backBtn =
@@ -131,7 +123,7 @@ const backBtn =
 
 
 // =====================================
-// SCREEN HELPER
+// SHOW / HIDE
 // =====================================
 
 function hideAllScreens() {
@@ -146,45 +138,35 @@ function hideAllScreens() {
     joinScreen
   ];
 
+  screens.forEach(function(screen) {
 
-  screens.forEach(
-    (screen) => {
-
-      if (screen) {
-
-        screen.classList.add(
-          "hidden"
-        );
-
-      }
-
+    if (screen) {
+      screen.classList.add("hidden");
     }
-  );
+
+  });
 
 }
 
-
-// =====================================
-// SHOW SCREEN
-// =====================================
 
 function showScreen(screen) {
 
   hideAllScreens();
 
   if (screen) {
-
-    screen.classList.remove(
-      "hidden"
-    );
-
+    screen.classList.remove("hidden");
   }
 
 }
 
 
 // =====================================
-// LOAD SAVED NAME
+// NAME
 // =====================================
 
-const
+function showName() {
+
+  if (playerName) {
+
+    playerName.value =
+     
