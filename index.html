@@ -6,124 +6,758 @@
 
   <title>شكون فيكم؟</title>
 
-  <link rel="stylesheet" href="style.css">
-
   <style>
-    /* ==============================
-       HOME ONLY
-       ============================== */
+    /* ================================
+       RESET
+    ================================= */
 
-    #homeScreen {
-      display: none;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 50% -10%, #30250d 0%, #11100d 28%, #070707 65%);
+      color: #f5f0e5;
+      font-family: Arial, Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+
+    /* ================================
+       SCREENS
+    ================================= */
+
+    .screen {
+      width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
-      padding: 18px 16px 95px;
-      background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(205, 170, 60, 0.10),
-          transparent 38%
-        ),
-        #070707;
-    }
 
-    #homeScreen:not(.hidden) {
-      display: block;
-    }
-
-    .home-wrapper {
-      width: 100%;
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
-    /* Header */
-
-    .home-top {
       display: flex;
       align-items: center;
-      gap: 11px;
-      padding: 5px 2px 24px;
+      justify-content: center;
+
+      padding: 20px 16px 100px;
     }
 
-    .home-top-logo {
-      width: 48px;
-      height: 48px;
+    #nameScreen {
+      padding-bottom: 20px;
+    }
+
+
+    /* ================================
+       GENERAL CARD
+    ================================= */
+
+    .card {
+      width: 100%;
+      max-width: 370px;
+
+      padding: 28px 22px;
+
+      border-radius: 26px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(24, 22, 17, 0.98),
+          rgba(10, 10, 9, 0.98)
+        );
+
+      border: 1px solid rgba(212, 175, 55, 0.16);
+
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255,255,255,0.025);
+
+      text-align: center;
+    }
+
+
+    /* ================================
+       LOGO
+    ================================= */
+
+    .logo {
+      display: block;
+
+      width: 88px;
+      height: 88px;
+
       object-fit: contain;
-      flex-shrink: 0;
+
+      margin: 0 auto 17px;
+
+      filter:
+        drop-shadow(0 8px 25px rgba(212,175,55,0.25));
     }
 
-    .home-welcome small {
-      display: block;
-      color: #77736b;
-      font-size: 11px;
-      margin-bottom: 3px;
+    .card h1 {
+      color: #f3ead1;
+
+      font-size: 29px;
+      font-weight: 900;
+
+      margin-bottom: 7px;
     }
 
-    .home-welcome strong {
-      display: block;
-      color: #eee8dc;
-      font-size: 17px;
+    .subtitle {
+      color: #928d83;
+
+      font-size: 13px;
+      line-height: 1.8;
+
+      margin-bottom: 19px;
+    }
+
+
+    /* ================================
+       INPUT
+    ================================= */
+
+    input {
+      width: 100%;
+      height: 50px;
+
+      border-radius: 15px;
+
+      border: 1px solid #302c22;
+
+      background: #0c0c0b;
+
+      color: white;
+
+      padding: 0 16px;
+
+      font-size: 15px;
+
+      outline: none;
+
+      text-align: right;
+
+      transition: 0.2s;
+    }
+
+    input::placeholder {
+      color: #68645d;
+    }
+
+    input:focus {
+      border-color: #b99836;
+
+      box-shadow:
+        0 0 0 3px rgba(185,152,54,0.08);
+    }
+
+
+    /* ================================
+       BUTTONS
+    ================================= */
+
+    .main-btn {
+      width: 100%;
+      min-height: 50px;
+
+      margin-top: 12px;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e0c461,
+          #b08d2d
+        );
+
+      color: #111;
+
+      font-size: 15px;
+      font-weight: 900;
+
+      box-shadow:
+        0 9px 25px rgba(184,145,42,0.18);
+
+      transition: 0.15s;
+    }
+
+    .main-btn:active {
+      transform: scale(0.97);
+    }
+
+    .secondary-btn {
+      width: 100%;
+      min-height: 46px;
+
+      margin-top: 12px;
+
+      border-radius: 14px;
+
+      background: #10100f;
+
+      border: 1px solid #302d25;
+
+      color: #bfa653;
+
+      font-size: 14px;
       font-weight: 800;
     }
 
-    /* Title */
-
-    .home-main-title {
-      margin: 3px 0 20px;
+    .secondary-btn:active {
+      transform: scale(0.97);
     }
 
-    .home-main-title h1 {
-      margin: 0 0 5px;
-      color: #f2eee5;
-      font-size: 28px;
+    .message {
+      min-height: 20px;
+
+      margin-top: 10px;
+
+      color: #d7ad46;
+
+      font-size: 12px;
+    }
+
+
+    /* ================================
+       HOME
+    ================================= */
+
+    #homeScreen {
+      align-items: flex-start;
+
+      padding:
+        20px
+        16px
+        100px;
+    }
+
+    .home-container {
+      width: 100%;
+      max-width: 430px;
+
+      margin: 0 auto;
+    }
+
+
+    /* HOME HEADER */
+
+    .home-header {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 4px 2px 22px;
+    }
+
+    .home-logo {
+      width: 52px;
+      height: 52px;
+
+      object-fit: contain;
+
+      flex-shrink: 0;
+
+      filter:
+        drop-shadow(0 5px 16px rgba(212,175,55,0.2));
+    }
+
+    .home-header small {
+      display: block;
+
+      color: #77736b;
+
+      font-size: 11px;
+
+      margin-bottom: 3px;
+    }
+
+    .home-header h2 {
+      color: #eee5ce;
+
+      font-size: 19px;
       font-weight: 900;
     }
 
-    .home-main-title p {
-      margin: 0;
-      color: #77736b;
+
+    /* HOME TITLE */
+
+    .home-title {
+      margin: 5px 0 18px;
+    }
+
+    .home-title h1 {
+      color: #ead079;
+
+      font-size: 30px;
+      font-weight: 900;
+
+      margin-bottom: 5px;
+    }
+
+    .home-title p {
+      color: #817c72;
+
       font-size: 13px;
     }
 
-    /* Mode cards */
 
-    .home-mode {
+    /* MODE BUTTONS */
+
+    .mode-btn {
       width: 100%;
-      min-height: 74px;
+      min-height: 78px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      padding: 13px 15px;
+
+      margin-bottom: 11px;
+
+      border-radius: 19px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #191813,
+          #0c0c0b
+        );
+
+      border: 1px solid #2b281f;
+
+      color: white;
+
+      text-align: right;
+
+      box-shadow:
+        0 10px 28px rgba(0,0,0,0.25);
+
+      transition: 0.15s;
+    }
+
+    .mode-btn:active {
+      transform: scale(0.98);
+
+      border-color: #806a2d;
+    }
+
+    .mode-icon {
+      width: 46px;
+      height: 46px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #27200d,
+          #17140b
+        );
+
+      border: 1px solid #40351a;
+
+      font-size: 22px;
+    }
+
+    .mode-btn div {
+      flex: 1;
+    }
+
+    .mode-btn strong {
+      display: block;
+
+      color: #e0c15a;
+
+      font-size: 17px;
+
+      margin-bottom: 4px;
+    }
+
+    .mode-btn small {
+      display: block;
+
+      color: #77736a;
+
+      font-size: 11px;
+
+      line-height: 1.5;
+    }
+
+    .mode-arrow {
+      color: #a88a35;
+
+      font-size: 25px;
+    }
+
+
+    /* ================================
+       BOTTOM NAV
+    ================================= */
+
+    .bottom-nav {
+      position: fixed;
+
+      z-index: 100;
+
+      bottom: 9px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: calc(100% - 24px);
+
+      max-width: 430px;
+
+      height: 64px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 5px;
+
+      border-radius: 20px;
+
+      background:
+        rgba(14,14,13,0.97);
+
+      border: 1px solid #302b20;
+
+      box-shadow:
+        0 12px 40px rgba(0,0,0,0.6);
+
+      backdrop-filter: blur(15px);
+    }
+
+    .nav-btn {
+      flex: 1;
+
+      height: 54px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 3px;
+
+      border-radius: 15px;
+
+      background: transparent;
+
+      color: #625f58;
+
+      transition: 0.2s;
+    }
+
+    .nav-btn span {
+      font-size: 18px;
+
+      line-height: 20px;
+    }
+
+    .nav-btn small {
+      font-size: 9px;
+
+      font-weight: 800;
+    }
+
+    .nav-btn.active {
+      color: #dfc15a;
+
+      background:
+        linear-gradient(
+          145deg,
+          #24200f,
+          #18150b
+        );
+
+      border: 1px solid rgba(207,169,55,0.13);
+    }
+
+    .nav-btn:active {
+      transform: scale(0.92);
+    }
+
+
+    /* ================================
+       OTHER CARDS
+    ================================= */
+
+    #onlineScreen .card,
+    #offlineScreen .card,
+    #playersScreen .card,
+    #shkounAnaScreen .card,
+    #joinScreen .card {
+      max-width: 370px;
+    }
+
+    .card h2 {
+      color: #ead17a;
+
+      font-size: 24px;
+      font-weight: 900;
+
+      margin-bottom: 7px;
+    }
+
+
+    /* ================================
+       GAME BUTTONS
+    ================================= */
+
+    .game-btn {
+      width: 100%;
+      min-height: 72px;
 
       display: flex;
       align-items: center;
 
       gap: 12px;
-      padding: 11px 13px;
-      margin-bottom: 11px;
+
+      padding: 11px 14px;
+
+      margin-bottom: 10px;
 
       border-radius: 17px;
-      border: 1px solid #28251e;
+
+      background: #10100f;
+
+      border: 1px solid #2b281f;
+
+      color: white;
+
+      text-align: right;
+    }
+
+    .game-btn:active {
+      transform: scale(0.98);
+    }
+
+    .game-btn strong {
+      display: block;
+
+      color: #dfc15a;
+
+      font-size: 16px;
+
+      margin-bottom: 4px;
+    }
+
+    .game-btn small {
+      display: block;
+
+      color: #77736b;
+
+      font-size: 11px;
+    }
+
+
+    /* ================================
+       PLAYERS
+    ================================= */
+
+    .players-grid {
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 9px;
+
+      margin: 18px 0;
+    }
+
+    .player-count {
+      height: 55px;
+
+      border-radius: 15px;
+
+      background: #10100f;
+
+      border: 1px solid #302b20;
+
+      color: #dfc15a;
+
+      font-size: 19px;
+
+      font-weight: 900;
+    }
+
+    .player-count:active {
+      transform: scale(0.94);
+    }
+
+
+    /* ================================
+       SHKOUN ANA
+    ================================= */
+
+    .game-description {
+      color: #908b81;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+
+      margin-bottom: 15px;
+    }
+
+    .info-box {
+      padding: 14px;
+
+      margin: 15px 0;
+
+      border-radius: 14px;
+
+      background: #10100f;
+
+      border: 1px solid #29261f;
+
+      color: #858077;
+
+      font-size: 13px;
+    }
+
+    .info-box strong {
+      color: #dfc15a;
+    }
+
+
+    /* ================================
+       PAGES
+    ================================= */
+
+    .page-container {
+      width: 100%;
+      max-width: 430px;
+
+      padding: 10px 0 20px;
+
+      text-align: center;
+    }
+
+    .page-icon {
+      width: 62px;
+      height: 62px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 15px;
+
+      border-radius: 18px;
 
       background:
         linear-gradient(
           145deg,
-          #171510,
-          #0d0d0c
+          #29220e,
+          #16130b
         );
 
+      border: 1px solid #40351c;
+
+      font-size: 27px;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .page-container h1 {
+      color: #ead17a;
+
+      font-size: 27px;
+      font-weight: 900;
+
+      margin-bottom: 7px;
+    }
+
+    .page-container > p {
+      color: #817d75;
+
+      font-size: 13px;
+
+      margin-bottom: 20px;
+    }
+
+
+    /* ================================
+       SETTINGS / GAMES LIST
+       VERTICAL
+    ================================= */
+
+    .list-btn {
+      width: 100%;
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      padding: 11px 14px;
+
+      margin-bottom: 11px;
+
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #171612,
+          #0e0e0d
+        );
+
+      border: 1px solid #2d2a22;
+
       color: white;
+
       text-align: right;
 
       box-shadow:
-        0 8px 24px rgba(0,0,0,0.25);
+        0 8px 25px rgba(0,0,0,0.18);
 
-      transition: 0.15s ease;
+      transition: 0.15s;
     }
 
-    .home-mode:active {
+    .list-btn:active {
       transform: scale(0.98);
-      border-color: #76602a;
+
+      border-color: #806a2d;
     }
 
-    .home-mode-icon {
+    .list-btn > span {
       width: 43px;
       height: 43px;
 
@@ -135,354 +769,14 @@
 
       border-radius: 13px;
 
-      background: #211c0e;
-
-      font-size: 21px;
-    }
-
-    .home-mode-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .home-mode-content strong {
-      display: block;
-
-      color: #d8b84f;
-      font-size: 16px;
-
-      margin-bottom: 3px;
-    }
-
-    .home-mode-content small {
-      display: block;
-
-      color: #77736b;
-      font-size: 10.5px;
-      line-height: 1.5;
-    }
-
-    .home-mode-arrow {
-      color: #92772c;
-      font-size: 24px;
-      line-height: 1;
-    }
-
-    /* Bottom navigation */
-
-    .home-nav {
-      position: fixed;
-
-      z-index: 100;
-
-      left: 50%;
-      bottom: 10px;
-
-      transform: translateX(-50%);
-
-      width: calc(100% - 22px);
-      max-width: 420px;
-
-      height: 62px;
-
-      display: flex;
-      align-items: center;
-
-      padding: 4px;
-
-      border-radius: 19px;
-
-      background: rgba(14,14,13,0.97);
-
-      border: 1px solid #29261f;
-
-      box-shadow:
-        0 10px 35px rgba(0,0,0,0.50);
-
-      backdrop-filter: blur(15px);
-    }
-
-    .home-nav button {
-      flex: 1;
-      height: 52px;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      gap: 2px;
-
-      border: 0;
-      border-radius: 14px;
-
-      background: transparent;
-
-      color: #68645d;
-
-      font-family: inherit;
-
-      cursor: pointer;
-    }
-
-    .home-nav button span {
-      font-size: 18px;
-      line-height: 20px;
-    }
-
-    .home-nav button small {
-      font-size: 8.5px;
-      font-weight: 700;
-    }
-
-    .home-nav button.active {
-      color: #d5b64e;
-      background: #1b180f;
-    }
-
-    /* ==============================
-       OTHER SCREENS
-       ============================== */
-
-    .screen {
-      width: 100%;
-      min-height: 100vh;
-      min-height: 100dvh;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px 16px;
-    }
-
-    .screen.hidden {
-      display: none !important;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 360px;
-
-      padding: 26px 20px;
-
-      border-radius: 21px;
-
-      background: rgba(15,15,14,0.97);
-
-      border: 1px solid #29261f;
-
-      box-shadow:
-        0 15px 45px rgba(0,0,0,0.35);
-
-      text-align: center;
-    }
-
-    /* Name screen */
-
-    #nameScreen {
-      background:
-        radial-gradient(
-          circle at 50% 20%,
-          rgba(205,170,60,0.10),
-          transparent 40%
-        ),
-        #070707;
-    }
-
-    #nameScreen .card {
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-    }
-
-    .logo {
-      width: 86px;
-      height: 86px;
-
-      object-fit: contain;
-
-      display: block;
-
-      margin: 0 auto 17px;
-
-      filter:
-        drop-shadow(
-          0 8px 20px rgba(212,175,55,0.20)
-        );
-    }
-
-    .card h1 {
-      color: #f2eee5;
-      font-size: 28px;
-      margin: 0 0 7px;
-    }
-
-    .card h2 {
-      color: #f2eee5;
-      font-size: 23px;
-      margin: 0 0 8px;
-    }
-
-    .subtitle {
-      color: #817c73;
-      font-size: 13px;
-      line-height: 1.7;
-      margin-bottom: 18px;
-    }
-
-    input {
-      width: 100%;
-      height: 48px;
-
-      border-radius: 13px;
-
-      border: 1px solid #2c2922;
-
-      background: #11110f;
-
-      color: white;
-
-      padding: 0 14px;
-
-      font-family: inherit;
-      font-size: 14px;
-
-      outline: none;
-
-      text-align: right;
-    }
-
-    input::placeholder {
-      color: #66625b;
-    }
-
-    input:focus {
-      border-color: #9b7e2d;
-    }
-
-    .main-btn {
-      width: 100%;
-      min-height: 47px;
-
-      margin-top: 11px;
-
-      border: 0;
-      border-radius: 13px;
-
       background:
         linear-gradient(
-          135deg,
-          #d9bb5b,
-          #a88628
+          145deg,
+          #28200c,
+          #17140b
         );
 
-      color: #111;
-
-      font-family: inherit;
-
-      font-size: 14px;
-      font-weight: 800;
-
-      cursor: pointer;
-    }
-
-    .main-btn:active {
-      transform: scale(0.98);
-    }
-
-    .secondary-btn {
-      width: 100%;
-      min-height: 44px;
-
-      margin-top: 10px;
-
-      border-radius: 13px;
-
-      border: 1px solid #2c2922;
-
-      background: #11110f;
-
-      color: #c6a94c;
-
-      font-family: inherit;
-
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .message {
-      min-height: 19px;
-
-      margin-top: 9px;
-
-      color: #d3a943;
-
-      font-size: 12px;
-    }
-
-    /* Game buttons */
-
-    .game-btn,
-    .list-btn {
-      width: 100%;
-      min-height: 67px;
-
-      display: flex;
-      align-items: center;
-
-      gap: 11px;
-
-      padding: 10px 12px;
-      margin-bottom: 9px;
-
-      border-radius: 15px;
-
-      border: 1px solid #292720;
-
-      background: #11110f;
-
-      color: white;
-
-      font-family: inherit;
-
-      text-align: right;
-    }
-
-    .game-btn strong,
-    .list-btn strong {
-      display: block;
-
-      color: #d8b84f;
-
-      font-size: 15px;
-
-      margin-bottom: 3px;
-    }
-
-    .game-btn small,
-    .list-btn small {
-      display: block;
-
-      color: #77736b;
-
-      font-size: 10.5px;
-    }
-
-    .game-btn > span,
-    .list-btn > span {
-      width: 40px;
-      height: 40px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      flex-shrink: 0;
-
-      border-radius: 12px;
-
-      background: #1d190e;
+      border: 1px solid #3a311b;
 
       font-size: 20px;
     }
@@ -491,144 +785,67 @@
       flex: 1;
     }
 
+    .list-btn strong {
+      display: block;
+
+      color: #dfc15a;
+
+      font-size: 15px;
+
+      margin-bottom: 4px;
+    }
+
+    .list-btn small {
+      display: block;
+
+      color: #77736c;
+
+      font-size: 11px;
+    }
+
     .list-btn b {
-      color: #8d7430;
-      font-size: 23px;
+      color: #a88b39;
+
+      font-size: 24px;
+
       font-weight: 400;
     }
 
-    .players-grid {
-      display: grid;
 
-      grid-template-columns: repeat(4,1fr);
-
-      gap: 8px;
-
-      margin: 17px 0;
-    }
-
-    .player-count {
-      height: 53px;
-
-      border-radius: 13px;
-
-      border: 1px solid #302b20;
-
-      background: #11110f;
-
-      color: #d5b64e;
-
-      font-family: inherit;
-
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .player-count:active {
-      transform: scale(0.94);
-      background: #211c0d;
-    }
-
-    .info-box {
-      padding: 13px;
-
-      margin: 14px 0;
-
-      border-radius: 13px;
-
-      background: #11110f;
-
-      border: 1px solid #28251e;
-
-      color: #969087;
-
-      font-size: 12px;
-    }
-
-    .info-box strong {
-      color: #d9bb5b;
-    }
-
-    .game-description {
-      color: #89847b;
-
-      font-size: 13px;
-
-      line-height: 1.7;
-
-      margin-bottom: 15px;
-    }
-
-    /* Pages */
-
-    .page-container {
-      width: 100%;
-      max-width: 420px;
-
-      text-align: center;
-    }
-
-    .page-icon {
-      width: 55px;
-      height: 55px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin: 0 auto 13px;
-
-      border-radius: 16px;
-
-      background: #1d190e;
-
-      border: 1px solid #383019;
-
-      font-size: 25px;
-    }
-
-    .page-container h1 {
-      color: #f0ece3;
-
-      font-size: 26px;
-
-      margin-bottom: 6px;
-    }
-
-    .page-container > p {
-      color: #817c73;
-
-      font-size: 12px;
-
-      margin-bottom: 18px;
-    }
+    /* ================================
+       COMING SOON
+    ================================= */
 
     .coming-soon {
-      padding: 15px;
+      width: 100%;
 
-      margin-top: 13px;
+      padding: 17px 14px;
 
-      border-radius: 15px;
+      margin-top: 14px;
 
-      border: 1px dashed #40361f;
+      border-radius: 17px;
 
-      background: rgba(20,18,13,0.65);
+      background: rgba(22,20,14,0.7);
+
+      border: 1px dashed #44391e;
+
+      text-align: center;
     }
 
     .coming-soon span {
       display: block;
 
-      font-size: 21px;
+      font-size: 22px;
 
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
 
     .coming-soon strong {
       display: block;
 
-      color: #c7a94b;
+      color: #c7a94c;
 
-      font-size: 13px;
+      font-size: 14px;
 
       margin-bottom: 4px;
     }
@@ -636,152 +853,170 @@
     .coming-soon small {
       color: #706c64;
 
-      font-size: 10.5px;
+      font-size: 11px;
     }
 
-    /* Modal */
+
+    /* ================================
+       MODAL
+    ================================= */
 
     .modal {
       position: fixed;
 
-      inset: 0;
-
       z-index: 500;
+
+      inset: 0;
 
       display: flex;
 
       align-items: center;
       justify-content: center;
 
-      padding: 18px;
+      padding: 20px;
 
-      background: rgba(0,0,0,0.78);
+      background: rgba(0,0,0,0.8);
 
-      backdrop-filter: blur(7px);
-    }
-
-    .modal.hidden {
-      display: none !important;
+      backdrop-filter: blur(8px);
     }
 
     .modal-box {
       position: relative;
 
       width: 100%;
-      max-width: 350px;
+      max-width: 370px;
 
       max-height: 80vh;
 
       overflow-y: auto;
 
-      padding: 24px 19px 19px;
+      padding: 27px 20px 20px;
 
-      border-radius: 20px;
+      border-radius: 22px;
 
       background: #11110f;
 
-      border: 1px solid #3a311c;
+      border: 1px solid #3b321d;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.65);
+
+      text-align: right;
     }
 
     .modal-box h2 {
-      color: #dfc15b;
+      color: #dfc15a;
 
-      font-size: 20px;
+      font-size: 21px;
 
-      margin-bottom: 13px;
+      margin-bottom: 14px;
     }
 
     .modal-box h3 {
-      color: #d5b64e;
+      color: #d4b34c;
 
-      font-size: 14px;
+      font-size: 15px;
 
-      margin: 15px 0 6px;
+      margin: 17px 0 7px;
     }
 
     .modal-box p {
       color: #99938a;
 
-      font-size: 12px;
+      font-size: 13px;
 
       line-height: 1.8;
+
+      margin-bottom: 8px;
     }
 
     .close-modal {
       position: absolute;
 
-      top: 8px;
-      left: 9px;
+      top: 9px;
+      left: 10px;
 
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
 
-      border: 0;
       border-radius: 50%;
 
       background: #211e17;
 
       color: #aaa398;
 
-      font-size: 21px;
+      font-size: 22px;
+    }
+
+    .modal-box input {
+      margin: 8px 0 4px;
     }
 
     .language-btn {
       width: 100%;
-      height: 46px;
+      height: 50px;
 
-      margin-top: 8px;
+      margin-top: 9px;
 
-      border-radius: 12px;
-
-      border: 1px solid #2d2a21;
+      border-radius: 14px;
 
       background: #171611;
 
+      border: 1px solid #2e2a21;
+
       color: #ddd;
 
-      font-family: inherit;
+      font-size: 14px;
 
       text-align: right;
 
-      padding: 0 14px;
+      padding: 0 15px;
     }
 
-    /* Small screens */
+
+    /* ================================
+       SMALL PHONES
+    ================================= */
 
     @media (max-height: 650px) {
+
+      .screen {
+        padding-top: 12px;
+      }
 
       .logo {
         width: 72px;
         height: 72px;
-        margin-bottom: 11px;
+
+        margin-bottom: 10px;
       }
 
-      #nameScreen .card {
-        padding-top: 10px;
+      .card {
+        padding-top: 20px;
       }
 
-      .home-top {
-        padding-bottom: 16px;
+      .home-header {
+        padding-bottom: 14px;
       }
 
-      .home-main-title {
-        margin-bottom: 14px;
+      .home-title {
+        margin-bottom: 13px;
       }
 
-      .home-mode {
-        min-height: 66px;
+      .mode-btn {
+        min-height: 69px;
       }
-
     }
   </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =================================
      NAME SCREEN
-     ========================= -->
+================================= -->
 
 <section id="nameScreen" class="screen">
 
@@ -804,74 +1039,59 @@
       type="text"
       placeholder="اكتب اسمك"
       maxlength="20"
-      autocomplete="off"
     >
 
-    <button
-      id="continueBtn"
-      class="main-btn"
-    >
+    <button id="continueBtn" class="main-btn">
       مواصلة
     </button>
 
-    <p
-      id="nameMessage"
-      class="message"
-    ></p>
+    <p id="nameMessage" class="message"></p>
 
   </div>
 
 </section>
 
 
-<!-- =========================
-     HOME SCREEN
-     ========================= -->
+<!-- =================================
+     HOME
+================================= -->
 
 <section id="homeScreen" class="screen hidden">
 
-  <div class="home-wrapper">
+  <div class="home-container">
 
-    <div class="home-top">
+    <div class="home-header">
 
       <img
         src="file_0000000082d081f5a7b777584ad64610.png"
-        class="home-top-logo"
+        class="home-logo"
         alt="شكون فيكم؟"
       >
 
-      <div class="home-welcome">
-
-        <small>مرحبا بيك 👋</small>
-
-        <strong id="welcomeName"></strong>
-
+      <div>
+        <small>مرحبا 👋</small>
+        <h2 id="welcomeName"></h2>
       </div>
 
     </div>
 
 
-    <div class="home-main-title">
+    <div class="home-title">
 
       <h1>شكون فيكم؟</h1>
 
-      <p>اختار كيفاش تحب تلعب اليوم 🎮</p>
+      <p>
+        اختار كيفاش تحب تلعب
+      </p>
 
     </div>
 
 
-    <!-- ONLINE -->
+    <button id="onlineBtn" class="mode-btn">
 
-    <button
-      id="onlineBtn"
-      class="home-mode"
-    >
+      <span class="mode-icon">🌐</span>
 
-      <span class="home-mode-icon">
-        🌐
-      </span>
-
-      <span class="home-mode-content">
+      <div>
 
         <strong>Online</strong>
 
@@ -879,27 +1099,18 @@
           العب مع أصحابك من تلفونات مختلفة
         </small>
 
-      </span>
+      </div>
 
-      <span class="home-mode-arrow">
-        ‹
-      </span>
+      <span class="mode-arrow">‹</span>
 
     </button>
 
 
-    <!-- OFFLINE -->
+    <button id="offlineBtn" class="mode-btn">
 
-    <button
-      id="offlineBtn"
-      class="home-mode"
-    >
+      <span class="mode-icon">📱</span>
 
-      <span class="home-mode-icon">
-        📱
-      </span>
-
-      <span class="home-mode-content">
+      <div>
 
         <strong>Offline</strong>
 
@@ -907,20 +1118,16 @@
           العبوا مع بعضكم في نفس التلفون
         </small>
 
-      </span>
+      </div>
 
-      <span class="home-mode-arrow">
-        ‹
-      </span>
+      <span class="mode-arrow">‹</span>
 
     </button>
 
   </div>
 
 
-  <!-- BOTTOM NAV -->
-
-  <nav class="home-nav">
+  <nav class="bottom-nav">
 
     <button
       class="nav-btn active"
@@ -959,9 +1166,9 @@
 </section>
 
 
-<!-- =========================
+<!-- =================================
      ONLINE
-     ========================= -->
+================================= -->
 
 <section id="onlineScreen" class="screen hidden">
 
@@ -973,24 +1180,15 @@
       اختار كيفاش تحب تلعب
     </p>
 
-    <button
-      id="createRoomBtn"
-      class="main-btn"
-    >
+    <button id="createRoomBtn" class="main-btn">
       🎮 إنشاء غرفة
     </button>
 
-    <button
-      id="joinRoomBtn"
-      class="main-btn"
-    >
+    <button id="joinRoomBtn" class="main-btn">
       🔑 الدخول إلى غرفة
     </button>
 
-    <button
-      id="onlineBackBtn"
-      class="secondary-btn"
-    >
+    <button id="onlineBackBtn" class="secondary-btn">
       ← رجوع
     </button>
 
@@ -999,9 +1197,9 @@
 </section>
 
 
-<!-- =========================
+<!-- =================================
      OFFLINE
-     ========================= -->
+================================= -->
 
 <section id="offlineScreen" class="screen hidden">
 
@@ -1013,50 +1211,32 @@
       اختار اللعبة
     </p>
 
-    <button
-      id="shkounFikomBtn"
-      class="game-btn"
-    >
 
-      <span>❓</span>
+    <button id="shkounFikomBtn" class="game-btn">
+
+      <span style="font-size:25px;">❓</span>
 
       <div>
-
         <strong>شكون فيكم؟</strong>
-
-        <small>
-          من 2 إلى 8 لاعبين
-        </small>
-
+        <small>من 2 إلى 8 لاعبين</small>
       </div>
 
     </button>
 
 
-    <button
-      id="shkounAnaBtn"
-      class="game-btn"
-    >
+    <button id="shkounAnaBtn" class="game-btn">
 
-      <span>🕵️</span>
+      <span style="font-size:25px;">🕵️</span>
 
       <div>
-
         <strong>شكون أنا؟</strong>
-
-        <small>
-          لاعبين فقط
-        </small>
-
+        <small>لاعبين فقط</small>
       </div>
 
     </button>
 
 
-    <button
-      id="offlineBackBtn"
-      class="secondary-btn"
-    >
+    <button id="offlineBackBtn" class="secondary-btn">
       ← رجوع
     </button>
 
@@ -1065,9 +1245,9 @@
 </section>
 
 
-<!-- =========================
+<!-- =================================
      PLAYERS
-     ========================= -->
+================================= -->
 
 <section id="playersScreen" class="screen hidden">
 
@@ -1078,6 +1258,7 @@
     <p class="subtitle">
       قداش باش تلعبوا؟
     </p>
+
 
     <div class="players-grid">
 
@@ -1091,15 +1272,11 @@
 
     </div>
 
-    <p
-      id="playersMessage"
-      class="message"
-    ></p>
 
-    <button
-      id="playersBackBtn"
-      class="secondary-btn"
-    >
+    <p id="playersMessage" class="message"></p>
+
+
+    <button id="playersBackBtn" class="secondary-btn">
       ← رجوع
     </button>
 
@@ -1108,9 +1285,9 @@
 </section>
 
 
-<!-- =========================
+<!-- =================================
      SHKOUN ANA
-     ========================= -->
+================================= -->
 
 <section id="shkounAnaScreen" class="screen hidden">
 
@@ -1127,17 +1304,11 @@
       <strong>2</strong>
     </div>
 
-    <button
-      id="startShkounAnaBtn"
-      class="main-btn"
-    >
+    <button id="startShkounAnaBtn" class="main-btn">
       🚀 ابدأ اللعبة
     </button>
 
-    <button
-      id="shkounAnaBackBtn"
-      class="secondary-btn"
-    >
+    <button id="shkounAnaBackBtn" class="secondary-btn">
       ← رجوع
     </button>
 
@@ -1146,225 +1317,8 @@
 </section>
 
 
-<!-- =========================
-     JOIN
-     ========================= -->
-
-<section id="joinScreen" class="screen hidden">
-
-  <div class="card">
-
-    <h2>🔑 الدخول إلى غرفة</h2>
-
-    <p class="subtitle">
-      اكتب كود الغرفة
-    </p>
-
-    <input
-      id="roomCode"
-      type="number"
-      placeholder="مثال: 123456"
-      inputmode="numeric"
-    >
-
-    <button
-      id="joinBtn"
-      class="main-btn"
-    >
-      دخول
-    </button>
-
-    <p
-      id="joinMessage"
-      class="message"
-    ></p>
-
-    <button
-      id="backBtn"
-      class="secondary-btn"
-    >
-      ← رجوع
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     MESSAGES
-     ========================= -->
-
-<section id="messagesScreen" class="screen hidden">
-
-  <div class="page-container">
-
-    <div class="page-icon">💬</div>
-
-    <h1>الرسائل</h1>
-
-    <p>
-      هنا باش تلقى الرسائل والتنبيهات.
-    </p>
-
-    <div class="coming-soon">
-
-      <span>🚧</span>
-
-      <strong>قريبًا</strong>
-
-      <small>
-        نظام الرسائل باش يتربط مع اللعب Online.
-      </small>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     GAMES
-     ========================= -->
-
-<section id="gamesScreen" class="screen hidden">
-
-  <div class="page-container">
-
-    <div class="page-icon">🎮</div>
-
-    <h1>الألعاب</h1>
-
-    <p>
-      اختار اللعبة اللي تحب تلعبها.
-    </p>
-
-
-    <button
-      id="gamesShkounFikom"
-      class="list-btn"
-    >
-
-      <span>❓</span>
-
-      <div>
-
-        <strong>شكون فيكم؟</strong>
-
-        <small>
-          2 إلى 8 لاعبين
-        </small>
-
-      </div>
-
-      <b>‹</b>
-
-    </button>
-
-
-    <button
-      id="gamesShkounAna"
-      class="list-btn"
-    >
-
-      <span>🕵️</span>
-
-      <div>
-
-        <strong>شكون أنا؟</strong>
-
-        <small>
-          لاعبين فقط
-        </small>
-
-      </div>
-
-      <b>‹</b>
-
-    </button>
-
-
-    <div class="coming-soon">
-
-      <span>🔥</span>
-
-      <strong>
-        ألعاب أخرى قريبًا
-      </strong>
-
-      <small>
-        باش نزيدوا ألعاب جديدة مع الوقت.
-      </small>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SETTINGS
-     ========================= -->
-
-<section id="settingsScreen" class="screen hidden">
-
-  <div class="page-container">
-
-    <div class="page-icon">⚙️</div>
-
-    <h1>الإعدادات</h1>
-
-    <p>
-      خصّص تجربتك في شكون فيكم؟
-    </p>
-
-
-    <button
-      id="settingsNameBtn"
-      class="list-btn"
-    >
-
-      <span>👤</span>
-
-      <div>
-
-        <strong>تغيير الاسم</strong>
-
-        <small>
-          بدّل الاسم متاعك
-        </small>
-
-      </div>
-
-      <b>‹</b>
-
-    </button>
-
-
-    <button
-      id="languageBtn"
-      class="list-btn"
-    >
-
-      <span>🌐</span>
-
-      <div>
-
-        <strong>اللغة</strong>
-
-        <small id="currentLanguage">
-          العربية
-        </small>
-
-      </div>
-
-      <b>‹</b>
-
-    </button>
-
-
-    <button
-      id="aboutGamesBtn"
-      class="lis
+<!-- =================================
+     JOIN ROOM
+================================= -->
+
+<
