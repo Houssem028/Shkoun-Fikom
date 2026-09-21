@@ -5,7 +5,7 @@
 
 
 // =====================================
-// ELEMENTS
+// ELEMENTS - MAIN
 // =====================================
 
 const nameScreen =
@@ -14,9 +14,25 @@ const nameScreen =
 const homeScreen =
   document.getElementById("homeScreen");
 
+const onlineScreen =
+  document.getElementById("onlineScreen");
+
+const offlineScreen =
+  document.getElementById("offlineScreen");
+
+const playersScreen =
+  document.getElementById("playersScreen");
+
+const shkounAnaScreen =
+  document.getElementById("shkounAnaScreen");
+
 const joinScreen =
   document.getElementById("joinScreen");
 
+
+// =====================================
+// NAME ELEMENTS
+// =====================================
 
 const playerName =
   document.getElementById("playerName");
@@ -24,9 +40,30 @@ const playerName =
 const welcomeName =
   document.getElementById("welcomeName");
 
-
 const continueBtn =
   document.getElementById("continueBtn");
+
+const changeNameBtn =
+  document.getElementById("changeNameBtn");
+
+const nameMessage =
+  document.getElementById("nameMessage");
+
+
+// =====================================
+// MAIN MENU BUTTONS
+// =====================================
+
+const onlineBtn =
+  document.getElementById("onlineBtn");
+
+const offlineBtn =
+  document.getElementById("offlineBtn");
+
+
+// =====================================
+// ONLINE BUTTONS
+// =====================================
 
 const createRoomBtn =
   document.getElementById("createRoomBtn");
@@ -34,261 +71,120 @@ const createRoomBtn =
 const joinRoomBtn =
   document.getElementById("joinRoomBtn");
 
-const changeNameBtn =
-  document.getElementById("changeNameBtn");
-
-const backBtn =
-  document.getElementById("backBtn");
-
-const nameMessage =
-  document.getElementById("nameMessage");
+const onlineBackBtn =
+  document.getElementById("onlineBackBtn");
 
 
 // =====================================
-// LOAD SAVED NAME
+// OFFLINE BUTTONS
 // =====================================
 
-const savedName =
-  localStorage.getItem(
-    "shkounPlayerName"
+const offlineBackBtn =
+  document.getElementById("offlineBackBtn");
+
+const shkounFikomBtn =
+  document.getElementById("shkounFikomBtn");
+
+const shkounAnaBtn =
+  document.getElementById("shkounAnaBtn");
+
+
+// =====================================
+// PLAYERS SCREEN
+// =====================================
+
+const playersBackBtn =
+  document.getElementById("playersBackBtn");
+
+const playerCountButtons =
+  document.querySelectorAll(
+    ".player-count"
+  );
+
+const playersMessage =
+  document.getElementById(
+    "playersMessage"
   );
 
 
-if (savedName) {
-
-  playerName.value =
-    savedName;
-
-  showHome();
-
-}
-
-
 // =====================================
-// CONTINUE
+// SHKOUN ANA
 // =====================================
 
-continueBtn.addEventListener(
-  "click",
-  saveName
-);
-
-
-playerName.addEventListener(
-  "keydown",
-  (event) => {
-
-    if (event.key === "Enter") {
-
-      saveName();
-
-    }
-
-  }
-);
-
-
-// =====================================
-// SAVE NAME
-// =====================================
-
-function saveName() {
-
-  const name =
-    playerName.value.trim();
-
-
-  if (!name) {
-
-    nameMessage.textContent =
-      "اكتب اسمك أولاً 👀";
-
-    return;
-
-  }
-
-
-  if (name.length < 2) {
-
-    nameMessage.textContent =
-      "الاسم لازم يكون حرفين على الأقل 😅";
-
-    return;
-
-  }
-
-
-  if (name.length > 20) {
-
-    nameMessage.textContent =
-      "الاسم طويل برشا 😅";
-
-    return;
-
-  }
-
-
-  localStorage.setItem(
-    "shkounPlayerName",
-    name
+const shkounAnaBackBtn =
+  document.getElementById(
+    "shkounAnaBackBtn"
   );
 
-
-  nameMessage.textContent = "";
-
-  showHome();
-
-}
-
-
-// =====================================
-// SHOW HOME
-// =====================================
-
-function showHome() {
-
-  const name =
-    localStorage.getItem(
-      "shkounPlayerName"
-    );
-
-
-  if (!name) {
-
-    showName();
-
-    return;
-
-  }
-
-
-  welcomeName.textContent =
-    name;
-
-
-  nameScreen.classList.add(
-    "hidden"
+const startShkounAnaBtn =
+  document.getElementById(
+    "startShkounAnaBtn"
   );
-
-  joinScreen.classList.add(
-    "hidden"
-  );
-
-  homeScreen.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-// =====================================
-// SHOW NAME
-// =====================================
-
-function showName() {
-
-  homeScreen.classList.add(
-    "hidden"
-  );
-
-  joinScreen.classList.add(
-    "hidden"
-  );
-
-  nameScreen.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-// =====================================
-// CREATE ROOM
-// =====================================
-
-createRoomBtn.addEventListener(
-  "click",
-  () => {
-
-    const name =
-      localStorage.getItem(
-        "shkounPlayerName"
-      );
-
-
-    if (!name) {
-
-      showName();
-
-      return;
-
-    }
-
-
-    // فتح صفحة إنشاء الغرفة
-    window.location.href =
-      "create-room.html";
-
-  }
-);
 
 
 // =====================================
 // JOIN ROOM
 // =====================================
 
-joinRoomBtn.addEventListener(
-  "click",
-  () => {
+const backBtn =
+  document.getElementById("backBtn");
 
-    homeScreen.classList.add(
+
+// =====================================
+// SCREEN HELPER
+// =====================================
+
+function hideAllScreens() {
+
+  const screens = [
+    nameScreen,
+    homeScreen,
+    onlineScreen,
+    offlineScreen,
+    playersScreen,
+    shkounAnaScreen,
+    joinScreen
+  ];
+
+
+  screens.forEach(
+    (screen) => {
+
+      if (screen) {
+
+        screen.classList.add(
+          "hidden"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+// =====================================
+// SHOW SCREEN
+// =====================================
+
+function showScreen(screen) {
+
+  hideAllScreens();
+
+  if (screen) {
+
+    screen.classList.remove(
       "hidden"
     );
 
-    joinScreen.classList.remove(
-      "hidden"
-    );
-
   }
-);
+
+}
 
 
 // =====================================
-// BACK
+// LOAD SAVED NAME
 // =====================================
 
-backBtn.addEventListener(
-  "click",
-  () => {
-
-    showHome();
-
-  }
-);
-
-
-// =====================================
-// CHANGE NAME
-// =====================================
-
-changeNameBtn.addEventListener(
-  "click",
-  () => {
-
-    localStorage.removeItem(
-      "shkounPlayerName"
-    );
-
-
-    playerName.value =
-      "";
-
-
-    nameMessage.textContent =
-      "";
-
-
-    showName();
-
-  }
-);
+const
