@@ -7,1120 +7,1364 @@
   <title>شكون فيكم؟</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ==============================
+       HOME ONLY
+       ============================== */
+
+    #homeScreen {
+      display: none;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 18px 16px 95px;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(205, 170, 60, 0.10),
+          transparent 38%
+        ),
+        #070707;
+    }
+
+    #homeScreen:not(.hidden) {
+      display: block;
+    }
+
+    .home-wrapper {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+
+    .home-top {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 5px 2px 24px;
+    }
+
+    .home-top-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .home-welcome small {
+      display: block;
+      color: #77736b;
+      font-size: 11px;
+      margin-bottom: 3px;
+    }
+
+    .home-welcome strong {
+      display: block;
+      color: #eee8dc;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    /* Title */
+
+    .home-main-title {
+      margin: 3px 0 20px;
+    }
+
+    .home-main-title h1 {
+      margin: 0 0 5px;
+      color: #f2eee5;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .home-main-title p {
+      margin: 0;
+      color: #77736b;
+      font-size: 13px;
+    }
+
+    /* Mode cards */
+
+    .home-mode {
+      width: 100%;
+      min-height: 74px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+      padding: 11px 13px;
+      margin-bottom: 11px;
+
+      border-radius: 17px;
+      border: 1px solid #28251e;
+
+      background:
+        linear-gradient(
+          145deg,
+          #171510,
+          #0d0d0c
+        );
+
+      color: white;
+      text-align: right;
+
+      box-shadow:
+        0 8px 24px rgba(0,0,0,0.25);
+
+      transition: 0.15s ease;
+    }
+
+    .home-mode:active {
+      transform: scale(0.98);
+      border-color: #76602a;
+    }
+
+    .home-mode-icon {
+      width: 43px;
+      height: 43px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+
+      border-radius: 13px;
+
+      background: #211c0e;
+
+      font-size: 21px;
+    }
+
+    .home-mode-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .home-mode-content strong {
+      display: block;
+
+      color: #d8b84f;
+      font-size: 16px;
+
+      margin-bottom: 3px;
+    }
+
+    .home-mode-content small {
+      display: block;
+
+      color: #77736b;
+      font-size: 10.5px;
+      line-height: 1.5;
+    }
+
+    .home-mode-arrow {
+      color: #92772c;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    /* Bottom navigation */
+
+    .home-nav {
+      position: fixed;
+
+      z-index: 100;
+
+      left: 50%;
+      bottom: 10px;
+
+      transform: translateX(-50%);
+
+      width: calc(100% - 22px);
+      max-width: 420px;
+
+      height: 62px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 4px;
+
+      border-radius: 19px;
+
+      background: rgba(14,14,13,0.97);
+
+      border: 1px solid #29261f;
+
+      box-shadow:
+        0 10px 35px rgba(0,0,0,0.50);
+
+      backdrop-filter: blur(15px);
+    }
+
+    .home-nav button {
+      flex: 1;
+      height: 52px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 2px;
+
+      border: 0;
+      border-radius: 14px;
+
+      background: transparent;
+
+      color: #68645d;
+
+      font-family: inherit;
+
+      cursor: pointer;
+    }
+
+    .home-nav button span {
+      font-size: 18px;
+      line-height: 20px;
+    }
+
+    .home-nav button small {
+      font-size: 8.5px;
+      font-weight: 700;
+    }
+
+    .home-nav button.active {
+      color: #d5b64e;
+      background: #1b180f;
+    }
+
+    /* ==============================
+       OTHER SCREENS
+       ============================== */
+
+    .screen {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px 16px;
+    }
+
+    .screen.hidden {
+      display: none !important;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 360px;
+
+      padding: 26px 20px;
+
+      border-radius: 21px;
+
+      background: rgba(15,15,14,0.97);
+
+      border: 1px solid #29261f;
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,0.35);
+
+      text-align: center;
+    }
+
+    /* Name screen */
+
+    #nameScreen {
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(205,170,60,0.10),
+          transparent 40%
+        ),
+        #070707;
+    }
+
+    #nameScreen .card {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .logo {
+      width: 86px;
+      height: 86px;
+
+      object-fit: contain;
+
+      display: block;
+
+      margin: 0 auto 17px;
+
+      filter:
+        drop-shadow(
+          0 8px 20px rgba(212,175,55,0.20)
+        );
+    }
+
+    .card h1 {
+      color: #f2eee5;
+      font-size: 28px;
+      margin: 0 0 7px;
+    }
+
+    .card h2 {
+      color: #f2eee5;
+      font-size: 23px;
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      color: #817c73;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    input {
+      width: 100%;
+      height: 48px;
+
+      border-radius: 13px;
+
+      border: 1px solid #2c2922;
+
+      background: #11110f;
+
+      color: white;
+
+      padding: 0 14px;
+
+      font-family: inherit;
+      font-size: 14px;
+
+      outline: none;
+
+      text-align: right;
+    }
+
+    input::placeholder {
+      color: #66625b;
+    }
+
+    input:focus {
+      border-color: #9b7e2d;
+    }
+
+    .main-btn {
+      width: 100%;
+      min-height: 47px;
+
+      margin-top: 11px;
+
+      border: 0;
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #d9bb5b,
+          #a88628
+        );
+
+      color: #111;
+
+      font-family: inherit;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .main-btn:active {
+      transform: scale(0.98);
+    }
+
+    .secondary-btn {
+      width: 100%;
+      min-height: 44px;
+
+      margin-top: 10px;
+
+      border-radius: 13px;
+
+      border: 1px solid #2c2922;
+
+      background: #11110f;
+
+      color: #c6a94c;
+
+      font-family: inherit;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .message {
+      min-height: 19px;
+
+      margin-top: 9px;
+
+      color: #d3a943;
+
+      font-size: 12px;
+    }
+
+    /* Game buttons */
+
+    .game-btn,
+    .list-btn {
+      width: 100%;
+      min-height: 67px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 11px;
+
+      padding: 10px 12px;
+      margin-bottom: 9px;
+
+      border-radius: 15px;
+
+      border: 1px solid #292720;
+
+      background: #11110f;
+
+      color: white;
+
+      font-family: inherit;
+
+      text-align: right;
+    }
+
+    .game-btn strong,
+    .list-btn strong {
+      display: block;
+
+      color: #d8b84f;
+
+      font-size: 15px;
+
+      margin-bottom: 3px;
+    }
+
+    .game-btn small,
+    .list-btn small {
+      display: block;
+
+      color: #77736b;
+
+      font-size: 10.5px;
+    }
+
+    .game-btn > span,
+    .list-btn > span {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+
+      border-radius: 12px;
+
+      background: #1d190e;
+
+      font-size: 20px;
+    }
+
+    .list-btn > div {
+      flex: 1;
+    }
+
+    .list-btn b {
+      color: #8d7430;
+      font-size: 23px;
+      font-weight: 400;
+    }
+
+    .players-grid {
+      display: grid;
+
+      grid-template-columns: repeat(4,1fr);
+
+      gap: 8px;
+
+      margin: 17px 0;
+    }
+
+    .player-count {
+      height: 53px;
+
+      border-radius: 13px;
+
+      border: 1px solid #302b20;
+
+      background: #11110f;
+
+      color: #d5b64e;
+
+      font-family: inherit;
+
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .player-count:active {
+      transform: scale(0.94);
+      background: #211c0d;
+    }
+
+    .info-box {
+      padding: 13px;
+
+      margin: 14px 0;
+
+      border-radius: 13px;
+
+      background: #11110f;
+
+      border: 1px solid #28251e;
+
+      color: #969087;
+
+      font-size: 12px;
+    }
+
+    .info-box strong {
+      color: #d9bb5b;
+    }
+
+    .game-description {
+      color: #89847b;
+
+      font-size: 13px;
+
+      line-height: 1.7;
+
+      margin-bottom: 15px;
+    }
+
+    /* Pages */
+
+    .page-container {
+      width: 100%;
+      max-width: 420px;
+
+      text-align: center;
+    }
+
+    .page-icon {
+      width: 55px;
+      height: 55px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 13px;
+
+      border-radius: 16px;
+
+      background: #1d190e;
+
+      border: 1px solid #383019;
+
+      font-size: 25px;
+    }
+
+    .page-container h1 {
+      color: #f0ece3;
+
+      font-size: 26px;
+
+      margin-bottom: 6px;
+    }
+
+    .page-container > p {
+      color: #817c73;
+
+      font-size: 12px;
+
+      margin-bottom: 18px;
+    }
+
+    .coming-soon {
+      padding: 15px;
+
+      margin-top: 13px;
+
+      border-radius: 15px;
+
+      border: 1px dashed #40361f;
+
+      background: rgba(20,18,13,0.65);
+    }
+
+    .coming-soon span {
+      display: block;
+
+      font-size: 21px;
+
+      margin-bottom: 4px;
+    }
+
+    .coming-soon strong {
+      display: block;
+
+      color: #c7a94b;
+
+      font-size: 13px;
+
+      margin-bottom: 4px;
+    }
+
+    .coming-soon small {
+      color: #706c64;
+
+      font-size: 10.5px;
+    }
+
+    /* Modal */
+
+    .modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 500;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 18px;
+
+      background: rgba(0,0,0,0.78);
+
+      backdrop-filter: blur(7px);
+    }
+
+    .modal.hidden {
+      display: none !important;
+    }
+
+    .modal-box {
+      position: relative;
+
+      width: 100%;
+      max-width: 350px;
+
+      max-height: 80vh;
+
+      overflow-y: auto;
+
+      padding: 24px 19px 19px;
+
+      border-radius: 20px;
+
+      background: #11110f;
+
+      border: 1px solid #3a311c;
+    }
+
+    .modal-box h2 {
+      color: #dfc15b;
+
+      font-size: 20px;
+
+      margin-bottom: 13px;
+    }
+
+    .modal-box h3 {
+      color: #d5b64e;
+
+      font-size: 14px;
+
+      margin: 15px 0 6px;
+    }
+
+    .modal-box p {
+      color: #99938a;
+
+      font-size: 12px;
+
+      line-height: 1.8;
+    }
+
+    .close-modal {
+      position: absolute;
+
+      top: 8px;
+      left: 9px;
+
+      width: 30px;
+      height: 30px;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: #211e17;
+
+      color: #aaa398;
+
+      font-size: 21px;
+    }
+
+    .language-btn {
+      width: 100%;
+      height: 46px;
+
+      margin-top: 8px;
+
+      border-radius: 12px;
+
+      border: 1px solid #2d2a21;
+
+      background: #171611;
+
+      color: #ddd;
+
+      font-family: inherit;
+
+      text-align: right;
+
+      padding: 0 14px;
+    }
+
+    /* Small screens */
+
+    @media (max-height: 650px) {
+
+      .logo {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 11px;
+      }
+
+      #nameScreen .card {
+        padding-top: 10px;
+      }
+
+      .home-top {
+        padding-bottom: 16px;
+      }
+
+      .home-main-title {
+        margin-bottom: 14px;
+      }
+
+      .home-mode {
+        min-height: 66px;
+      }
+
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- شاشة الاسم -->
-  <section id="nameScreen" class="screen">
+<!-- =========================
+     NAME SCREEN
+     ========================= -->
 
-    <div class="card">
+<section id="nameScreen" class="screen">
+
+  <div class="card">
+
+    <img
+      src="file_0000000082d081f5a7b777584ad64610.png"
+      class="logo"
+      alt="شكون فيكم؟"
+    >
+
+    <h1>شكون فيكم؟</h1>
+
+    <p class="subtitle">
+      اللعبة اللي تكشف شكون فيكم 😏
+    </p>
+
+    <input
+      id="playerName"
+      type="text"
+      placeholder="اكتب اسمك"
+      maxlength="20"
+      autocomplete="off"
+    >
+
+    <button
+      id="continueBtn"
+      class="main-btn"
+    >
+      مواصلة
+    </button>
+
+    <p
+      id="nameMessage"
+      class="message"
+    ></p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     HOME SCREEN
+     ========================= -->
+
+<section id="homeScreen" class="screen hidden">
+
+  <div class="home-wrapper">
+
+    <div class="home-top">
 
       <img
         src="file_0000000082d081f5a7b777584ad64610.png"
-        class="logo"
+        class="home-top-logo"
         alt="شكون فيكم؟"
       >
 
+      <div class="home-welcome">
+
+        <small>مرحبا بيك 👋</small>
+
+        <strong id="welcomeName"></strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="home-main-title">
+
       <h1>شكون فيكم؟</h1>
 
-      <p class="subtitle">
-        اللعبة اللي تكشف شكون فيكم 😏
-      </p>
-
-      <input
-        id="playerName"
-        type="text"
-        placeholder="اكتب اسمك"
-        maxlength="20"
-      >
-
-      <button id="continueBtn" class="main-btn">
-        مواصلة
-      </button>
-
-      <p id="nameMessage" class="message"></p>
-
-    </div>
-
-  </section>
-
-
-  <!-- الرئيسية -->
-  <section id="homeScreen" class="screen hidden">
-
-    <div class="home-container">
-
-      <div class="home-header">
-
-        <img
-          src="file_0000000082d081f5a7b777584ad64610.png"
-          class="home-logo"
-          alt="شكون فيكم؟"
-        >
-
-        <div>
-          <small>مرحبا 👋</small>
-          <h2 id="welcomeName"></h2>
-        </div>
-
-      </div>
-
-      <div class="home-title">
-        <h1>شكون فيكم؟</h1>
-        <p>اختار كيفاش تحب تلعب</p>
-      </div>
-
-      <button id="onlineBtn" class="mode-btn">
-
-        <span class="mode-icon">🌐</span>
-
-        <div>
-          <strong>Online</strong>
-          <small>العب مع أصحابك من تلفونات مختلفة</small>
-        </div>
-
-        <span class="mode-arrow">‹</span>
-
-      </button>
-
-
-      <button id="offlineBtn" class="mode-btn">
-
-        <span class="mode-icon">📱</span>
-
-        <div>
-          <strong>Offline</strong>
-          <small>العبوا مع بعضكم في نفس التلفون</small>
-        </div>
-
-        <span class="mode-arrow">‹</span>
-
-      </button>
+      <p>اختار كيفاش تحب تلعب اليوم 🎮</p>
 
     </div>
 
 
-    <nav class="bottom-nav">
+    <!-- ONLINE -->
 
-      <button class="nav-btn active" data-screen="homeScreen">
-        <span>🏠</span>
-        <small>الرئيسية</small>
-      </button>
+    <button
+      id="onlineBtn"
+      class="home-mode"
+    >
 
-      <button class="nav-btn" data-screen="messagesScreen">
-        <span>💬</span>
-        <small>الرسائل</small>
-      </button>
+      <span class="home-mode-icon">
+        🌐
+      </span>
 
-      <button class="nav-btn" data-screen="gamesScreen">
-        <span>🎮</span>
-        <small>الألعاب</small>
-      </button>
+      <span class="home-mode-content">
 
-      <button class="nav-btn" data-screen="settingsScreen">
-        <span>⚙️</span>
-        <small>الإعدادات</small>
-      </button>
+        <strong>Online</strong>
 
-    </nav>
+        <small>
+          العب مع أصحابك من تلفونات مختلفة
+        </small>
 
-  </section>
+      </span>
 
+      <span class="home-mode-arrow">
+        ‹
+      </span>
 
-  <!-- ONLINE -->
-  <section id="onlineScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>🌐 Online</h2>
-
-      <p class="subtitle">
-        اختار كيفاش تحب تلعب
-      </p>
-
-      <button id="createRoomBtn" class="main-btn">
-        🎮 إنشاء غرفة
-      </button>
-
-      <button id="joinRoomBtn" class="main-btn">
-        🔑 الدخول إلى غرفة
-      </button>
-
-      <button id="onlineBackBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
-    </div>
-
-  </section>
+    </button>
 
 
-  <!-- OFFLINE -->
-  <section id="offlineScreen" class="screen hidden">
+    <!-- OFFLINE -->
 
-    <div class="card">
+    <button
+      id="offlineBtn"
+      class="home-mode"
+    >
 
-      <h2>📱 Offline</h2>
+      <span class="home-mode-icon">
+        📱
+      </span>
 
-      <p class="subtitle">
-        اختار اللعبة
-      </p>
+      <span class="home-mode-content">
 
-      <button id="shkounFikomBtn" class="game-btn">
-        ❓
+        <strong>Offline</strong>
+
+        <small>
+          العبوا مع بعضكم في نفس التلفون
+        </small>
+
+      </span>
+
+      <span class="home-mode-arrow">
+        ‹
+      </span>
+
+    </button>
+
+  </div>
+
+
+  <!-- BOTTOM NAV -->
+
+  <nav class="home-nav">
+
+    <button
+      class="nav-btn active"
+      data-screen="homeScreen"
+    >
+      <span>🏠</span>
+      <small>الرئيسية</small>
+    </button>
+
+    <button
+      class="nav-btn"
+      data-screen="messagesScreen"
+    >
+      <span>💬</span>
+      <small>الرسائل</small>
+    </button>
+
+    <button
+      class="nav-btn"
+      data-screen="gamesScreen"
+    >
+      <span>🎮</span>
+      <small>الألعاب</small>
+    </button>
+
+    <button
+      class="nav-btn"
+      data-screen="settingsScreen"
+    >
+      <span>⚙️</span>
+      <small>الإعدادات</small>
+    </button>
+
+  </nav>
+
+</section>
+
+
+<!-- =========================
+     ONLINE
+     ========================= -->
+
+<section id="onlineScreen" class="screen hidden">
+
+  <div class="card">
+
+    <h2>🌐 Online</h2>
+
+    <p class="subtitle">
+      اختار كيفاش تحب تلعب
+    </p>
+
+    <button
+      id="createRoomBtn"
+      class="main-btn"
+    >
+      🎮 إنشاء غرفة
+    </button>
+
+    <button
+      id="joinRoomBtn"
+      class="main-btn"
+    >
+      🔑 الدخول إلى غرفة
+    </button>
+
+    <button
+      id="onlineBackBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     OFFLINE
+     ========================= -->
+
+<section id="offlineScreen" class="screen hidden">
+
+  <div class="card">
+
+    <h2>📱 Offline</h2>
+
+    <p class="subtitle">
+      اختار اللعبة
+    </p>
+
+    <button
+      id="shkounFikomBtn"
+      class="game-btn"
+    >
+
+      <span>❓</span>
+
+      <div>
+
         <strong>شكون فيكم؟</strong>
-        <small>من 2 إلى 8 لاعبين</small>
-      </button>
 
-      <button id="shkounAnaBtn" class="game-btn">
-        🕵️
+        <small>
+          من 2 إلى 8 لاعبين
+        </small>
+
+      </div>
+
+    </button>
+
+
+    <button
+      id="shkounAnaBtn"
+      class="game-btn"
+    >
+
+      <span>🕵️</span>
+
+      <div>
+
         <strong>شكون أنا؟</strong>
-        <small>لاعبين فقط</small>
-      </button>
-
-      <button id="offlineBackBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- عدد اللاعبين -->
-  <section id="playersScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>❓ شكون فيكم؟</h2>
-
-      <p class="subtitle">
-        قداش باش تلعبوا؟
-      </p>
-
-      <div class="players-grid">
-
-        <button class="player-count" data-players="2">2</button>
-        <button class="player-count" data-players="3">3</button>
-        <button class="player-count" data-players="4">4</button>
-        <button class="player-count" data-players="5">5</button>
-        <button class="player-count" data-players="6">6</button>
-        <button class="player-count" data-players="7">7</button>
-        <button class="player-count" data-players="8">8</button>
-
-      </div>
-
-      <p id="playersMessage" class="message"></p>
-
-      <button id="playersBackBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- شكون أنا -->
-  <section id="shkounAnaScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>🕵️ شكون أنا؟</h2>
-
-      <p class="game-description">
-        لعبة تخمين الشخصيات بين زوز لاعبين.
-      </p>
-
-      <div class="info-box">
-        👥 عدد اللاعبين: <strong>2</strong>
-      </div>
-
-      <button id="startShkounAnaBtn" class="main-btn">
-        🚀 ابدأ اللعبة
-      </button>
-
-      <button id="shkounAnaBackBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- الدخول للغرفة -->
-  <section id="joinScreen" class="screen hidden">
-
-    <div class="card">
-
-      <h2>🔑 الدخول إلى غرفة</h2>
-
-      <p class="subtitle">
-        اكتب كود الغرفة
-      </p>
-
-      <input
-        id="roomCode"
-        type="number"
-        placeholder="مثال: 123456"
-      >
-
-      <button id="joinBtn" class="main-btn">
-        دخول
-      </button>
-
-      <p id="joinMessage" class="message"></p>
-
-      <button id="backBtn" class="secondary-btn">
-        ← رجوع
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- الرسائل -->
-  <section id="messagesScreen" class="screen hidden">
-
-    <div class="page-container">
-
-      <div class="page-icon">💬</div>
-
-      <h1>الرسائل</h1>
-
-      <p>
-        هنا باش تلقى الرسائل والتنبيهات.
-      </p>
-
-      <div class="coming-soon">
-
-        <span>🚧</span>
-
-        <strong>قريبًا</strong>
 
         <small>
-          نظام الرسائل باش يتربط مع اللعب Online.
+          لاعبين فقط
         </small>
 
       </div>
 
-    </div>
+    </button>
 
 
-    <nav class="bottom-nav">
+    <button
+      id="offlineBackBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
 
-      <button class="nav-btn" data-screen="homeScreen">
-        <span>🏠</span>
-        <small>الرئيسية</small>
-      </button>
+  </div>
 
-      <button class="nav-btn active" data-screen="messagesScreen">
-        <span>💬</span>
-        <small>الرسائل</small>
-      </button>
-
-      <button class="nav-btn" data-screen="gamesScreen">
-        <span>🎮</span>
-        <small>الألعاب</small>
-      </button>
-
-      <button class="nav-btn" data-screen="settingsScreen">
-        <span>⚙️</span>
-        <small>الإعدادات</small>
-      </button>
-
-    </nav>
-
-  </section>
+</section>
 
 
-  <!-- الألعاب -->
-  <section id="gamesScreen" class="screen hidden">
+<!-- =========================
+     PLAYERS
+     ========================= -->
 
-    <div class="page-container">
+<section id="playersScreen" class="screen hidden">
 
-      <div class="page-icon">🎮</div>
+  <div class="card">
 
-      <h1>الألعاب</h1>
+    <h2>❓ شكون فيكم؟</h2>
 
-      <p>
-        اختار اللعبة اللي تحب تلعبها.
-      </p>
+    <p class="subtitle">
+      قداش باش تلعبوا؟
+    </p>
 
-      <button id="gamesShkounFikom" class="list-btn">
+    <div class="players-grid">
 
-        <span>❓</span>
-
-        <div>
-          <strong>شكون فيكم؟</strong>
-          <small>2 إلى 8 لاعبين</small>
-        </div>
-
-        <b>‹</b>
-
-      </button>
-
-
-      <button id="gamesShkounAna" class="list-btn">
-
-        <span>🕵️</span>
-
-        <div>
-          <strong>شكون أنا؟</strong>
-          <small>لاعبين فقط</small>
-        </div>
-
-        <b>‹</b>
-
-      </button>
-
-
-      <div class="coming-soon">
-
-        <span>🔥</span>
-
-        <strong>
-          ألعاب أخرى قريبًا
-        </strong>
-
-        <small>
-          باش نزيدوا ألعاب جديدة مع الوقت.
-        </small>
-
-      </div>
+      <button class="player-count" data-players="2">2</button>
+      <button class="player-count" data-players="3">3</button>
+      <button class="player-count" data-players="4">4</button>
+      <button class="player-count" data-players="5">5</button>
+      <button class="player-count" data-players="6">6</button>
+      <button class="player-count" data-players="7">7</button>
+      <button class="player-count" data-players="8">8</button>
 
     </div>
 
+    <p
+      id="playersMessage"
+      class="message"
+    ></p>
 
-    <nav class="bottom-nav">
+    <button
+      id="playersBackBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
 
-      <button class="nav-btn" data-screen="homeScreen">
-        <span>🏠</span>
-        <small>الرئيسية</small>
-      </button>
+  </div>
 
-      <button class="nav-btn" data-screen="messagesScreen">
-        <span>💬</span>
-        <small>الرسائل</small>
-      </button>
-
-      <button class="nav-btn active" data-screen="gamesScreen">
-        <span>🎮</span>
-        <small>الألعاب</small>
-      </button>
-
-      <button class="nav-btn" data-screen="settingsScreen">
-        <span>⚙️</span>
-        <small>الإعدادات</small>
-      </button>
-
-    </nav>
-
-  </section>
+</section>
 
 
-  <!-- الإعدادات -->
-  <section id="settingsScreen" class="screen hidden">
+<!-- =========================
+     SHKOUN ANA
+     ========================= -->
 
-    <div class="page-container">
+<section id="shkounAnaScreen" class="screen hidden">
 
-      <div class="page-icon">⚙️</div>
+  <div class="card">
 
-      <h1>الإعدادات</h1>
+    <h2>🕵️ شكون أنا؟</h2>
 
-      <p>
-        خصّص تجربتك في شكون فيكم؟
-      </p>
+    <p class="game-description">
+      لعبة تخمين الشخصيات بين زوز لاعبين.
+    </p>
 
-
-      <button id="settingsNameBtn" class="list-btn">
-
-        <span>👤</span>
-
-        <div>
-          <strong>تغيير الاسم</strong>
-          <small>بدّل الاسم متاعك</small>
-        </div>
-
-        <b>‹</b>
-
-      </button>
-
-
-      <button id="languageBtn" class="list-btn">
-
-        <span>🌐</span>
-
-        <div>
-          <strong>اللغة</strong>
-          <small id="currentLanguage">العربية</small>
-        </div>
-
-        <b>‹</b>
-
-      </button>
-
-
-      <button id="aboutGamesBtn" class="list-btn">
-
-        <span>🎮</span>
-
-        <div>
-          <strong>عن الألعاب</strong>
-          <small>طريقة لعب كل لعبة</small>
-        </div>
-
-        <b>‹</b>
-
-      </button>
-
-
-      <button id="aboutAppBtn" class="list-btn">
-
-        <span>ℹ️</span>
-
-        <div>
-          <strong>عن التطبيق</strong>
-          <small>معلومات عن شكون فيكم؟</small>
-        </div>
-
-        <b>‹</b>
-
-      </button>
-
+    <div class="info-box">
+      👥 عدد اللاعبين:
+      <strong>2</strong>
     </div>
 
+    <button
+      id="startShkounAnaBtn"
+      class="main-btn"
+    >
+      🚀 ابدأ اللعبة
+    </button>
 
-    <nav class="bottom-nav">
+    <button
+      id="shkounAnaBackBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
 
-      <button class="nav-btn" data-screen="homeScreen">
-        <span>🏠</span>
-        <small>الرئيسية</small>
-      </button>
+  </div>
 
-      <button class="nav-btn" data-screen="messagesScreen">
-        <span>💬</span>
-        <small>الرسائل</small>
-      </button>
-
-      <button class="nav-btn" data-screen="gamesScreen">
-        <span>🎮</span>
-        <small>الألعاب</small>
-      </button>
-
-      <button class="nav-btn active" data-screen="settingsScreen">
-        <span>⚙️</span>
-        <small>الإعدادات</small>
-      </button>
-
-    </nav>
-
-  </section>
+</section>
 
 
-  <!-- النافذة -->
-  <div id="infoModal" class="modal hidden">
+<!-- =========================
+     JOIN
+     ========================= -->
 
-    <div class="modal-box">
+<section id="joinScreen" class="screen hidden">
 
-      <button id="closeModal" class="close-modal">
-        ×
-      </button>
+  <div class="card">
 
-      <div id="modalContent"></div>
+    <h2>🔑 الدخول إلى غرفة</h2>
+
+    <p class="subtitle">
+      اكتب كود الغرفة
+    </p>
+
+    <input
+      id="roomCode"
+      type="number"
+      placeholder="مثال: 123456"
+      inputmode="numeric"
+    >
+
+    <button
+      id="joinBtn"
+      class="main-btn"
+    >
+      دخول
+    </button>
+
+    <p
+      id="joinMessage"
+      class="message"
+    ></p>
+
+    <button
+      id="backBtn"
+      class="secondary-btn"
+    >
+      ← رجوع
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MESSAGES
+     ========================= -->
+
+<section id="messagesScreen" class="screen hidden">
+
+  <div class="page-container">
+
+    <div class="page-icon">💬</div>
+
+    <h1>الرسائل</h1>
+
+    <p>
+      هنا باش تلقى الرسائل والتنبيهات.
+    </p>
+
+    <div class="coming-soon">
+
+      <span>🚧</span>
+
+      <strong>قريبًا</strong>
+
+      <small>
+        نظام الرسائل باش يتربط مع اللعب Online.
+      </small>
 
     </div>
 
   </div>
 
+</section>
 
-<script>
 
-document.addEventListener("DOMContentLoaded", function () {
+<!-- =========================
+     GAMES
+     ========================= -->
 
-  const screens = [
-    "nameScreen",
-    "homeScreen",
-    "onlineScreen",
-    "offlineScreen",
-    "playersScreen",
-    "shkounAnaScreen",
-    "joinScreen",
-    "messagesScreen",
-    "gamesScreen",
-    "settingsScreen"
-  ];
+<section id="gamesScreen" class="screen hidden">
 
+  <div class="page-container">
 
-  function hideAll() {
+    <div class="page-icon">🎮</div>
 
-    screens.forEach(function (id) {
+    <h1>الألعاب</h1>
 
-      const screen = document.getElementById(id);
+    <p>
+      اختار اللعبة اللي تحب تلعبها.
+    </p>
 
-      if (screen) {
-        screen.classList.add("hidden");
-      }
 
-    });
+    <button
+      id="gamesShkounFikom"
+      class="list-btn"
+    >
 
-  }
+      <span>❓</span>
 
+      <div>
 
-  function showScreen(id) {
+        <strong>شكون فيكم؟</strong>
 
-    hideAll();
+        <small>
+          2 إلى 8 لاعبين
+        </small>
 
-    const screen = document.getElementById(id);
+      </div>
 
-    if (screen) {
-      screen.classList.remove("hidden");
-    }
+      <b>‹</b>
 
-    updateNav(id);
+    </button>
 
-  }
 
+    <button
+      id="gamesShkounAna"
+      class="list-btn"
+    >
 
-  function updateNav(activeScreen) {
+      <span>🕵️</span>
 
-    document.querySelectorAll(".nav-btn").forEach(function (btn) {
+      <div>
 
-      btn.classList.remove("active");
+        <strong>شكون أنا؟</strong>
 
-      if (btn.dataset.screen === activeScreen) {
-        btn.classList.add("active");
-      }
+        <small>
+          لاعبين فقط
+        </small>
 
-    });
+      </div>
 
-  }
+      <b>‹</b>
 
+    </button>
 
-  /* الشريط السفلي */
 
-  document.querySelectorAll(".nav-btn").forEach(function (btn) {
+    <div class="coming-soon">
 
-    btn.addEventListener("click", function () {
+      <span>🔥</span>
 
-      showScreen(btn.dataset.screen);
+      <strong>
+        ألعاب أخرى قريبًا
+      </strong>
 
-    });
+      <small>
+        باش نزيدوا ألعاب جديدة مع الوقت.
+      </small>
 
-  });
+    </div>
 
+  </div>
 
-  /* الاسم */
+</section>
 
-  const playerName =
-    document.getElementById("playerName");
 
-  const welcomeName =
-    document.getElementById("welcomeName");
+<!-- =========================
+     SETTINGS
+     ========================= -->
 
-  const nameMessage =
-    document.getElementById("nameMessage");
+<section id="settingsScreen" class="screen hidden">
 
+  <div class="page-container">
 
-  const savedName =
-    localStorage.getItem("shkounPlayerName");
+    <div class="page-icon">⚙️</div>
 
+    <h1>الإعدادات</h1>
 
-  if (savedName) {
+    <p>
+      خصّص تجربتك في شكون فيكم؟
+    </p>
 
-    playerName.value = savedName;
 
-    welcomeName.textContent = savedName;
+    <button
+      id="settingsNameBtn"
+      class="list-btn"
+    >
 
-    showScreen("homeScreen");
+      <span>👤</span>
 
-  } else {
+      <div>
 
-    showScreen("nameScreen");
+        <strong>تغيير الاسم</strong>
 
-  }
+        <small>
+          بدّل الاسم متاعك
+        </small>
 
+      </div>
 
-  document
-    .getElementById("continueBtn")
-    .addEventListener("click", function () {
+      <b>‹</b>
 
-      const name =
-        playerName.value.trim();
+    </button>
 
 
-      if (!name) {
+    <button
+      id="languageBtn"
+      class="list-btn"
+    >
 
-        nameMessage.textContent =
-          "اكتب اسمك أولاً 👀";
+      <span>🌐</span>
 
-        return;
+      <div>
 
-      }
+        <strong>اللغة</strong>
 
+        <small id="currentLanguage">
+          العربية
+        </small>
 
-      if (name.length < 2) {
+      </div>
 
-        nameMessage.textContent =
-          "الاسم لازم يكون حرفين على الأقل 😅";
+      <b>‹</b>
 
-        return;
+    </button>
 
-      }
 
-
-      localStorage.setItem(
-        "shkounPlayerName",
-        name
-      );
-
-
-      welcomeName.textContent =
-        name;
-
-
-      showScreen("homeScreen");
-
-    });
-
-
-  playerName.addEventListener(
-    "keydown",
-    function (event) {
-
-      if (event.key === "Enter") {
-
-        document
-          .getElementById("continueBtn")
-          .click();
-
-      }
-
-    }
-  );
-
-
-  /* الرئيسية */
-
-  document
-    .getElementById("onlineBtn")
-    .onclick = function () {
-
-      showScreen("onlineScreen");
-
-    };
-
-
-  document
-    .getElementById("offlineBtn")
-    .onclick = function () {
-
-      showScreen("offlineScreen");
-
-    };
-
-
-  /* Online */
-
-  document
-    .getElementById("onlineBackBtn")
-    .onclick = function () {
-
-      showScreen("homeScreen");
-
-    };
-
-
-  document
-    .getElementById("createRoomBtn")
-    .onclick = function () {
-
-      window.location.href =
-        "create-room.html";
-
-    };
-
-
-  document
-    .getElementById("joinRoomBtn")
-    .onclick = function () {
-
-      showScreen("joinScreen");
-
-    };
-
-
-  document
-    .getElementById("backBtn")
-    .onclick = function () {
-
-      showScreen("onlineScreen");
-
-    };
-
-
-  /* Offline */
-
-  document
-    .getElementById("offlineBackBtn")
-    .onclick = function () {
-
-      showScreen("homeScreen");
-
-    };
-
-
-  document
-    .getElementById("shkounFikomBtn")
-    .onclick = function () {
-
-      showScreen("playersScreen");
-
-    };
-
-
-  document
-    .getElementById("shkounAnaBtn")
-    .onclick = function () {
-
-      showScreen("shkounAnaScreen");
-
-    };
-
-
-  document
-    .getElementById("playersBackBtn")
-    .onclick = function () {
-
-      showScreen("offlineScreen");
-
-    };
-
-
-  document
-    .getElementById("shkounAnaBackBtn")
-    .onclick = function () {
-
-      showScreen("offlineScreen");
-
-    };
-
-
-  /* اختيار اللاعبين */
-
-  document
-    .querySelectorAll(".player-count")
-    .forEach(function (button) {
-
-      button.addEventListener(
-        "click",
-        function () {
-
-          const players =
-            Number(button.dataset.players);
-
-
-          localStorage.setItem(
-            "shkounFikomPlayers",
-            players
-          );
-
-
-          localStorage.setItem(
-            "shkounCurrentGame",
-            "shkoun-fikom"
-          );
-
-
-          window.location.href =
-            "shkoun-fikom.html";
-
-        }
-      );
-
-    });
-
-
-  /* شكون أنا */
-
-  document
-    .getElementById("startShkounAnaBtn")
-    .onclick = function () {
-
-      localStorage.setItem(
-        "shkounAnaPlayers",
-        "2"
-      );
-
-
-      localStorage.setItem(
-        "shkounCurrentGame",
-        "shkoun-ana"
-      );
-
-
-      window.location.href =
-        "shkoun-ana.html";
-
-    };
-
-
-  /* الألعاب */
-
-  document
-    .getElementById("gamesShkounFikom")
-    .onclick = function () {
-
-      showScreen("playersScreen");
-
-    };
-
-
-  document
-    .getElementById("gamesShkounAna")
-    .onclick = function () {
-
-      showScreen("shkounAnaScreen");
-
-    };
-
-
-  /* النافذة */
-
-  const modal =
-    document.getElementById("infoModal");
-
-  const modalContent =
-    document.getElementById("modalContent");
-
-
-  function openModal(content) {
-
-    modalContent.innerHTML =
-      content;
-
-    modal.classList.remove("hidden");
-
-  }
-
-
-  document
-    .getElementById("closeModal")
-    .onclick = function () {
-
-      modal.classList.add("hidden");
-
-    };
-
-
-  /* تغيير الاسم */
-
-  document
-    .getElementById("settingsNameBtn")
-    .onclick = function () {
-
-      openModal(`
-
-        <h2>👤 تغيير الاسم</h2>
-
-        <p>اكتب الاسم الجديد:</p>
-
-        <input
-          id="newName"
-          type="text"
-          maxlength="20"
-          placeholder="اسمك الجديد"
-        >
-
-        <button
-          id="saveNewName"
-          class="main-btn"
-        >
-          حفظ
-        </button>
-
-      `);
-
-
-      document
-        .getElementById("saveNewName")
-        .onclick = function () {
-
-          const newName =
-            document
-              .getElementById("newName")
-              .value
-              .trim();
-
-
-          if (newName.length < 2) {
-
-            alert(
-              "الاسم لازم يكون حرفين على الأقل"
-            );
-
-            return;
-
-          }
-
-
-          localStorage.setItem(
-            "shkounPlayerName",
-            newName
-          );
-
-
-          welcomeName.textContent =
-            newName;
-
-
-          playerName.value =
-            newName;
-
-
-          modal.classList.add("hidden");
-
-        };
-
-    };
-
-
-  /* اللغة */
-
-  document
-    .getElementById("languageBtn")
-    .onclick = function () {
-
-      openModal(`
-
-        <h2>🌐 اللغة</h2>
-
-        <button
-          class="language-btn"
-          id="arabicBtn"
-        >
-          🇹🇳 العربية
-        </button>
-
-        <button
-          class="language-btn"
-          id="frenchBtn"
-        >
-          🇫🇷 Français
-        </button>
-
-      `);
-
-
-      document
-        .getElementById("arabicBtn")
-        .onclick = function () {
-
-          localStorage.setItem(
-            "shkounLanguage",
-            "ar"
-          );
-
-          document
-            .getElementById("currentLanguage")
-            .textContent =
-              "العربية";
-
-          modal.classList.add("hidden");
-
-        };
-
-
-      document
-        .getElementById("frenchBtn")
-        .onclick = function () {
-
-          localStorage.setItem(
-            "shkounLanguage",
-            "fr"
-          );
-
-          document
-            .getElementById("currentLanguage")
-            .textContent =
-              "Français";
-
-          modal.classList.add("hidden");
-
-        };
-
-    };
-
-
-  /* عن الألعاب */
-
-  document
-    .getElementById("aboutGamesBtn")
-    .onclick = function () {
-
-      openModal(`
-
-        <h2>🎮 عن الألعاب</h2>
-
-        <h3>❓ شكون فيكم؟</h3>
-
-        <p>
-          تختاروا عدد اللاعبين من 2 إلى 8،
-          وبعدها تبدأ الأسئلة العشوائية.
-          المجموعة تختار شكون ينطبق عليه السؤال.
-        </p>
-
-        <h3>🕵️ شكون أنا؟</h3>
-
-        <p>
-          لعبة بين زوز لاعبين.
-          كل لاعب يحاول يعرف الشخصية
-          اللي عند اللاعب الآخر.
-        </p>
-
-      `);
-
-    };
-
-
-  /* عن التطبيق */
-
-  document
-    .getElementById("aboutAppBtn")
-    .onclick = function () {
-
-      openModal(`
-
-        <h2>ℹ️ شكون فيكم؟</h2>
-
-        <p>
-          تطبيق ألعاب اجتماعية للأصحاب والعائلة.
-        </p>
-
-        <p>
-          العبوا، اضحكوا،
-          واكتشفوا شكون فيكم 😏
-        </p>
-
-        <p>
-          🎮 ألعاب Offline و Online
-        </p>
-
-        <p>
-          الإصدار: 1.0
-        </p>
-
-      `);
-
-    };
-
-
-});
-
-</script>
-
-</body>
-  </html>
+    <button
+      id="aboutGamesBtn"
+      class="lis
